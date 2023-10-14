@@ -9,24 +9,18 @@ namespace Hotel.Presentation.Model
 {
     public class CustomerUI : INotifyPropertyChanged
     {
-        private int _id;
         private string _name;
         private string _email;
-        private string _address;
         private string _phone;
-        private int _nrOfMembers;
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
 
         public int Id
         {
-            get { return _id; }
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            get;
+            set;
         }
 
         public string Name
@@ -49,21 +43,22 @@ namespace Hotel.Presentation.Model
         }
         public string Address
         {
-            get { return _address; }
-            set { _address = value; OnPropertyChanged(); }
+            get;
+            set;
         }
         public string Phone
         {
             get { return _phone; }
-            set { _phone = value; OnPropertyChanged(); }
+            set
+            {
+                _phone = value;
+                OnPropertyChanged();
+            }
         }
         public int NrOfMembers
         {
-            get { return _nrOfMembers; }
-            set
-            {
-                _nrOfMembers = value; OnPropertyChanged();
-            }
+            get;
+            set;
         }
 
 

@@ -3,6 +3,7 @@ using Hotel.Domain.Model;
 using Hotel.Presentation.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Hotel.Presentation
     public partial class CustomerWindow : Window
     {
         public CustomerUI CustomerUI { get; set; }
-        private CustomerManager _customerManager;
+        private readonly CustomerManager _customerManager;
 
         public CustomerWindow(CustomerUI customerUI, CustomerManager cm)
         {
@@ -54,22 +55,26 @@ namespace Hotel.Presentation
             {
                 Address address = new(Citytextbox.Text, Streettextbox.Text, Ziptextbox.Text, Housenumbertextbox.Text);
                 ContactInfo contactinfo = new(Emailtextbox.Text, Phonetextbox.Text, address);
-                Customer customer = new(Nametextbox.Text, contactinfo);
 
                 if (CustomerUI is null)
                 {
+                    Customer customer = new(Nametextbox.Text, contactinfo);
+
                     CustomerUI = new(Nametextbox.Text, Emailtextbox.Text, address.ToString(), Phonetextbox.Text, 0);
+                    CustomerUI.Id = _customerManager.AddCustomer(customer);
                 }
                 else
                 {
-                    CustomerUI.Email = Emailtextbox.Text;
-                    CustomerUI.Phone = Phonetextbox.Text;
-                    CustomerUI.Name = Nametextbox.Text;
+                    Customer customer = new(int.Parse(Idtextbox.Text), Nametextbox.Text, contactinfo);
+
+                    CustomerUI.Name = customer.Name;
+                    CustomerUI.Phone = customer.Contact.Phone;
+                    CustomerUI.Email = customer.Contact.Email;
+                    CustomerUI.Address = customer.Contact.Address.ToString();
+                    _customerManager.UpdateCustomer(customer);
                 }
 
                 DialogResult = true;
-
-                _customerManager.AddCustomer(customer);
                 Close();
             }
             catch (Exception ex)
@@ -77,7 +82,9 @@ namespace Hotel.Presentation
                 MessageBox.Show(ex.Message, "Something went wrong");
             }
 
-
         }
+
+       
+
     }
 }

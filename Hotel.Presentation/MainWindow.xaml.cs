@@ -1,4 +1,5 @@
 ﻿using Hotel.Domain.Managers;
+using Hotel.Domain.Model;
 using Hotel.Presentation.Model;
 using Hotel.Util;
 using System;
@@ -69,6 +70,7 @@ namespace Hotel.Presentation
 
         private void MenuItem_Click_Update(object sender, RoutedEventArgs e)
         {
+
             if (CustomerDataGrid.SelectedItem is null)
             {
                 MessageBox.Show("No one was selected to update.", "update customer");
@@ -76,7 +78,18 @@ namespace Hotel.Presentation
             else
             {
                 CustomerWindow w = new((CustomerUI)CustomerDataGrid.SelectedItem, customerManager);
-                w.ShowDialog();
+                if (w.ShowDialog() == true)
+                {
+
+
+                    CustomerUI cui = w.CustomerUI;
+                    CustomerUI item = customerUisCollection.FirstOrDefault(c => c.Id == cui.Id);
+
+                    int index = customerUisCollection.IndexOf(item);
+                    customerUisCollection[index] = item;
+
+
+                }
             }
         }
 
@@ -89,5 +102,8 @@ namespace Hotel.Presentation
                 customerUisCollection.Add(cui);
             }
         }
+
+
+
     }
 }

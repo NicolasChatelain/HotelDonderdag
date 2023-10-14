@@ -72,8 +72,11 @@ namespace Hotel.Persistence.Repositories
             }
         }
 
-        public void AddCustomer(Customer customer)
+        public int AddCustomer(Customer customer)
         {
+
+            int id;
+
             try
             {
                 string sql = "insert into Customer (name, email, phone, address, status) output inserted.ID values (@name, @email, @phone, @address, @status)";
@@ -98,7 +101,7 @@ namespace Hotel.Persistence.Repositories
                         command.Parameters.AddWithValue("@address", customer.Contact.Address.ToAddressLine());
                         command.Parameters.AddWithValue("@status", 1);
 
-                        int id = Convert.ToInt32(command.ExecuteScalar());
+                        id = Convert.ToInt32(command.ExecuteScalar());
                         customer.Id = id;
 
                         foreach (Member member in customer.GetMembers())
@@ -129,17 +132,41 @@ namespace Hotel.Persistence.Repositories
 
                 throw new CustomerRepositoryException("addcustomer", ex);
             }
+            return id;
         }
 
         public void UpdateCustomer(Customer customer)
         {
             try
             {
-                
+                string query = "update Customer set name = @name, email = @email, phone = @phone, address = @address where id = @id;";
+                using SqlConnection connection = new(connectionString);
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+
+                    try
+                    {
+                        command.CommandText = query;
+                        command.Parameters.AddWithValue("@id", customer.Id);
+                        command.Parameters.AddWithValue("@name", customer.Name);
+                        command.Parameters.AddWithValue("@email", customer.Contact.Email);
+                        command.Parameters.AddWithValue("@phone", customer.Contact.Phone);
+                        command.Parameters.AddWithValue("@address", customer.Contact.Address.ToAddressLine());
+
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+               
+
             }
             catch (Exception ex)
             {
-                
+                throw new CustomerRepositoryException("Something went wrong when updating this customer.", ex);
             }
         }
     }

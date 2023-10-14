@@ -30,14 +30,14 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public void AddCustomer(Customer customer)
+        public int AddCustomer(Customer customer)
         {
-            _customerRepository.AddCustomer(customer);
+             return _customerRepository.AddCustomer(customer);
         }
 
         public void UpdateCustomer(Customer customer)
         {
-
+            _customerRepository.UpdateCustomer(customer);
         }
 
         
