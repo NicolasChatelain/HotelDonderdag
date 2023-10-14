@@ -91,5 +91,21 @@ namespace Hotel.Domain.Model
             }
         }
 
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Customer other = (Customer)obj;
+            return Id == other.Id && Name == other.Name && Contact.Equals(other.Contact);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Contact.GetHashCode());
+        }
+
     }
 }

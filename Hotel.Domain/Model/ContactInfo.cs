@@ -43,7 +43,7 @@ namespace Hotel.Domain.Model
             get { return _phone; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value) || !value.Any(char.IsDigit))
                 {
                     throw new CustomerException("This is not a valid phonenumber.");
                 }
@@ -64,6 +64,22 @@ namespace Hotel.Domain.Model
                 }
                 _address = value;
             }
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            ContactInfo other = (ContactInfo)obj;
+            return Email == other.Email && Phone == other.Phone && Address.Equals(other.Address);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Email, Phone, Address.GetHashCode());
         }
 
     }

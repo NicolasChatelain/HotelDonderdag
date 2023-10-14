@@ -35,6 +35,11 @@ namespace Hotel.Domain.Managers
             _customerRepository.AddCustomer(customer);
         }
 
+        public void UpdateCustomer(Customer customer)
+        {
+
+        }
+
         
     }
 }

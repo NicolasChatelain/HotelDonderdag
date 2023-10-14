@@ -9,7 +9,7 @@ namespace Hotel.Presentation.Model
 {
     public class CustomerUI : INotifyPropertyChanged
     {
-
+        private int _id;
         private string _name;
         private string _email;
         private string _address;
@@ -19,7 +19,15 @@ namespace Hotel.Presentation.Model
         public event PropertyChangedEventHandler? PropertyChanged;
 
 
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Name
         {

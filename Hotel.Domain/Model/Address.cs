@@ -100,5 +100,21 @@ namespace Hotel.Domain.Model
         {
             return $"{City}{splitChar}{PostalCode}{splitChar}{Street}{splitChar}{HouseNumber}";
         }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Address other = (Address)obj;
+            return City == other.City && Street == other.Street && PostalCode == other.PostalCode && HouseNumber == other.HouseNumber; 
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(City, Street, PostalCode, HouseNumber);
+        }
     }
 }

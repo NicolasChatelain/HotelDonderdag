@@ -130,5 +130,17 @@ namespace Hotel.Persistence.Repositories
                 throw new CustomerRepositoryException("addcustomer", ex);
             }
         }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
     }
 }

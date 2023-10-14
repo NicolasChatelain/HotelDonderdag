@@ -37,11 +37,8 @@ namespace Hotel.Presentation
                 Emailtextbox.Text = CustomerUI.Email;
                 Phonetextbox.Text = CustomerUI.Phone;
             }
-            else
-            {
-                Idtextbox.IsReadOnly = true;
-            }
 
+            Idtextbox.IsReadOnly = true;
             _customerManager = cm;
         }
 
@@ -80,7 +77,7 @@ namespace Hotel.Presentation
                 MessageBox.Show(ex.Message, "Something went wrong");
             }
 
-            
+
         }
     }
 }
