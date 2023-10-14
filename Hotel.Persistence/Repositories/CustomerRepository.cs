@@ -13,6 +13,7 @@ namespace Hotel.Persistence.Repositories
     public class CustomerRepository : ICustomerRepository
     {
         private readonly string connectionString;
+        private const byte InactiveStatus = 0;
 
         public CustomerRepository(string connectionstring)
         {
@@ -158,15 +159,45 @@ namespace Hotel.Persistence.Repositories
                     }
                     catch (Exception)
                     {
-                        throw;
+
                     }
                 }
-               
+
 
             }
             catch (Exception ex)
             {
                 throw new CustomerRepositoryException("Something went wrong when updating this customer.", ex);
+            }
+        }
+
+        public void RemoveCustomer(int customerID)
+        {
+            try
+            {
+                string query = "update Customer set status = @status where id = @id;";
+                using SqlConnection connection = new(connectionString);
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+
+                    try
+                    {
+                        command.CommandText = query;
+                        command.Parameters.AddWithValue("@id", customerID);
+                        command.Parameters.AddWithValue("@status", InactiveStatus);
+
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new CustomerRepositoryException("Something went wrong when removing this customer.", ex);
             }
         }
     }

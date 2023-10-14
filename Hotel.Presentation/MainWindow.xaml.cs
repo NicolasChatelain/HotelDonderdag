@@ -61,10 +61,22 @@ namespace Hotel.Presentation
             }
             else
             {
-                if (customerUisCollection.Remove((CustomerUI)CustomerDataGrid.SelectedItem))
+
+                try
                 {
-                    MessageBox.Show("Customer deleted succes!", "succes!");
+                    CustomerUI cui = (CustomerUI)CustomerDataGrid.SelectedItem;
+                    int customerID = cui.Id;
+
+
+                    customerUisCollection.Remove(cui);
+                    customerManager.RemoveCustomer(customerID); //set customer inactive
                 }
+                catch (Exception ex)
+                {
+
+                }
+
+                MessageBox.Show("Customer deleted succes!", "succes!");
             }
         }
 

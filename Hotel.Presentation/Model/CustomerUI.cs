@@ -12,6 +12,7 @@ namespace Hotel.Presentation.Model
         private string _name;
         private string _email;
         private string _phone;
+        private string _address;
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -43,8 +44,13 @@ namespace Hotel.Presentation.Model
         }
         public string Address
         {
-            get;
-            set;
+            get { return _address; }
+            set
+            {
+                _address = value;
+                OnPropertyChanged();
+            }
+            
         }
         public string Phone
         {

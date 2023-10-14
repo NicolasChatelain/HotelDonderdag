@@ -12,5 +12,6 @@ namespace Hotel.Domain.Interfaces
         IReadOnlyList<Customer> GetCustomers(string filter);
         int AddCustomer(Customer customer);
         void UpdateCustomer(Customer customer);
+        void RemoveCustomer(int customerID); // sets user inactive, stays in DB
     }
 }
