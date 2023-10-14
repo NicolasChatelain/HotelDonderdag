@@ -30,9 +30,11 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public bool ValidateInputs()
+        public void AddCustomer(Customer customer)
         {
-            
+            _customerRepository.AddCustomer(customer);
         }
+
+        
     }
 }

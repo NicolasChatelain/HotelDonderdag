@@ -12,7 +12,7 @@ namespace Hotel.Domain.Model
 
         private const int _maxNameLength = 500;
         private int _id;
-        private readonly string _name;
+        private string _name;
         private ContactInfo _contact;
 
         public int Id
@@ -30,6 +30,7 @@ namespace Hotel.Domain.Model
                 {
                     throw new CustomerException($"The {GetType().Name} can not be empty and can not contain more than {_maxNameLength} characters.");
                 }
+                _name = value;
             }
         }
 

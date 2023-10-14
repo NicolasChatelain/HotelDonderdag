@@ -87,6 +87,10 @@ namespace Hotel.Domain.Model
             HouseNumber = parts[3];
         }
 
+        public Address()
+        {
+        }
+
         public override string ToString()
         {
             return $"{City} [{PostalCode}] - {Street} - {HouseNumber}";
