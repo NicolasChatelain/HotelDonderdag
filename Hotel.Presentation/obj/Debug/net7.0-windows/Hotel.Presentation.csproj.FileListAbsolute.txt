@@ -18,15 +18,11 @@ C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-wi
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-windows\Hotel.Persistence.pdb
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.csproj.AssemblyReference.cache
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\ActivitiesWindow.g.cs
-C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\CustomerWindow.g.cs
-C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\MainWindow.g.cs
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Menu.g.cs
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\App.g.cs
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation_MarkupCompile.cache
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation_MarkupCompile.lref
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\ActivitiesWindow.baml
-C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\CustomerWindow.baml
-C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\MainWindow.baml
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Menu.baml
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.g.resources
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.GeneratedMSBuildEditorConfig.editorconfig
@@ -39,3 +35,9 @@ C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-wi
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.pdb
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.genruntimeconfig.cache
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\ref\Hotel.Presentation.dll
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Customer & Members\CustomerWindow.g.cs
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Customer & Members\MainWindow.g.cs
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Customer & Members\CustomerWindow.baml
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Customer & Members\MainWindow.baml
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\MemberWindow.g.cs
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\MemberWindow.baml

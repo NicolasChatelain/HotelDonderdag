@@ -199,6 +199,6 @@ namespace Hotel.Persistence.Repositories
             {
                 throw new CustomerRepositoryException("Something went wrong when removing this customer.", ex);
             }
-        }
+        } // sets user inactive, stays in DB
     }
 }

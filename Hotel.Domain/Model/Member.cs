@@ -6,6 +6,7 @@ namespace Hotel.Domain.Model
     {
 
         private string _name;
+        private DateOnly _birthday;
 
         public string Name
         {
@@ -17,14 +18,11 @@ namespace Hotel.Domain.Model
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new CustomerException("member");
+                    throw new CustomerException("Invalid name.");
                 }
                 _name = value;
             }
         }
-
-        private DateOnly _birthday;
-
         public DateOnly Birthday
         {
             get
@@ -35,11 +33,12 @@ namespace Hotel.Domain.Model
             {
                 if (DateOnly.FromDateTime(DateTime.Now) <= value)
                 {
-                    throw new CustomerException("member");
+                    throw new CustomerException("Invalid date.");
                 }
                 _birthday = value;
             }
         }
+
 
         public Member(string name, DateOnly birthday)
         {
