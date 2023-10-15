@@ -14,6 +14,7 @@ namespace Hotel.Domain.Model
         private int _id;
         private string _name;
         private ContactInfo _contact;
+        private readonly List<Member> _members = new();
 
         public int Id
         {
@@ -39,8 +40,6 @@ namespace Hotel.Domain.Model
             get { return _contact; }
             set { _contact = value; }
         }
-
-        private readonly List<Member> _members = new();
 
         private readonly List<Registration> _registrations = new();
 
@@ -90,6 +89,11 @@ namespace Hotel.Domain.Model
                 throw new CustomerException("remove member");
             }
         }
+
+
+
+
+
 
         public override bool Equals(object? obj)
         {

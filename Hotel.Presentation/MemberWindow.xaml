@@ -23,21 +23,25 @@
 
         <Label Content="Name" Margin="5" HorizontalContentAlignment="Right"/>
         <Label Content="Birthdate" Margin="5" Grid.Row="1" HorizontalContentAlignment="Right" />
+        
+        
 
-        <TextBox Grid.Column="1" Margin="5" VerticalContentAlignment="Center" />
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Margin="5" VerticalContentAlignment="Center" Name="namebox" />
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" VerticalContentAlignment="Center" Name="birthdaybox" TextChanged="Birthdaybox_TextChanged" Padding="2 0 0 0"/>
+
+        <Label Content="dd/mm/yyyy" Background="Transparent" Opacity="0.5" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5 0 0 0" IsHitTestVisible="False" Name="dateformatlabel" />
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
             
-            <Button Content="Add member" Margin="5" Padding="10" />
-            <Button Content="Confirm members" Margin="5" Padding="10" />
-            <Button Content="Cancel" Margin="5" Padding="10" />
+            <Button Content="Add member" Margin="5" Padding="10" Name="AddMember" Click="AddMember_Click"/>
+            <Button Content="Confirm members" Margin="5" Padding="10" Name="ConfirmAddedMembers" Click="ConfirmAddedMembers_Click" />
+            <Button Content="Cancel" Margin="5" Padding="10" Name="Cancel" Click="Cancel_Click" />
 
         </StackPanel>
 
         <Label Content="Current members" Grid.Row="3" HorizontalAlignment="Center" Grid.ColumnSpan="2" />
 
-        <DataGrid Grid.Row="4" Grid.ColumnSpan="2" IsReadOnly="True" />
+        <DataGrid Grid.Row="4" Grid.ColumnSpan="2" IsReadOnly="True" Name="MembersGrid" />
 
     </Grid>
 </Window>

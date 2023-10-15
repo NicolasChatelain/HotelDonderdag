@@ -44,5 +44,7 @@ namespace Hotel.Domain.Managers
         {
             _customerRepository.RemoveCustomer(customerID); // sets customer inactive, stays in DB
         }
+
+        
     }
 }

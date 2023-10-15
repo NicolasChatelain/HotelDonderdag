@@ -45,9 +45,9 @@
         <DataGrid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" Name="MemberDataGrid">
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Add" Click="Add_Member_Click" />
-                    <MenuItem Header="Delete" Click="Delete_Member_Click" />
-                    <MenuItem Header="Update" Click="Update_Member_Click" />
+                    <MenuItem Header="Add a member" Click="Add_Member_Click" />
+                    <MenuItem Header="Delete a member" Click="Delete_Member_Click" />
+                    <!--<MenuItem Header="Update" Click="Update_Member_Click" />-->
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

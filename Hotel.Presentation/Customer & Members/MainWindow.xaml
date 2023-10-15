@@ -24,8 +24,8 @@
 
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Add" Click="MenuItem_Click_Add"/>
-                    <MenuItem Header="Delete" Click="MenuItem_Click_Delete" />
+                    <MenuItem Header="Add a customer" Click="MenuItem_Click_Add"/>
+                    <MenuItem Header="Delete a customer" Click="MenuItem_Click_Delete" />
                     <MenuItem Header="Update" Click="MenuItem_Click_Update"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>

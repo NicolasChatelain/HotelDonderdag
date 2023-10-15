@@ -1,8 +1,10 @@
 ﻿using Hotel.Domain.Managers;
 using Hotel.Domain.Model;
+using Hotel.Presentation.Customer___Members;
 using Hotel.Presentation.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,8 @@ namespace Hotel.Presentation
     {
         public CustomerUI CustomerUI { get; set; }
         private readonly CustomerManager _customerManager;
+        private MemberWindow _memberWindow;
+        private ObservableCollection<MemberUI> _membersCollection;
 
         public CustomerWindow(CustomerUI customerUI, CustomerManager cm)
         {
@@ -37,10 +41,14 @@ namespace Hotel.Presentation
                 Nametextbox.Text = CustomerUI.Name;
                 Emailtextbox.Text = CustomerUI.Email;
                 Phonetextbox.Text = CustomerUI.Phone;
+                _membersCollection = new(CustomerUI.Members); // show members
             }
 
             Idtextbox.IsReadOnly = true;
             _customerManager = cm;
+
+            MemberDataGrid.ItemsSource = _membersCollection;
+
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +68,7 @@ namespace Hotel.Presentation
                 {
                     Customer customer = new(Nametextbox.Text, contactinfo);
 
-                    CustomerUI = new(Nametextbox.Text, Emailtextbox.Text, address.ToString(), Phonetextbox.Text, 0);
+                    CustomerUI = new(Nametextbox.Text, Emailtextbox.Text, address.ToString(), Phonetextbox.Text);
                     CustomerUI.Id = _customerManager.AddCustomer(customer);
                 }
                 else
@@ -86,18 +94,41 @@ namespace Hotel.Presentation
 
         private void Add_Member_Click(object sender, RoutedEventArgs e)
         {
+            _memberWindow = new(_membersCollection);
+            _memberWindow.ShowDialog();
             
+
+            if (_memberWindow.DialogResult == true)
+            {
+                CustomerUI.Members = _memberWindow.MembersCollection.ToList();
+                _membersCollection.Clear();
+
+                foreach(var member in _memberWindow.MembersCollection)
+                {
+                    _membersCollection.Add(member);
+                }
+
+            }
+
         }
 
         private void Delete_Member_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void Update_Member_Click(object sender, RoutedEventArgs e)
-        {
 
         }
+
+        //private void Update_Member_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _memberWindow = new();
+        //    _memberWindow.ShowDialog();
+        //    _memberWindow.membersCollection = _membersCollection;
+
+
+        //    foreach (var member in _memberWindow.membersCollection)
+        //    {
+        //        CustomerUI.members.Add(member);
+        //    }
+        //}
 
 
     }

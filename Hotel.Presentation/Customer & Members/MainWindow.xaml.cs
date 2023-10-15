@@ -40,7 +40,7 @@ namespace Hotel.Presentation
                 x.Contact.Email,
                 x.Contact.Address.ToString(),
                 x.Contact.Phone,
-                x.GetMembers().Count))
+                x.GetMembers().Select(m => new MemberUI(m.Name, m.Birthday.ToString())).ToList()))
                 .ToList());
 
             CustomerDataGrid.ItemsSource = customerUisCollection;
@@ -49,7 +49,7 @@ namespace Hotel.Presentation
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            customerUisCollection = new(customerManager.GetCustomers(SearchTextBox.Text).Select(x => new CustomerUI(x.Id, x.Name, x.Contact.Email, x.Contact.Address.ToString(), x.Contact.Phone, x.GetMembers().Count)).ToList());
+            customerUisCollection = new(customerManager.GetCustomers(SearchTextBox.Text).Select(x => new CustomerUI(x.Id, x.Name, x.Contact.Email, x.Contact.Address.ToString(), x.Contact.Phone,x.GetMembers().Select(m => new MemberUI(m.Name, m.Birthday.ToString())).ToList())).ToList());
             CustomerDataGrid.ItemsSource = customerUisCollection;
         }
 
@@ -90,6 +90,8 @@ namespace Hotel.Presentation
             else
             {
                 CustomerWindow w = new((CustomerUI)CustomerDataGrid.SelectedItem, customerManager);
+                w.AddButton.Content = "Confirm Update";
+
                 if (w.ShowDialog() == true)
                 {
 
@@ -107,7 +109,10 @@ namespace Hotel.Presentation
 
         private void MenuItem_Click_Add(object sender, RoutedEventArgs e)
         {
+            
+
             CustomerWindow w = new(null, customerManager);
+            w.AddButton.Content = "Add customer";
             if (w.ShowDialog() == true)
             {
                 CustomerUI cui = w.CustomerUI;

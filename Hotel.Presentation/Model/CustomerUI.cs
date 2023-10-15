@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace Hotel.Presentation.Model
         private string _email;
         private string _phone;
         private string _address;
+        private int _memberCount;
+        private List<MemberUI> _members;
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -50,7 +53,7 @@ namespace Hotel.Presentation.Model
                 _address = value;
                 OnPropertyChanged();
             }
-            
+
         }
         public string Phone
         {
@@ -61,30 +64,45 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged();
             }
         }
-        public int NrOfMembers
+
+        public int MemberCount
         {
-            get;
-            set;
+            get { return _memberCount; }
+            set
+            {
+                OnPropertyChanged();
+            }
         }
 
 
-        public CustomerUI(string name, string email, string address, string phone, int nrOfMembers)
+        internal List<MemberUI> Members
+        {
+            get { return _members; }
+            set
+            {
+                _members = value;
+                _memberCount = _members.Count;
+                
+            }
+        }
+
+
+        public CustomerUI(string name, string email, string address, string phone)
         {
             Name = name;
             Email = email;
             Address = address;
             Phone = phone;
-            NrOfMembers = nrOfMembers;
         }
 
-        public CustomerUI(int? id, string name, string email, string address, string phone, int nrOfMembers)
+        public CustomerUI(int? id, string name, string email, string address, string phone, List<MemberUI> members)
         {
             Id = (int)id;
             Name = name;
             Email = email;
             Address = address;
             Phone = phone;
-            NrOfMembers = nrOfMembers;
+            Members = members;
         }
 
         protected void OnPropertyChanged(string name = null)

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hotel.Presentation.Model
 {
-    class MemberUI
+    public class MemberUI
     {
         private string _name;
-        private DateOnly _birthday;
+        private string _birthday;
 
         public string Name
         {
@@ -17,10 +17,18 @@ namespace Hotel.Presentation.Model
             set { _name = value; }
         }
 
-        public DateOnly Birthday
+        public string Birthday
         {
             get { return _birthday; }
             set { _birthday = value; }
         }
+
+        public MemberUI(string name, string birthday)
+        {
+            Name = name;
+            Birthday = birthday;
+        }
+
+       
     }
 }
