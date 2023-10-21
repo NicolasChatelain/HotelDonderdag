@@ -20,7 +20,7 @@ namespace Hotel.Domain.Model
                 {
                     throw new CustomerException("Invalid name.");
                 }
-                _name = value;
+                _name = value.ToLower();
             }
         }
         public DateOnly Birthday
@@ -31,7 +31,7 @@ namespace Hotel.Domain.Model
             }
             set
             {
-                if (DateOnly.FromDateTime(DateTime.Now) <= value)
+                if (DateOnly.FromDateTime(DateTime.Now) <= value || value <= new DateOnly(1753, 1, 1))
                 {
                     throw new CustomerException("Invalid date.");
                 }
@@ -52,12 +52,20 @@ namespace Hotel.Domain.Model
 
         public override bool Equals(object? obj)
         {
-            return obj is Member member && _name == member._name && _birthday.Equals(member._birthday);
+            if (obj is null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+
+            Member otherMember = (Member)obj;
+            return Name == otherMember.Name && Birthday == otherMember.Birthday;
+            
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_name, _birthday);
+            return HashCode.Combine(Name, Birthday);
         }
     }
 }

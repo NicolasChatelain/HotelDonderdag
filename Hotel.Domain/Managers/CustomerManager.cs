@@ -26,25 +26,47 @@ namespace Hotel.Domain.Managers
             }
             catch (Exception)
             {
-                throw new CustomerManagerException("GetCustomers");
+                throw new CustomerManagerException("Something went wrong when retrieving the customers.");
             }
         }
 
-        public int AddCustomer(Customer customer)
+        public int AddCustomer(Customer customer, List<Member> members)
         {
-             return _customerRepository.AddCustomer(customer);
+            MemberAppending(customer, members);
+            return _customerRepository.AddCustomer(customer);
         }
 
-        public void UpdateCustomer(Customer customer)
+        public void UpdateCustomerOnly(Customer customer)
         {
             _customerRepository.UpdateCustomer(customer);
         }
 
-        public void RemoveCustomer(int customerID)
+        public void RemoveCustomer(int customerID) // sets customer inactive, stays in DB
         {
-            _customerRepository.RemoveCustomer(customerID); // sets customer inactive, stays in DB
+            _customerRepository.RemoveCustomer(customerID);
+        }
+
+        public void AddNewMembers(int id, List<Member> oldmembers, List<Member> members)
+        {
+            List<Member> newMembers = members.Except(oldmembers).ToList();
+            _customerRepository.AddMember(id, newMembers);
+        }
+
+        public void RemoveMember(int id, Member member)
+        {
+            _customerRepository.RemoveMember(id, member);
+        }
+
+        public void UpdateMember(int id, Member memberOriginalState, Member memberUpdatedState)
+        {
+            _customerRepository.UpdateMember(id, memberOriginalState, memberUpdatedState);
         }
 
         
+
+        private static Customer MemberAppending(Customer customer, List<Member> members)
+        {
+            return customer.AppendAllMembers(members);
+        }
     }
 }

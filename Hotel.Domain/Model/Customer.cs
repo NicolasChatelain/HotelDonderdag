@@ -14,7 +14,7 @@ namespace Hotel.Domain.Model
         private int _id;
         private string _name;
         private ContactInfo _contact;
-        private readonly List<Member> _members = new();
+        private List<Member> _members = new();
 
         public int Id
         {
@@ -74,7 +74,7 @@ namespace Hotel.Domain.Model
             }
             else
             {
-                throw new CustomerException("Addmember");
+                throw new CustomerException("Add member");
             }
         }
 
@@ -89,6 +89,16 @@ namespace Hotel.Domain.Model
                 throw new CustomerException("remove member");
             }
         }
+
+        internal Customer AppendAllMembers(List<Member> members)
+        {
+            _members = members;
+            return this;
+        }
+
+
+
+
 
 
 

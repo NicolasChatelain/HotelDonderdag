@@ -25,29 +25,42 @@ namespace Hotel.Presentation
     /// </summary>
     public partial class CustomerWindow : Window
     {
-        public CustomerUI CustomerUI { get; set; }
         private readonly CustomerManager _customerManager;
         private MemberWindow _memberWindow;
-        private ObservableCollection<MemberUI> _membersCollection;
+        private readonly ObservableCollection<MemberUI> _membersPerCustomer;
+
+        public CustomerUI CustomerUI { get; set; }
+
+
 
         public CustomerWindow(CustomerUI customerUI, CustomerManager cm)
         {
             InitializeComponent();
             this.CustomerUI = customerUI;
 
-            if (CustomerUI is not null) // if updating...
+            if (CustomerUI is not null) // if updating set input fields to existing data from customer
             {
+
+                string[] addressArray = CustomerUI.GetaddressArray(CustomerUI.Address);
+
+
                 Idtextbox.Text = CustomerUI.Id.ToString();
                 Nametextbox.Text = CustomerUI.Name;
                 Emailtextbox.Text = CustomerUI.Email;
                 Phonetextbox.Text = CustomerUI.Phone;
-                _membersCollection = new(CustomerUI.Members); // show members
+                Citytextbox.Text = addressArray[0];
+                Ziptextbox.Text = addressArray[1];
+                Streettextbox.Text = addressArray[2];
+                Housenumbertextbox.Text = addressArray[3];
+                _membersPerCustomer = new(CustomerUI.Members); // show members
+            }
+            else // if customer is new, make a new empty collection for the members
+            {
+                _membersPerCustomer = new();
             }
 
-            Idtextbox.IsReadOnly = true;
             _customerManager = cm;
-
-            MemberDataGrid.ItemsSource = _membersCollection;
+            MemberDataGrid.ItemsSource = _membersPerCustomer;
 
         }
 
@@ -58,20 +71,20 @@ namespace Hotel.Presentation
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 Address address = new(Citytextbox.Text, Streettextbox.Text, Ziptextbox.Text, Housenumbertextbox.Text);
                 ContactInfo contactinfo = new(Emailtextbox.Text, Phonetextbox.Text, address);
 
-                if (CustomerUI is null)
+                if (CustomerUI is null) // new customer, validate in domainlayer.
                 {
                     Customer customer = new(Nametextbox.Text, contactinfo);
 
                     CustomerUI = new(Nametextbox.Text, Emailtextbox.Text, address.ToString(), Phonetextbox.Text);
-                    CustomerUI.Id = _customerManager.AddCustomer(customer);
+                    CustomerUI.Members = _membersPerCustomer.ToList();
+                    CustomerUI.Id = _customerManager.AddCustomer(customer, _membersPerCustomer.Select(x => new Member(x.Name, DateOnly.Parse(x.Birthday))).ToList());
                 }
-                else
+                else // updating existing customer
                 {
                     Customer customer = new(int.Parse(Idtextbox.Text), Nametextbox.Text, contactinfo);
 
@@ -79,7 +92,10 @@ namespace Hotel.Presentation
                     CustomerUI.Phone = customer.Contact.Phone;
                     CustomerUI.Email = customer.Contact.Email;
                     CustomerUI.Address = customer.Contact.Address.ToString();
-                    _customerManager.UpdateCustomer(customer);
+
+                    _customerManager.UpdateCustomerOnly(customer);
+
+
                 }
 
                 DialogResult = true;
@@ -87,48 +103,93 @@ namespace Hotel.Presentation
             }
             catch (Exception ex)
             {
+                CustomerUI = null;
                 MessageBox.Show(ex.Message, "Something went wrong");
             }
 
         }
 
-        private void Add_Member_Click(object sender, RoutedEventArgs e)
+        private void Add_Member_Click(object sender, RoutedEventArgs e) // opens a new window to add members, injects the current customer's member list via ctor
         {
-            _memberWindow = new(_membersCollection);
+            _memberWindow = new(_membersPerCustomer);
+            _memberWindow.UpdateConfirmation.IsEnabled = false;
             _memberWindow.ShowDialog();
-            
 
-            if (_memberWindow.DialogResult == true)
+            if (CustomerUI is not null) //when updating
             {
-                CustomerUI.Members = _memberWindow.MembersCollection.ToList();
-                _membersCollection.Clear();
+                _customerManager.AddNewMembers(
+                    CustomerUI.Id,
+                    CustomerUI.Members.Select(x => new Member(x.Name, DateOnly.Parse(x.Birthday))).ToList(),
+                    _membersPerCustomer.Select(x => new Member(x.Name, DateOnly.Parse(x.Birthday))).ToList());
+            }
 
-                foreach(var member in _memberWindow.MembersCollection)
+            CustomerUI.Members = _membersPerCustomer.ToList();
+        }
+
+        private void Delete_Member_Click(object sender, RoutedEventArgs e) // if a member is selected in the grid delete that member from the current customer
+        {
+            if (MemberDataGrid.SelectedItem is not null)
+            {
+                MemberUI mui = MemberDataGrid.SelectedItem as MemberUI;
+
+                if (CustomerUI is not null)
                 {
-                    _membersCollection.Add(member);
+                    try
+                    {
+                        _customerManager.RemoveMember(CustomerUI.Id, new Member(mui.Name, DateOnly.Parse(mui.Birthday)));
+                        _membersPerCustomer.Remove(MemberDataGrid.SelectedItem as MemberUI);
+                    }
+                    catch
+                    {
+
+                    }
+
+                }
+                else
+                {
+                    _membersPerCustomer.Remove(MemberDataGrid.SelectedItem as MemberUI);
                 }
 
+                CustomerUI.Members = _membersPerCustomer.ToList();
             }
 
         }
 
-        private void Delete_Member_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void Update_Member_Click(object sender, RoutedEventArgs e)
+        {
+            if (MemberDataGrid.SelectedItem != null)
+            {
+                MemberUI MUI = (MemberUI)MemberDataGrid.SelectedItem;
+
+                string name = MUI.Name;
+                string birthday = MUI.Birthday;
+
+                _memberWindow = new(_membersPerCustomer);
+                _memberWindow.namebox.Text = name;
+                _memberWindow.birthdaybox.Text = birthday;
+                _memberWindow.UpdateConfirmation.IsEnabled = true;
+                _memberWindow.ShowDialog();
+
+                if (_memberWindow.DialogResult == true)
+                {
+                    Member MemberOriginalState = new(name, DateOnly.Parse(birthday));
+
+                    string updatedName = _memberWindow.namebox.Text;
+                    string updatedBirthday = _memberWindow.birthdaybox.Text;
+                    int id = CustomerUI.Id;
+
+                    Member MemberUpdatedState = new(updatedName, DateOnly.Parse(updatedBirthday));
+
+                    _customerManager.UpdateMember(id, MemberOriginalState, MemberUpdatedState); //update DB
+
+                    MUI.Name = updatedName;
+                    MUI.Birthday = updatedBirthday;
+                }
+
+            }
         }
 
-        //private void Update_Member_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _memberWindow = new();
-        //    _memberWindow.ShowDialog();
-        //    _memberWindow.membersCollection = _membersCollection;
-
-
-        //    foreach (var member in _memberWindow.membersCollection)
-        //    {
-        //        CustomerUI.members.Add(member);
-        //    }
-        //}
 
 
     }

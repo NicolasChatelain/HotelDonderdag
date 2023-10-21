@@ -10,8 +10,13 @@ namespace Hotel.Domain.Interfaces
     public interface ICustomerRepository
     {
         IReadOnlyList<Customer> GetCustomers(string filter);
+
         int AddCustomer(Customer customer);
-        void UpdateCustomer(Customer customer);
         void RemoveCustomer(int customerID); // sets user inactive, stays in DB
+        void UpdateCustomer(Customer customer);
+        
+        void AddMember(int id, List<Member> member);
+        void RemoveMember(int id, Member member);
+        void UpdateMember(int id, Member memberOriginalState, Member memberUpdatedState);
     }
 }

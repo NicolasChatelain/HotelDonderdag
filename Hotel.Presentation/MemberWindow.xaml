@@ -34,8 +34,8 @@
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
             
             <Button Content="Add member" Margin="5" Padding="10" Name="AddMember" Click="AddMember_Click"/>
-            <Button Content="Confirm members" Margin="5" Padding="10" Name="ConfirmAddedMembers" Click="ConfirmAddedMembers_Click" />
-            <Button Content="Cancel" Margin="5" Padding="10" Name="Cancel" Click="Cancel_Click" />
+            <Button Content="Save" Margin="5" Padding="10" Name="SaveMembers" Click="SaveMembers_Click" />
+            <Button Content="Update" Margin="5" Padding="10" Name="UpdateConfirmation" Click="UpdateConfirmation_Click" />
 
         </StackPanel>
 

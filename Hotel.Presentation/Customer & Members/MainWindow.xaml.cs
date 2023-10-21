@@ -69,14 +69,13 @@ namespace Hotel.Presentation
 
 
                     customerUisCollection.Remove(cui);
-                    customerManager.RemoveCustomer(customerID); //set customer inactive
+                    customerManager.RemoveCustomer(customerID); //set customer inactive (status 0)
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "Something went wrong");
                 }
 
-                MessageBox.Show("Customer deleted succes!", "succes!");
             }
         }
 

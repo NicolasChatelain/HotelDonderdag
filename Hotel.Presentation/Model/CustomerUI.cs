@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Hotel.Presentation.Model
@@ -15,7 +16,7 @@ namespace Hotel.Presentation.Model
         private string _phone;
         private string _address;
         private int _memberCount;
-        private List<MemberUI> _members;
+        private List<MemberUI> _members = new();
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -82,7 +83,7 @@ namespace Hotel.Presentation.Model
             {
                 _members = value;
                 _memberCount = _members.Count;
-                
+                OnPropertyChanged();
             }
         }
 
@@ -105,9 +106,26 @@ namespace Hotel.Presentation.Model
             Members = members;
         }
 
+        public CustomerUI()
+        {
+
+        }
+
         protected void OnPropertyChanged(string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        internal static string[] GetaddressArray(string Address)
+        {
+
+            string pattern = @"[\s-]+";
+            string[] array = Regex.Split(Address, pattern);
+            array[1] = array[1].Replace("[", "").Replace("]", "");
+
+            return array;
+            
+
         }
 
     }

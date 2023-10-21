@@ -2,6 +2,7 @@
 using Hotel.Domain.Model;
 using Hotel.Persistence.Exceptions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Hotel.Persistence.Repositories
     {
         private readonly string connectionString;
         private const byte InactiveStatus = 0;
+        private const byte ActiveStatus = 1;
 
         public CustomerRepository(string connectionstring)
         {
@@ -100,7 +102,7 @@ namespace Hotel.Persistence.Repositories
                         command.Parameters.AddWithValue("@email", customer.Contact.Email);
                         command.Parameters.AddWithValue("@phone", customer.Contact.Phone);
                         command.Parameters.AddWithValue("@address", customer.Contact.Address.ToAddressLine());
-                        command.Parameters.AddWithValue("@status", 1);
+                        command.Parameters.AddWithValue("@status", ActiveStatus);
 
                         id = Convert.ToInt32(command.ExecuteScalar());
                         customer.Id = id;
@@ -114,7 +116,7 @@ namespace Hotel.Persistence.Repositories
                             command.Parameters.AddWithValue("@customerid", customer.Id);
                             command.Parameters.AddWithValue("@name", member.Name);
                             command.Parameters.AddWithValue("@birthday", member.Birthday.ToDateTime(TimeOnly.MinValue));
-                            command.Parameters.AddWithValue("@status", 1);
+                            command.Parameters.AddWithValue("@status", ActiveStatus);
                             command.ExecuteNonQuery();
                         }
 
@@ -123,32 +125,83 @@ namespace Hotel.Persistence.Repositories
                     catch (Exception)
                     {
                         transaction.Rollback();
-                        throw;
+                        throw new Exception("Something went wrong when adding this customer, make sure that all members are unique.");
                     }
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw new CustomerRepositoryException("addcustomer", ex);
+                throw;
             }
             return id;
         }
+
+        public void RemoveCustomer(int customerID)
+        {
+            try
+            {
+
+                string customerQuery = "update Customer set status = @status where Id = @id;";
+                string memberQuery = "update Member set status = @status where CustomerId = @id";
+
+                using SqlConnection connection = new(connectionString);
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+
+                    SqlTransaction transaction = connection.BeginTransaction();
+
+                    try
+                    {
+                        command.Transaction = transaction;
+                        command.CommandText = customerQuery;
+
+                        command.Parameters.AddWithValue("@id", customerID);
+                        command.Parameters.AddWithValue("@status", InactiveStatus);
+                        command.ExecuteNonQuery();
+
+
+                        command.Parameters.Clear();
+
+                        command.CommandText = memberQuery;
+
+                        command.Parameters.AddWithValue("@id", customerID);
+                        command.Parameters.AddWithValue("@status", InactiveStatus);
+                        command.ExecuteNonQuery();
+
+
+
+                        transaction.Commit();
+
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new CustomerRepositoryException(ex.Message, ex);
+            }
+        } // sets user inactive, stays in DB
 
         public void UpdateCustomer(Customer customer)
         {
             try
             {
-                string query = "update Customer set name = @name, email = @email, phone = @phone, address = @address where id = @id;";
-                using SqlConnection connection = new(connectionString);
+                string SQLquery = "update Customer set name = @name, email = @email, phone = @phone, address = @address where id = @id;";
+                using (SqlConnection connection = new(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     connection.Open();
 
                     try
                     {
-                        command.CommandText = query;
+                        command.CommandText = SQLquery;
                         command.Parameters.AddWithValue("@id", customer.Id);
                         command.Parameters.AddWithValue("@name", customer.Name);
                         command.Parameters.AddWithValue("@email", customer.Contact.Email);
@@ -157,48 +210,120 @@ namespace Hotel.Persistence.Repositories
 
                         command.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        throw new Exception("Something went wrong when updating this customer, update aborted", ex);
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
-                throw new CustomerRepositoryException("Something went wrong when updating this customer.", ex);
+                throw new Exception(ex.Message, ex.InnerException);
             }
         }
 
-        public void RemoveCustomer(int customerID)
+        public void AddMember(int id, List<Member> members)
         {
             try
             {
-                string query = "update Customer set status = @status where id = @id;";
-                using SqlConnection connection = new(connectionString);
+                string SQlquery = "insert into Member (name, birthday, customerId, status) values (@name, @birthday, @customerId, @status);";
+                try
+                {
+                    using SqlConnection connection = new(connectionString);
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        connection.Open();
+
+                        foreach (Member member in members)
+                        {
+                            command.Parameters.Clear();
+                            command.CommandText = SQlquery;
+
+                            command.Parameters.AddWithValue("@name", member.Name);
+                            command.Parameters.AddWithValue("@birthday", member.Birthday.ToDateTime(TimeOnly.MinValue));
+                            command.Parameters.AddWithValue("@customerId", id);
+                            command.Parameters.AddWithValue("@status", ActiveStatus);
+
+                            command.ExecuteNonQuery();
+                        }
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Something went wrong when adding the new members, task aborted", ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+        }
+
+        public void RemoveMember(int id, Member member)
+        {
+            try
+            {
+                string SQLquery = "delete from Member where customerId = @id and name = @name and birthday = @birthday;";
+                using (SqlConnection connection = new(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     connection.Open();
 
                     try
                     {
-                        command.CommandText = query;
-                        command.Parameters.AddWithValue("@id", customerID);
-                        command.Parameters.AddWithValue("@status", InactiveStatus);
+                        command.CommandText = SQLquery;
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@name", member.Name);
+                        command.Parameters.AddWithValue("@birthday", member.Birthday.ToDateTime(TimeOnly.MinValue));
 
                         command.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        throw new Exception("something went wrong when removing this member, removal cancelled", ex);
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new CustomerRepositoryException("Something went wrong when removing this customer.", ex);
+                throw new Exception(ex.Message, ex.InnerException);
             }
-        } // sets user inactive, stays in DB
+        }
+
+        public void UpdateMember(int id, Member memberOriginalState, Member memberUpdatedState)
+        {
+            try
+            {
+                string SQlquery = "update Member set name = @newname, birthday = @newbirthday where customerId = @id and name = @originalname and birthday = @originalbirthday;";
+
+                using (SqlConnection connection = new(connectionString))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+
+                    try
+                    {
+                        command.CommandText = SQlquery;
+                        command.Parameters.AddWithValue("@newname", memberUpdatedState.Name);
+                        command.Parameters.AddWithValue("@newbirthday", memberUpdatedState.Birthday.ToDateTime(TimeOnly.MinValue));
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@originalname", memberOriginalState.Name);
+                        command.Parameters.AddWithValue("@originalbirthday", memberOriginalState.Birthday.ToDateTime(TimeOnly.MinValue));
+
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Something went wrong when updating this member, update aborted.", ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+        }
     }
 }
