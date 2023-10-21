@@ -46,6 +46,8 @@ namespace Hotel.Presentation.Customer___Members
                     throw new Exception("A member can not be added more than once.");
                 }
                 MembersCollection.Add(mui);
+                namebox.Text = string.Empty;
+                birthdaybox.Text = string.Empty;
 
             }
             catch (FormatException)

@@ -61,9 +61,6 @@ namespace Hotel.Persistence.Repositories
                             Member member = new((string)reader["membername"], DateOnly.FromDateTime((DateTime)reader["birthday"]));
                             customers[id].AddMember(member);
                         }
-
-
-
                     }
                 }
 
@@ -77,7 +74,6 @@ namespace Hotel.Persistence.Repositories
 
         public int AddCustomer(Customer customer)
         {
-
             int id;
 
             try
@@ -87,8 +83,6 @@ namespace Hotel.Persistence.Repositories
                 using (SqlConnection connection = new(connectionString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
-
-
                     connection.Open();
 
                     SqlTransaction transaction = connection.BeginTransaction();
@@ -122,17 +116,16 @@ namespace Hotel.Persistence.Repositories
 
                         transaction.Commit();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw new Exception("Something went wrong when adding this customer, make sure that all members are unique.");
+                        throw new CustomerRepositoryException(ex.Message);
                     }
 
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
             return id;
@@ -212,17 +205,17 @@ namespace Hotel.Persistence.Repositories
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception("Something went wrong when updating this customer, update aborted", ex);
+                        throw new CustomerRepositoryException(ex.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new CustomerRepositoryException(ex.Message, ex.InnerException);
             }
         }
 
-        public void AddMember(int id, List<Member> members)
+        public void AddMembers(int id, List<Member> members)
         {
             try
             {
@@ -246,18 +239,16 @@ namespace Hotel.Persistence.Repositories
 
                             command.ExecuteNonQuery();
                         }
-
-
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Something went wrong when adding the new members, task aborted", ex);
+                    throw new CustomerRepositoryException(ex.Message);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new CustomerRepositoryException(ex.Message, ex.InnerException);
             }
         }
 
@@ -282,13 +273,13 @@ namespace Hotel.Persistence.Repositories
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception("something went wrong when removing this member, removal cancelled", ex);
+                        throw new CustomerRepositoryException(ex.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new CustomerRepositoryException(ex.Message, ex.InnerException);
             }
         }
 
@@ -316,13 +307,13 @@ namespace Hotel.Persistence.Repositories
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception("Something went wrong when updating this member, update aborted.", ex);
+                        throw new CustomerRepositoryException(ex.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new CustomerRepositoryException(ex.Message, ex.InnerException);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace Hotel.Domain.Interfaces
         void RemoveCustomer(int customerID); // sets user inactive, stays in DB
         void UpdateCustomer(Customer customer);
         
-        void AddMember(int id, List<Member> member);
+        void AddMembers(int id, List<Member> member);
         void RemoveMember(int id, Member member);
         void UpdateMember(int id, Member memberOriginalState, Member memberUpdatedState);
     }

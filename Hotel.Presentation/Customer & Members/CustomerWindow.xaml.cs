@@ -61,7 +61,6 @@ namespace Hotel.Presentation
 
             _customerManager = cm;
             MemberDataGrid.ItemsSource = _membersPerCustomer;
-
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -92,10 +91,9 @@ namespace Hotel.Presentation
                     CustomerUI.Phone = customer.Contact.Phone;
                     CustomerUI.Email = customer.Contact.Email;
                     CustomerUI.Address = customer.Contact.Address.ToString();
+                    CustomerUI.Members = _membersPerCustomer.ToList();
 
                     _customerManager.UpdateCustomerOnly(customer);
-
-
                 }
 
                 DialogResult = true;
@@ -122,32 +120,30 @@ namespace Hotel.Presentation
                     CustomerUI.Members.Select(x => new Member(x.Name, DateOnly.Parse(x.Birthday))).ToList(),
                     _membersPerCustomer.Select(x => new Member(x.Name, DateOnly.Parse(x.Birthday))).ToList());
             }
-
-            CustomerUI.Members = _membersPerCustomer.ToList();
         }
 
         private void Delete_Member_Click(object sender, RoutedEventArgs e) // if a member is selected in the grid delete that member from the current customer
         {
             if (MemberDataGrid.SelectedItem is not null)
             {
-                MemberUI mui = MemberDataGrid.SelectedItem as MemberUI;
+                MemberUI mui = (MemberUI)MemberDataGrid.SelectedItem;
 
                 if (CustomerUI is not null)
                 {
                     try
                     {
                         _customerManager.RemoveMember(CustomerUI.Id, new Member(mui.Name, DateOnly.Parse(mui.Birthday)));
-                        _membersPerCustomer.Remove(MemberDataGrid.SelectedItem as MemberUI);
+                        _membersPerCustomer.Remove((MemberUI)MemberDataGrid.SelectedItem);
                     }
                     catch
                     {
-
+                        
                     }
 
                 }
                 else
                 {
-                    _membersPerCustomer.Remove(MemberDataGrid.SelectedItem as MemberUI);
+                    _membersPerCustomer.Remove((MemberUI)MemberDataGrid.SelectedItem);
                 }
 
                 CustomerUI.Members = _membersPerCustomer.ToList();
@@ -168,7 +164,8 @@ namespace Hotel.Presentation
                 _memberWindow = new(_membersPerCustomer);
                 _memberWindow.namebox.Text = name;
                 _memberWindow.birthdaybox.Text = birthday;
-                _memberWindow.UpdateConfirmation.IsEnabled = true;
+                _memberWindow.SaveMembers.IsEnabled = false;
+                _memberWindow.AddMember.IsEnabled = false;
                 _memberWindow.ShowDialog();
 
                 if (_memberWindow.DialogResult == true)
