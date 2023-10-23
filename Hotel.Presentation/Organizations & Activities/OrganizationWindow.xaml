@@ -1,0 +1,29 @@
+﻿<Window x:Class="Hotel.Presentation.Organizations___Activities.OrganizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.Presentation.Organizations___Activities"
+        mc:Ignorable="d"
+        Title="OrganizationWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
+    <Grid Background="DodgerBlue">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        
+        
+        <DataGrid Name="orgsGRID" HeadersVisibility="Column" GridLinesVisibility="None" IsReadOnly="True" FontSize="18" AutoGenerateColumns="False" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="orgID" Binding="{Binding Id}" Width="60"  />
+                <DataGridTextColumn Header="Organization" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+        
+        
+    </Grid>
+</Window>

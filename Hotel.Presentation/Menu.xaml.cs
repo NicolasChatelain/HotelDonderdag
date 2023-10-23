@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotel.Presentation.Organizations___Activities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace Hotel.Presentation
     /// </summary>
     public partial class Menu : Window
     {
-        private MainWindow _mainWindow;
+        private MainWindow? _mainWindow;
+        private OrganizationWindow? _organizationWindow;
 
         public Menu()
         {
@@ -32,6 +34,15 @@ namespace Hotel.Presentation
             this.Hide();
             _mainWindow.ShowDialog();
             this.Show();
+        }
+
+        private void Activities_Click(object sender, RoutedEventArgs e)
+        {
+            _organizationWindow = new();
+            this.Hide();
+            _organizationWindow.ShowDialog();
+            this.Show();
+
         }
     }
 }

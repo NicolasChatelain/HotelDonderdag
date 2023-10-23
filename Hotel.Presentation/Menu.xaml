@@ -10,7 +10,7 @@
 
         <StackPanel Width="300" Height="auto" VerticalAlignment="Center" Background="#202020"  >
             <Button Panel.ZIndex="20" Content="Customers" Margin="0 50 0 0" Width="175" Padding="10" Cursor="Hand" FontSize="15" Name="Customers" Click="Customers_Click" />
-            <Button Content="Activities" Margin="0 15 0 15" Width="175" Padding="10" Cursor="Hand" FontSize="15" />
+            <Button Content="Activities" Margin="0 15 0 15" Width="175" Padding="10" Cursor="Hand" FontSize="15" Name="Activities" Click="Activities_Click" />
             <Button Content="Register for activities" Margin="0 0 0 50" Width="175" Padding="10" Cursor="Hand" FontSize="15" />
         </StackPanel>
     </Grid>

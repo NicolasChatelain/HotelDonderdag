@@ -16,6 +16,12 @@
     <Compile Update="Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Organizations &amp; Activities\ActivityWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Organizations &amp; Activities\OrganizationWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Customer &amp; Members\CustomerWindow.xaml">
@@ -28,6 +34,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Menu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Organizations &amp; Activities\ActivityWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Organizations &amp; Activities\OrganizationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
