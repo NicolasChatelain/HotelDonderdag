@@ -1,6 +1,7 @@
 ﻿using Hotel.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,17 +21,32 @@ namespace Hotel.Presentation.Organizations___Activities
     /// </summary>
     public partial class OrganizationWindow : Window
     {
-        public OrganizationWindow()
-        {
-            InitializeComponent();
-            List<Organizer> orgs = new()
+        private NewOrgWindow _newOrgWindow;
+
+        ObservableCollection<Organizer> orgs = new()
             {
                 new Organizer{ Name = "org1" },
                 new Organizer{ Name = "amuchlongerorgthistime"},
                 new Organizer{ Name = "qkjsdhqkjsdhkqsjdh"}
             };
 
-            orgsGRID.ItemsSource = orgs;
+        public OrganizationWindow()
+        {
+            InitializeComponent();
+           
+
+            OrganisationsComboBox.ItemsSource = orgs;
         }
+
+        private void Add_New_Organization_Button_Click(object sender, RoutedEventArgs e)
+        {
+            _newOrgWindow = new();
+            _newOrgWindow.Show();
+
+        }
+
+       
+
+        
     }
 }

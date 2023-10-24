@@ -7,7 +7,6 @@ namespace Hotel.Domain.Model
 
         private string _name;
         private DateOnly _birthday;
-
         public string Name
         {
             get

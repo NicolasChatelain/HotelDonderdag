@@ -22,5 +22,10 @@ namespace Hotel.Domain.Model
         {
             Activities.Remove(activity);
         }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

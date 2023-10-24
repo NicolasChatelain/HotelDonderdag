@@ -19,6 +19,9 @@
     <Compile Update="Organizations &amp; Activities\ActivityWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Organizations &amp; Activities\NewOrgWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Organizations &amp; Activities\OrganizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Organizations &amp; Activities\ActivityWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Organizations &amp; Activities\NewOrgWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Organizations &amp; Activities\OrganizationWindow.xaml">

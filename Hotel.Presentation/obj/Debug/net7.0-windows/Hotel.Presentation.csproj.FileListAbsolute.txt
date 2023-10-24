@@ -43,3 +43,5 @@ C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-wi
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Organizations & Activities\ActivityWindow.baml
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Organizations & Activities\OrganizationWindow.g.cs
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Organizations & Activities\OrganizationWindow.baml
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Organizations & Activities\NewOrgWindow.g.cs
+C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Organizations & Activities\NewOrgWindow.baml
