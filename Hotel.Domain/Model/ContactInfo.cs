@@ -32,7 +32,7 @@ namespace Hotel.Domain.Model
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Count(@char => @char == ValidEmailCheck) != ValidCharCount)
                 {
-                    throw new CustomerException("This email is not valid, Email must contain 1 @ character.");
+                    throw new ContactInfoException("This email is not valid, Email must contain 1 @ character.");
                 }
                 _email = value;
             }
@@ -45,7 +45,7 @@ namespace Hotel.Domain.Model
             {
                 if (string.IsNullOrWhiteSpace(value) || !value.Any(char.IsDigit))
                 {
-                    throw new CustomerException("This is not a valid phonenumber.");
+                    throw new ContactInfoException("This is not a valid phonenumber.");
                 }
 
                 string parsedPhoneNumber = Regex.Replace(value, @"\D", "");
@@ -60,27 +60,13 @@ namespace Hotel.Domain.Model
             {
                 if(value is null)
                 {
-                    throw new CustomerException("Not a valid adrress.");
+                    throw new ContactInfoException("Not a valid adrress.");
                 }
                 _address = value;
             }
         }
 
-        public override bool Equals(object? obj)
-        {
-            if(obj == null || GetType() != obj.GetType())
-            {
-                return false;
-            }
-
-            ContactInfo other = (ContactInfo)obj;
-            return Email == other.Email && Phone == other.Phone && Address.Equals(other.Address);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Email, Phone, Address.GetHashCode());
-        }
+       
 
     }
 }

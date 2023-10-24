@@ -13,5 +13,13 @@ namespace Hotel.Util
                 return new CustomerRepository(ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString);
             }
         }
+
+        public static IOrganizationRepository OrganizationRepository
+        {
+            get
+            {
+                return new OrganizationRepository(ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString);
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace Hotel.Domain.Model
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new CustomerException("Invalid City.");
+                    throw new AddressException("Invalid City.");
                 }
                 _city = value;
             }
@@ -38,7 +38,7 @@ namespace Hotel.Domain.Model
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new CustomerException("Invalid Street.");
+                    throw new AddressException("Invalid Street.");
                 }
                 _street = value;
             }
@@ -51,7 +51,7 @@ namespace Hotel.Domain.Model
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new CustomerException("Invalid ZipCode.");
+                    throw new AddressException("Invalid ZipCode.");
                 }
                 _postalCode = value;
             }
@@ -64,7 +64,7 @@ namespace Hotel.Domain.Model
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new CustomerException("Invalid Housenumber.");
+                    throw new AddressException("Invalid Housenumber.");
                 }
                 _houseNumber = value;
             }
@@ -101,20 +101,8 @@ namespace Hotel.Domain.Model
             return $"{City}{splitChar}{PostalCode}{splitChar}{Street}{splitChar}{HouseNumber}";
         }
 
-        public override bool Equals(object? obj)
-        {
-            if(obj == null || GetType() != obj.GetType())
-            {
-                return false;
-            }
+      
 
-            Address other = (Address)obj;
-            return City == other.City && Street == other.Street && PostalCode == other.PostalCode && HouseNumber == other.HouseNumber; 
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(City, Street, PostalCode, HouseNumber);
-        }
+       
     }
 }

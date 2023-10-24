@@ -26,29 +26,29 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Name" Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontWeight="DemiBold" Grid.Row="1"/>
-        <TextBox Grid.Column="1" Margin="20 10" Grid.Row="1" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Margin="20 10" Grid.Row="1" VerticalContentAlignment="Center" Name="orgnameB" />
 
         <Label Content="Phone" Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" FontSize="15" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="20 10" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="20 10" VerticalContentAlignment="Center" Name="phoneB" />
 
         <Label Content="Email" Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" FontSize="15" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="20 10" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="20 10" VerticalContentAlignment="Center" Name="emailB"/>
 
         <Label Content="City" Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" FontSize="15" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="20 10" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="20 10" VerticalContentAlignment="Center" Name="cityB" />
 
         <Label Content="Street" Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" FontSize="15" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="20 10" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="5" Margin="20 10" VerticalContentAlignment="Center" Name="streetB"/>
 
         <Label Content="Nr." Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" FontSize="15" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="1" Grid.Row="6" Margin="20 10" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="6" Margin="20 10" VerticalContentAlignment="Center" Name="NRB" />
 
         <Label Content="Zip" Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" FontSize="15" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="1" Grid.Row="7" Margin="20 10" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="7" Margin="20 10" VerticalContentAlignment="Center" Name="zipB" />
 
         <StackPanel Grid.ColumnSpan="2" Grid.Row="8">
-            <Button Height="30" Margin="20 10 20 5" Content="Confirm" Name="ConfirmNewOrg" Cursor="Hand"/>
-            <Button Height="30" Margin="20 0" Content="Cancel" Name="CancelNewOrg" Cursor="Hand"/>
+            <Button Height="30" Margin="20 10 20 5" Content="Confirm" Name="ConfirmNewOrg" Cursor="Hand" Click="ConfirmNewOrg_Click"/>
+            <Button Height="30" Margin="20 0" Content="Cancel" Name="CancelNewOrg" Cursor="Hand" Click="CancelNewOrg_Click"/>
         </StackPanel>
 
     </Grid>

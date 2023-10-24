@@ -23,11 +23,11 @@ namespace Hotel.Presentation.Organizations___Activities
     {
         private NewOrgWindow _newOrgWindow;
 
-        ObservableCollection<Organizer> orgs = new()
+        ObservableCollection<Organization> orgs = new()
             {
-                new Organizer{ Name = "org1" },
-                new Organizer{ Name = "amuchlongerorgthistime"},
-                new Organizer{ Name = "qkjsdhqkjsdhkqsjdh"}
+                new Organization{ Name = "org1", },
+                new Organization{ Name = "amuchlongerorgthistime"},
+                new Organization{ Name = "qkjsdhqkjsdhkqsjdh"}
             };
 
         public OrganizationWindow()
@@ -42,7 +42,6 @@ namespace Hotel.Presentation.Organizations___Activities
         {
             _newOrgWindow = new();
             _newOrgWindow.Show();
-
         }
 
        
