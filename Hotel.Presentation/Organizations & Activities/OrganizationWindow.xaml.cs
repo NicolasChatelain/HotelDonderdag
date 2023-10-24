@@ -1,4 +1,5 @@
 ﻿using Hotel.Domain.Model;
+using Hotel.Presentation.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,29 +24,28 @@ namespace Hotel.Presentation.Organizations___Activities
     {
         private NewOrgWindow _newOrgWindow;
 
-        ObservableCollection<Organization> orgs = new()
-            {
-                new Organization{ Name = "org1", },
-                new Organization{ Name = "amuchlongerorgthistime"},
-                new Organization{ Name = "qkjsdhqkjsdhkqsjdh"}
-            };
+        private readonly ObservableCollection<OrganizationUI> orgs = new();
+
 
         public OrganizationWindow()
         {
             InitializeComponent();
-           
-
             OrganisationsComboBox.ItemsSource = orgs;
         }
 
         private void Add_New_Organization_Button_Click(object sender, RoutedEventArgs e)
         {
             _newOrgWindow = new();
-            _newOrgWindow.Show();
+            _newOrgWindow.ShowDialog();
+
+            if (_newOrgWindow.DialogResult == true)
+            {
+                orgs.Add(_newOrgWindow.orgUI);
+            }
         }
 
-       
 
-        
+
+
     }
 }

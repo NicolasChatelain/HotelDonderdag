@@ -38,7 +38,8 @@ namespace Hotel.Presentation.Organizations___Activities
 
                 if (result != null)
                 {
-                    _orgManager.AddOrganization(result);
+                    //_orgManager.AddOrganization(result);
+                    orgUI = new(name, email, phone, city, street, postalcode, nr);
                     DialogResult = true;
                 }
             }
