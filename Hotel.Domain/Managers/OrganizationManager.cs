@@ -32,12 +32,55 @@ namespace Hotel.Domain.Managers
             }
 
             return org;
-            
+
         }
 
-        public void AddOrganization(object? org)
+        public int AddOrganization(object org)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _organizationRepository.AddOrganization((Organization)org);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpdateOrganization(object result)
+        {
+            try
+            {
+                _organizationRepository.UpdateOrganization((Organization)result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void RemoveOrganziation(int ID)
+        {
+            try
+            {
+                _organizationRepository.RemoveOrganization(ID);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<Organization> GetAllOrganizations()
+        {
+            try
+            {
+                return _organizationRepository.GetAllOrganizations();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

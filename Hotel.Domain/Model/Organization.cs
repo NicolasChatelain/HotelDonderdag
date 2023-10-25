@@ -22,6 +22,7 @@ namespace Hotel.Domain.Model
                 {
                     throw new OrganizationException("Invalid organization name");
                 }
+                _name = value;
             }
         }
         public ContactInfo Contact { get; set; }

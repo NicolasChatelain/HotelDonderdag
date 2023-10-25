@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.Presentation.Organizations___Activities"
         mc:Ignorable="d"
-        Title="OrganizationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid Background="#242424">
+        Title="OrganizationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
+    <Grid Background="#242424" >
 
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -21,18 +21,25 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 30">
-            
+
             <Label Content="Choose your organization" Foreground="#f3f4f7" FontSize="16" HorizontalAlignment="Center"/>
 
-            <ComboBox Width="200" Height="40" Name="OrganisationsComboBox" FontSize="14" >
+            <ComboBox Width="200" Height="40" Name="OrganisationsComboBox" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" SelectionChanged="OrganisationsComboBox_SelectionChanged" >
 
             </ComboBox>
 
 
+
+
         </StackPanel>
-            <Button Width="50" Height="40" Content="New" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Margin="5" Name="Add_New_Organization_Button" Click="Add_New_Organization_Button_Click" Cursor="Hand" />
+        <Button Width="30" Height="30" Content="X" Foreground="Crimson" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="5" Background="Transparent" BorderThickness="0" Visibility="Hidden" Name="RemoveORG" FontWeight="Bold" FontSize="20" Cursor="Hand" Click="RemoveORG_Click" />
 
+        <StackPanel Grid.Row="2" Grid.Column="1" >
 
-
+            <Button Margin="0" Width="150" Height="25" Content="Manage" Name="Manage_activities" Click="Manage_activities_Click" Cursor="Hand" IsEnabled="False" />
+            <Button Margin="5" Width="150" Height="25" Content="New" Name="Add_New_Organization_Button" Click="Add_New_Organization_Button_Click" Cursor="Hand"/>
+            <Button Margin="0" Width="150" Height="25" Content="Update" Name="Update_Organization" Click="Update_Organization_Click" Cursor="Hand" IsEnabled="False" />
+            
+        </StackPanel>
     </Grid>
 </Window>
