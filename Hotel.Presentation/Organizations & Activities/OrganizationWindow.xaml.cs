@@ -26,6 +26,7 @@ namespace Hotel.Presentation.Organizations___Activities
     {
         private NewOrgWindow _newOrgWindow;
         private OrganizationManager _organizationManager;
+        private ActivityWindow _activityWindow;
         private readonly ObservableCollection<OrganizationUI> orgs;
 
 
@@ -33,10 +34,10 @@ namespace Hotel.Presentation.Organizations___Activities
         {
             InitializeComponent();
             _organizationManager = new(RepositoryFactory.OrganizationRepository);
-            orgs = new(_organizationManager.GetAllOrganizations().Select(org => new OrganizationUI(org.Id, 
-                                                                                                   org.Name, 
-                                                                                                   org.Contact.Email, 
-                                                                                                   org.Contact.Phone, 
+            orgs = new(_organizationManager.GetAllOrganizations().Select(org => new OrganizationUI(org.Id,
+                                                                                                   org.Name,
+                                                                                                   org.Contact.Email,
+                                                                                                   org.Contact.Phone,
                                                                                                    org.Contact.Address.City,
                                                                                                    org.Contact.Address.Street,
                                                                                                    org.Contact.Address.PostalCode,
@@ -48,7 +49,7 @@ namespace Hotel.Presentation.Organizations___Activities
 
         private void Add_New_Organization_Button_Click(object sender, RoutedEventArgs e)
         {
-            _newOrgWindow = new(this, null, false);
+            _newOrgWindow = new(this, null, _organizationManager);
             _newOrgWindow.ShowDialog();
 
             if (_newOrgWindow.DialogResult == true)
@@ -59,17 +60,20 @@ namespace Hotel.Presentation.Organizations___Activities
 
         private void Update_Organization_Click(object sender, RoutedEventArgs e)
         {
-            OrganizationUI orgui = (OrganizationUI)OrganisationsComboBox.SelectedItem;
-
-            _newOrgWindow = new(this, orgui, false);
-            _newOrgWindow.ShowDialog();
-
-            if (_newOrgWindow.DialogResult == true)
+            if (OrganisationsComboBox.SelectedItem is not null)
             {
-                OrganizationUI? ORG = orgs.FirstOrDefault(org => org.ID == orgui.ID);
-                if (ORG != null)
+                OrganizationUI orgui = (OrganizationUI)OrganisationsComboBox.SelectedItem;
+
+                _newOrgWindow = new(this, orgui, _organizationManager);
+                _newOrgWindow.ShowDialog();
+
+                if (_newOrgWindow.DialogResult == true)
                 {
-                    ORG = _newOrgWindow.orgUI;
+                    OrganizationUI? ORG = orgs.FirstOrDefault(org => org.ID == orgui.ID);
+                    if (ORG != null)
+                    {
+                        ORG = _newOrgWindow.orgUI;
+                    }
                 }
             }
         }
@@ -89,21 +93,21 @@ namespace Hotel.Presentation.Organizations___Activities
 
             if (result == MessageBoxResult.Yes)
             {
-                _newOrgWindow = new(this, orgui, true);
+                _organizationManager.RemoveOrganziation(orgui.ID);
                 orgs.Remove(orgui);
             }
-            else
-            {
-                OrganisationsComboBox.SelectedItem = null;
-                RemoveORG.Visibility = Visibility.Collapsed;
-                Update_Organization.IsEnabled = false;
-                Manage_activities.IsEnabled = false;
-            }
+
+            OrganisationsComboBox.SelectedItem = null;
+
+            RemoveORG.Visibility = Visibility.Collapsed;
+            Update_Organization.IsEnabled = false;
+            Manage_activities.IsEnabled = false;
         }
 
         private void Manage_activities_Click(object sender, RoutedEventArgs e)
         {
-
+            _activityWindow = new();
+            _activityWindow.ShowDialog();
         }
     }
 }

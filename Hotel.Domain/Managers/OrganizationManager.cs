@@ -47,11 +47,11 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public void UpdateOrganization(object result)
+        public void UpdateOrganization(int id, object org)
         {
             try
             {
-                _organizationRepository.UpdateOrganization((Organization)result);
+                _organizationRepository.UpdateOrganization(id, (Organization)org);
             }
             catch (Exception)
             {

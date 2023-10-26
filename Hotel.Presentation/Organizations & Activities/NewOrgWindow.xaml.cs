@@ -15,42 +15,37 @@ namespace Hotel.Presentation.Organizations___Activities
     {
         private readonly OrganizationManager _orgManager;
         private readonly bool IsUpdating = false;
-        private readonly bool Remove;
-        internal NewOrgWindow(object owner, OrganizationUI? ORGui, bool remove)
+        internal OrganizationUI orgUI;
+        internal int IdWhenUpdating;
+        internal NewOrgWindow(Window owner, OrganizationUI? ORGui, OrganizationManager ORGmanager)
         {
             InitializeComponent();
-            _orgManager = new(RepositoryFactory.OrganizationRepository);
-            this.Owner = (Window)owner;
-            Remove = remove;
 
-            if (Remove)
+            _orgManager = ORGmanager;
+            this.Owner = owner;
+            orgUI = ORGui;
+
+
+            if (ORGui != null)
             {
-                RemoveOrganization(ORGui.ID);
-            }
-            else
-            {
-                if (ORGui != null)
-                {
-                    orgnameB.Text = ORGui.Name;
-                    emailB.Text = ORGui.Email;
-                    phoneB.Text = ORGui.Phone;
-                    cityB.Text = ORGui.City;
-                    streetB.Text = ORGui.Street;
-                    zipB.Text = ORGui.Postalcode;
-                    NRB.Text = ORGui.Housenumber;
+                IdWhenUpdating = ORGui.ID;
 
-                    ConfirmNewOrg.Content = "Update";
-                    IsUpdating = true;
-                }
-            }
+                orgnameB.Text = ORGui.Name;
+                emailB.Text = ORGui.Email;
+                phoneB.Text = ORGui.Phone;
+                cityB.Text = ORGui.City;
+                streetB.Text = ORGui.Street;
+                zipB.Text = ORGui.Postalcode;
+                NRB.Text = ORGui.Housenumber;
 
+                ConfirmNewOrg.Content = "Update";
+                IsUpdating = true;
+            }
         }
 
-        internal OrganizationUI orgUI;
 
         private void ConfirmNewOrg_Click(object sender, RoutedEventArgs e)
         {
-            int id = 0;
             string name = orgnameB.Text;
             string email = emailB.Text;
             string phone = phoneB.Text;
@@ -68,13 +63,14 @@ namespace Hotel.Presentation.Organizations___Activities
 
                     if (IsUpdating)
                     {
-                        _orgManager.UpdateOrganization(result);
+                        _orgManager.UpdateOrganization(IdWhenUpdating, result);
+                        OrganizationMapper(name, email, phone, city, street, postalcode, nr);
                     }
                     else
                     {
-                        id = _orgManager.AddOrganization(result);
+                        int id = _orgManager.AddOrganization(result);
+                        orgUI = new(id, name, email, phone, city, street, postalcode, nr);
                     }
-                    orgUI = new(id, name, email, phone, city, street, postalcode, nr);
                     DialogResult = true;
                 }
             }
@@ -85,14 +81,23 @@ namespace Hotel.Presentation.Organizations___Activities
 
         }
 
+        private void OrganizationMapper(string name, string email, string phone, string city, string street, string postalcode, string nr)
+        {
+            orgUI.Name = name;
+            orgUI.Email = email;
+            orgUI.Phone = phone;
+            orgUI.City = city;
+            orgUI.Street = street;
+            orgUI.Postalcode = postalcode;
+            orgUI.Housenumber = nr;
+
+        }
+
         private void CancelNewOrg_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void RemoveOrganization(int ID)
-        {
-            _orgManager.RemoveOrganziation(ID);
-        }
+
     }
 }

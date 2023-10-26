@@ -86,7 +86,7 @@ namespace Hotel.Domain.Model
             }
             else
             {
-                throw new CustomerException("remove member");
+                throw new CustomerException("Remove member");
             }
         }
 
@@ -95,14 +95,6 @@ namespace Hotel.Domain.Model
             _members = members;
             return this;
         }
-
-
-
-
-
-
-
-
 
 
         public override bool Equals(object? obj)

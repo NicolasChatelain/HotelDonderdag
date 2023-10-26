@@ -10,7 +10,7 @@ namespace Hotel.Domain.Interfaces
     public interface IOrganizationRepository
     {
         int AddOrganization(Organization org);
-        void UpdateOrganization(Organization org);
+        void UpdateOrganization(int id, Organization org);
         void RemoveOrganization(int ID);
 
         public List<Organization> GetAllOrganizations();

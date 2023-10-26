@@ -113,12 +113,55 @@ namespace Hotel.Persistence.Repositories
 
         public void RemoveOrganization(int ID)
         {
-            throw new NotImplementedException();
+            string SQLquery = $"update Organizations set status = {(int)Status.Inactive} where organizationID = {ID};";
+
+            try
+            {
+                using SqlConnection connection = new(connectionstring);
+                using SqlCommand command = connection.CreateCommand();
+
+                connection.Open();
+                command.CommandText = SQLquery;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new OrganizationException("Something went wrong when removing this member.", ex);
+            }
         }
 
-        public void UpdateOrganization(Organization org)
+        public void UpdateOrganization(int id, Organization org)
         {
-            throw new NotImplementedException();
+            string SQLquery = "update Organizations set name = @name, email = @email, phone = @phone, address = @address where organizationID = @id";
+
+            try
+            {
+                using SqlConnection connection = new(connectionstring);
+                using SqlCommand command = connection.CreateCommand();
+
+                connection.Open();
+                command.CommandText = SQLquery;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@name", org.Name);
+                    command.Parameters.AddWithValue("@email", org.Contact.Email);
+                    command.Parameters.AddWithValue("@phone", org.Contact.Phone);
+                    command.Parameters.AddWithValue("@address", org.Contact.Address.ToAddressLine());
+
+                    command.ExecuteNonQuery();
+
+                }
+                catch (Exception)
+                {
+                    throw new OrganizationException("Something went wrong when updating this organization.");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

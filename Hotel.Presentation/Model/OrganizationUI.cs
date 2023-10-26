@@ -45,9 +45,9 @@ namespace Hotel.Presentation.Model
             return Name;
         }
 
-        protected void OnPropertyChanged()
+        protected void OnPropertyChanged(string name = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
