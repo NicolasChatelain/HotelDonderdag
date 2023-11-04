@@ -1,0 +1,62 @@
+﻿<Window x:Class="Hotel.Presentation.ActivityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.Presentation.Organizations___Activities"
+        mc:Ignorable="d"
+        Title="ActivityWindow" Height="720" Width="1280">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition  Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition  Height="100"/>
+            <RowDefinition Height="75" />
+        </Grid.RowDefinitions>
+
+        <DataGrid Width="auto" Grid.RowSpan="3" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="Activitiesgrid_SelectionChanged" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Fixture" Binding="{Binding Fixture}"/>
+                <DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
+                <DataGridTextColumn Header="Adultage" Binding="{Binding Adultage}"/>
+            </DataGrid.Columns>
+            
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="add activity" Name="AddActivity"  Click="AddActivity_Click"/>
+                    <MenuItem Header="update activity" Name="UpdateActivity" Click="UpdateActivity_Click"/>
+                    <MenuItem Header="remove activity" Name="RemoveActivity" Click="RemoveActivity_Click" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <Label Grid.Column="1" Content="Activity details" Margin="35 5 5 5" FontSize="15" />
+        <TextBlock Grid.Column="1" Margin="35" Background="LightBlue" Name="detailsblock" TextWrapping="Wrap" />
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            
+            <TextBox Width="200" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="3"/>
+            <Button Content="Search" Width="100" Height="30"  Grid.Column="1" HorizontalAlignment="Left" Margin="10" Name="SearchBtn" Click="SearchBtn_Click"/>
+            <CheckBox Content="Include past activities" Grid.Column="2" VerticalAlignment="Center" />
+
+        </Grid>
+
+
+    </Grid>
+</Window>

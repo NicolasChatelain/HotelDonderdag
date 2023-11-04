@@ -14,5 +14,6 @@ namespace Hotel.Domain.Interfaces
         void RemoveOrganization(int ID);
 
         public List<Organization> GetAllOrganizations();
+        List<Activity> GetAllActivitiesByOrganization(int id);
     }
 }

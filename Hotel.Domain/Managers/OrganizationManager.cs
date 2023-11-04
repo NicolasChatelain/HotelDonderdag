@@ -82,5 +82,17 @@ namespace Hotel.Domain.Managers
                 throw;
             }
         }
+
+        public List<Activity> GetAllActivities(int id)
+        {
+            try
+            {
+                return _organizationRepository.GetAllActivitiesByOrganization(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

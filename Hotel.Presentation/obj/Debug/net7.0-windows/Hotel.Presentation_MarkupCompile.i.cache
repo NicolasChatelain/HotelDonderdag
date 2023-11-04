@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Presentation\App.xaml
-7-1337437073
+8138397241
 
-141067588325
+16-557418954
 203818509402
-Customer & Members\CustomerWindow.xaml;Customer & Members\MainWindow.xaml;Customer & Members\MemberWindow.xaml;Menu.xaml;Organizations & Activities\ActivityWindow.xaml;Organizations & Activities\NewOrgWindow.xaml;Organizations & Activities\OrganizationWindow.xaml;
+ActivityWindow.xaml;Customer & Members\CustomerWindow.xaml;Customer & Members\MainWindow.xaml;Customer & Members\MemberWindow.xaml;Menu.xaml;NewActivityWindow.xaml;Organizations & Activities\NewOrgWindow.xaml;Organizations & Activities\OrganizationWindow.xaml;
 
 True
 

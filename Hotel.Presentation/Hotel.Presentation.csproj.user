@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="ActivityWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Customer &amp; Members\CustomerWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -16,7 +19,7 @@
     <Compile Update="Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Organizations &amp; Activities\ActivityWindow.xaml.cs">
+    <Compile Update="NewActivityWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Organizations &amp; Activities\NewOrgWindow.xaml.cs">
@@ -27,6 +30,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="ActivityWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Customer &amp; Members\CustomerWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -39,7 +45,7 @@
     <Page Update="Menu.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Organizations &amp; Activities\ActivityWindow.xaml">
+    <Page Update="NewActivityWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Organizations &amp; Activities\NewOrgWindow.xaml">

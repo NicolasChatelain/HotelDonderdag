@@ -1,9 +1,10 @@
-﻿using Hotel.Domain.Exceptions;
-using Hotel.Domain.Interfaces;
+﻿using Hotel.Domain.Interfaces;
 using Hotel.Domain.Model;
 using Hotel.Persistence.Enums;
+using Hotel.Persistence.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -71,7 +72,7 @@ namespace Hotel.Persistence.Repositories
             }
             catch (Exception)
             {
-                throw new OrganizationException("Something went wrong when retrieving the organizations.");
+                throw new OrganizationRepositoryException("Something went wrong when retrieving the organizations.");
             }
         }
 
@@ -107,7 +108,7 @@ namespace Hotel.Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw new OrganizationException("Something went wrong when adding the organization.", ex);
+                throw new OrganizationRepositoryException("Something went wrong when adding the organization.", ex);
             }
         }
 
@@ -126,7 +127,7 @@ namespace Hotel.Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw new OrganizationException("Something went wrong when removing this member.", ex);
+                throw new OrganizationRepositoryException("Something went wrong when removing this member.", ex);
             }
         }
 
@@ -155,7 +156,66 @@ namespace Hotel.Persistence.Repositories
                 }
                 catch (Exception)
                 {
-                    throw new OrganizationException("Something went wrong when updating this organization.");
+                    throw new OrganizationRepositoryException("Something went wrong when updating this organization.");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<Activity> GetAllActivitiesByOrganization(int id)
+        {
+            List<Activity> list = new();
+            string SQLquery = "select Activity.AcitivityID, Activity.Fixture, Activity.Capacity, Description.Duration, Description.Location, Description.Description, Description.Name, PriceInfo.Adultprice, PriceInfo.Childprice, PriceInfo.Discount, PriceInfo.Adultage from Activity left join Description on Activity.DescriptionID = Description.DescriptionID left join PriceInfo on Activity.PriceInfoID = PriceInfo.PriceInfoID where Activity.OrganizationID = @id;";
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = SQLquery;
+                    command.Parameters.AddWithValue("@id", id);
+                    IDataReader reader = command.ExecuteReader();
+
+                    try
+                    {
+                        while (reader.Read())
+                        {
+
+                            Description description = new();
+                            PriceInfo priceinfo = new();
+                            Activity activity = new();
+
+                            activity.Id = reader.GetInt32(0);
+                            activity.Fixture = reader.GetDateTime(1);
+                            activity.Capacity = reader.GetInt32(2);
+
+                            description.Duration = reader.GetInt32(3);
+                            description.Location = reader.GetString(4);
+                            description.DetailedDescription = reader.GetString(5);
+                            description.Name = reader.GetString(6);
+
+                            priceinfo.AdultPrice = reader.GetInt32(7);
+                            priceinfo.ChildPrice = reader.GetInt32(8);
+                            priceinfo.DiscountPercentage = reader.GetInt32(9);
+                            priceinfo.AdultAge = reader.GetInt32(10);
+
+                            activity.Description = description;
+                            activity.PriceInfo = priceinfo;
+
+                            list.Add(activity);
+                        }
+
+                        reader.Close();
+                        return list;
+                    }
+                    catch (Exception)
+                    {
+                        throw new OrganizationRepositoryException("Something went wrong when retrieving all the activities for thos organization.");
+                    }
                 }
             }
             catch (Exception)

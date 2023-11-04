@@ -25,7 +25,7 @@ namespace Hotel.Presentation.Organizations___Activities
     public partial class OrganizationWindow : Window
     {
         private NewOrgWindow _newOrgWindow;
-        private OrganizationManager _organizationManager;
+        private readonly OrganizationManager _organizationManager;
         private ActivityWindow _activityWindow;
         private readonly ObservableCollection<OrganizationUI> orgs;
 
@@ -106,7 +106,10 @@ namespace Hotel.Presentation.Organizations___Activities
 
         private void Manage_activities_Click(object sender, RoutedEventArgs e)
         {
-            _activityWindow = new();
+            OrganizationUI org = (OrganizationUI)OrganisationsComboBox.SelectedItem;
+            int ID = org.ID;
+
+            _activityWindow = new(ID);
             _activityWindow.ShowDialog();
         }
     }
