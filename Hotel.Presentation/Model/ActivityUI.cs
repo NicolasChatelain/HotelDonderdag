@@ -51,14 +51,26 @@ namespace Hotel.Presentation.Model
 
         public override string ToString()
         {
-            return $"Name: {Name}" +
-                   $"\n\n" +
-                   $"Details: {DetailedDescription}" +
-                   $"\n\n" +
-                   $"Location: {Location}" +
-                   $"\n\n" +
-                   $"Price: €{AdultPrice}\n" +
-                   $"Kids: €{ChildPrice}";
+            //return $"Name: {Name}" +
+            //       $"\n\n" +
+            //       $"Details: {DetailedDescription}" +
+            //       $"\n\n" +
+            //       $"Location: {Location}" +
+            //       $"\n\n" +
+            //       $"Price: €{AdultPrice}\n" +
+            //       $"Kids: €{ChildPrice}";
+
+            return $"Id: {Id}" +
+           $"\nName: {Name}" +
+           $"\n\nDetails: {DetailedDescription}" +
+           $"\n\nLocation: {Location}" +
+           $"\nDuration: {Duration} minutes" +
+           $"\n\nMaximum Capacity: {MaximumCapacity} people" +
+           $"\nAdult Price: €{AdultPrice}" +
+           $"\nChild Price: €{ChildPrice}" +
+           $"\nDiscount Percentage: {DiscountPercentage}%" +
+           $"\n\nAdult Age: {Adultage} years" +
+           $"\n\n\t\tFixture Date: {Fixture.ToString("yyyy-MM-dd HH:mm:ss")}";
         }
 
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4hVI/FAqFYwNDnGUM7IL1L8A0dfJLwI+ZpGO8XSEi5KVpw9bVKUJtkulFewANkputISREaqwdqtPk8n8uxqwHw==",
+  "dgSpecHash": "SyajL2ASw10/hsZs92pmQmgopsSnAikpZtIjl7lzwvIqdDSKbkL/FysipPHQA3BpgoOo0TT8KRJGeWT1jICOEg==",
   "success": true,
-  "projectFilePath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\ConsoleApp1\\ConsoleApp1.csproj",
+  "projectFilePath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chate\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\chate\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

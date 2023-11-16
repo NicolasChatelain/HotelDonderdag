@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {}
+    "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {}
   },
   "projects": {
-    "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
+    "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
         "projectName": "Hotel.Domain",
-        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
         "packagesPath": "C:\\Users\\chate\\.nuget\\packages\\",
-        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\obj\\",
+        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chate\\AppData\\Roaming\\NuGet\\NuGet.Config",

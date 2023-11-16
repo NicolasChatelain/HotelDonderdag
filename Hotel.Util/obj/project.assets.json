@@ -883,11 +883,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
+      "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
       "projectName": "Hotel.Util",
-      "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
+      "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
       "packagesPath": "C:\\Users\\chate\\.nuget\\packages\\",
-      "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\obj\\",
+      "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\chate\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -904,11 +904,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
-              "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj"
+            "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
+              "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj"
             },
-            "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj": {
-              "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj"
+            "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj": {
+              "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj"
             }
           }
         }

@@ -83,11 +83,11 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public List<Activity> GetAllActivities(int id)
+        public List<Activity> GetAllActivities(int id, bool onlyActives, string? filter)
         {
             try
             {
-                return _organizationRepository.GetAllActivitiesByOrganization(id);
+                return _organizationRepository.GetAllActivitiesByOrganization(id, onlyActives, filter);
             }
             catch (Exception)
             {

@@ -14,12 +14,13 @@
 
 
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition  Height="100"/>
-            <RowDefinition Height="75" />
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DataGrid Width="auto" Grid.RowSpan="3" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="Activitiesgrid_SelectionChanged" >
+        <DataGrid Width="auto" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="Activitiesgrid_SelectionChanged" >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
@@ -29,7 +30,7 @@
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
                 <DataGridTextColumn Header="Adultage" Binding="{Binding Adultage}"/>
             </DataGrid.Columns>
-            
+
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="add activity" Name="AddActivity"  Click="AddActivity_Click"/>
@@ -39,23 +40,48 @@
             </DataGrid.ContextMenu>
         </DataGrid>
 
-        <Label Grid.Column="1" Content="Activity details" Margin="35 5 5 5" FontSize="15" />
-        <TextBlock Grid.Column="1" Margin="35" Background="LightBlue" Name="detailsblock" TextWrapping="Wrap" />
+        <Label Grid.Column="1" Grid.Row="2" Content="Activity details" Margin="35 0 0 0" FontSize="15" />
+        <TextBlock Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="40" Background="LightBlue" Name="detailsblock" TextWrapping="Wrap" />
 
-        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" >
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition />
+
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            
-            <TextBox Width="200" Height="30" Grid.Column="0" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="3"/>
-            <Button Content="Search" Width="100" Height="30"  Grid.Column="1" HorizontalAlignment="Left" Margin="10" Name="SearchBtn" Click="SearchBtn_Click"/>
-            <CheckBox Content="Include past activities" Grid.Column="2" VerticalAlignment="Center" />
+
+            <TextBox x:Name="SearchTextBox"  
+                     Width="200" 
+                     Height="30" 
+                     BorderBrush="Crimson" 
+                     VerticalContentAlignment="Center"
+                     Margin="10 0"
+                     Padding="3" 
+                     TextChanged="SearchTextBox_TextChanged"
+                     Grid.Column="1"/>
+
+            <Label Content="Search...." 
+                   Foreground="#212121" 
+                   Height="30" 
+                   Margin="10 7 10 0"
+                   Name="searchLabel" 
+                   IsHitTestVisible="False"
+                   Grid.Column="1"/>       
+
+            <Button Width="75" 
+                    Height="30"
+                    Content="Search"
+                    Grid.Column="0"
+                    Name="search"
+                    Click="Search_Click"
+                    Cursor="Hand"/>
+
+            <CheckBox Grid.Column="2" Content="show only active" VerticalAlignment="Center" IsChecked="True" Name="activebox" Cursor="Hand"/>
 
         </Grid>
+
 
 
     </Grid>

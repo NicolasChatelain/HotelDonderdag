@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj": {}
+    "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj": {}
   },
   "projects": {
-    "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
+    "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
         "projectName": "Hotel.Domain",
-        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj",
         "packagesPath": "C:\\Users\\chate\\.nuget\\packages\\",
-        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\obj\\",
+        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chate\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,14 +59,14 @@
         }
       }
     },
-    "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj": {
+    "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj",
+        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj",
         "projectName": "Hotel.Persistence",
-        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj",
+        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj",
         "packagesPath": "C:\\Users\\chate\\.nuget\\packages\\",
-        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\obj\\",
+        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chate\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -83,8 +83,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
-                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj"
+              "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
+                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj"
               }
             }
           }
@@ -124,14 +124,14 @@
         }
       }
     },
-    "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj": {
+    "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj",
+        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj",
         "projectName": "Hotel.Presentation",
-        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj",
+        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Presentation\\Hotel.Presentation.csproj",
         "packagesPath": "C:\\Users\\chate\\.nuget\\packages\\",
-        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Presentation\\obj\\",
+        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chate\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -148,8 +148,8 @@
           "net7.0-windows7.0": {
             "targetAlias": "net7.0-windows",
             "projectReferences": {
-              "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj": {
-                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj"
+              "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj": {
+                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj"
               }
             }
           }
@@ -186,14 +186,14 @@
         }
       }
     },
-    "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj": {
+    "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
+        "projectUniqueName": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
         "projectName": "Hotel.Util",
-        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
+        "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
         "packagesPath": "C:\\Users\\chate\\.nuget\\packages\\",
-        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\obj\\",
+        "outputPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chate\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -210,11 +210,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
-                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj"
+              "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj": {
+                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Domain\\Hotel.Domain.csproj"
               },
-              "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj": {
-                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj"
+              "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj": {
+                "projectPath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Persistence\\Hotel.Persistence.csproj"
               }
             }
           }

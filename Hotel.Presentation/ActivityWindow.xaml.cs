@@ -1,4 +1,5 @@
 ﻿using Hotel.Domain.Managers;
+using Hotel.Presentation.Mapper;
 using Hotel.Presentation.Model;
 using Hotel.Util;
 using System;
@@ -26,6 +27,7 @@ namespace Hotel.Presentation
         public ObservableCollection<ActivityUI> activities;
         private readonly OrganizationManager OM;
         private int orgID;
+        private string? filter;
 
         public ActivityWindow(int id)
         {
@@ -35,19 +37,7 @@ namespace Hotel.Presentation
 
 
 
-            activities = new(OM.GetAllActivities(id).Select(x => new ActivityUI(
-                                                      x.Id,
-                                                      x.Capacity,
-                                                      x.Fixture,
-                                                      x.Description.Name,
-                                                      x.Description.DetailedDescription,
-                                                      x.Description.Location,
-                                                      x.Description.Duration,
-                                                      x.PriceInfo.AdultPrice,
-                                                      x.PriceInfo.ChildPrice,
-                                                      x.PriceInfo.DiscountPercentage,
-                                                      x.PriceInfo.AdultAge
-                                                      )));
+            activities = new(MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = null));
 
             activitiesgrid.ItemsSource = activities;
 
@@ -68,16 +58,39 @@ namespace Hotel.Presentation
 
         }
 
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Activitiesgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ActivityUI activity = (ActivityUI)activitiesgrid.SelectedItem;
 
-            detailsblock.Text = activity.ToString();
+            ActivityUI activity = (ActivityUI)activitiesgrid.SelectedItem;
+            if (activity is not null)
+            {
+                detailsblock.Text = activity.ToString();
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            if (SearchTextBox.Text.Length > 0)
+            {
+                searchLabel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                searchLabel.Visibility = Visibility.Visible;
+                activitiesgrid.ItemsSource = MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = null);
+            }
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+
+            string query = SearchTextBox.Text;
+
+            if (query != string.Empty)
+            {
+                activitiesgrid.ItemsSource = MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = query);
+            }
         }
     }
 }

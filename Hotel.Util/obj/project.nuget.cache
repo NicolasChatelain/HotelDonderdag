@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eMQ+0t/hZLBrsDmVZsnYHSpCT5R1n3gG3CvY9kekhfFgJGyOf+IikpdV4eW2D6m0KDNdSCeZQ6NmIrFSxJJifg==",
+  "dgSpecHash": "8wvs2HzxmJGRePzzUOyJV/ynVI8WZCS5CDWS71ugR5zoDSG1eSCYtXFO5zv2VBeRke6rtO/dyquRR1Xexd3EOw==",
   "success": true,
-  "projectFilePath": "C:\\HOGENT\\jaar2\\Specialist\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
+  "projectFilePath": "C:\\HOGENT\\jaar2\\Specialist\\OPDRACHTEN\\HotelDonderdag\\Hotel.Util\\Hotel.Util.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chate\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\chate\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

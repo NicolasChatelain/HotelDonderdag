@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -165,10 +166,20 @@ namespace Hotel.Persistence.Repositories
             }
         }
 
-        public List<Activity> GetAllActivitiesByOrganization(int id)
+        public List<Activity> GetAllActivitiesByOrganization(int id, bool onlyActives, string? filter)
         {
             List<Activity> list = new();
-            string SQLquery = "select Activity.AcitivityID, Activity.Fixture, Activity.Capacity, Description.Duration, Description.Location, Description.Description, Description.Name, PriceInfo.Adultprice, PriceInfo.Childprice, PriceInfo.Discount, PriceInfo.Adultage from Activity left join Description on Activity.DescriptionID = Description.DescriptionID left join PriceInfo on Activity.PriceInfoID = PriceInfo.PriceInfoID where Activity.OrganizationID = @id;";
+            string SQLquery = "select A.ActivityID, A.Fixture, A.Capacity, D.Duration, D.Location, D.Description, D.Name, PriceInfo.Adultprice, PriceInfo.Childprice, PriceInfo.Discount, PriceInfo.Adultage from Activities A left join Description D on A.DescriptionID = D.DescriptionID left join PriceInfo on A.PriceInfoID = PriceInfo.PriceInfoID where A.OrganizationID = @id";
+
+            if (onlyActives)
+            {
+                SQLquery += $" AND A.IsActive = {(int)Status.Active}";
+            }
+
+            if(filter is not null)
+            {
+                SQLquery += $" AND (D.Name LIKE @filter OR A.Fixture LIKE @filter OR D.Location LIKE @filter);";
+            }
 
             try
             {
@@ -178,6 +189,10 @@ namespace Hotel.Persistence.Repositories
                     connection.Open();
                     command.CommandText = SQLquery;
                     command.Parameters.AddWithValue("@id", id);
+                    if(filter is not null)
+                    {
+                        command.Parameters.AddWithValue("@filter", "%" + filter + "%");
+                    }
                     IDataReader reader = command.ExecuteReader();
 
                     try

@@ -20,3 +20,14 @@ C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Do
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\refint\Hotel.Domain.dll
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Domain.pdb
 C:\HOGENT\jaar2\Specialist\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\ref\Hotel.Domain.dll
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\bin\Debug\net7.0\Hotel.Domain.deps.json
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\bin\Debug\net7.0\Hotel.Domain.dll
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\bin\Debug\net7.0\Hotel.Domain.pdb
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Domain.AssemblyInfoInputs.cache
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Domain.AssemblyInfo.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Domain.csproj.CoreCompileInputs.cache
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Domain.dll
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\refint\Hotel.Domain.dll
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\Hotel.Domain.pdb
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Domain\obj\Debug\net7.0\ref\Hotel.Domain.dll
