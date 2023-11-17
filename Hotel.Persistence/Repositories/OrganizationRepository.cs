@@ -169,14 +169,14 @@ namespace Hotel.Persistence.Repositories
         public List<Activity> GetAllActivitiesByOrganization(int id, bool onlyActives, string? filter)
         {
             List<Activity> list = new();
-            string SQLquery = "select A.ActivityID, A.Fixture, A.Capacity, D.Duration, D.Location, D.Description, D.Name, PriceInfo.Adultprice, PriceInfo.Childprice, PriceInfo.Discount, PriceInfo.Adultage from Activities A left join Description D on A.DescriptionID = D.DescriptionID left join PriceInfo on A.PriceInfoID = PriceInfo.PriceInfoID where A.OrganizationID = @id";
+            string SQLquery = "select A.IsActive, A.ActivityID, A.Fixture, A.Capacity, D.Duration, D.Location, D.Description, D.Name, PriceInfo.Adultprice, PriceInfo.Childprice, PriceInfo.Discount, PriceInfo.Adultage from Activities A left join Description D on A.DescriptionID = D.DescriptionID left join PriceInfo on A.PriceInfoID = PriceInfo.PriceInfoID where A.OrganizationID = @id";
 
             if (onlyActives)
             {
                 SQLquery += $" AND A.IsActive = {(int)Status.Active}";
             }
 
-            if(filter is not null)
+            if (filter is not null)
             {
                 SQLquery += $" AND (D.Name LIKE @filter OR A.Fixture LIKE @filter OR D.Location LIKE @filter);";
             }
@@ -189,7 +189,7 @@ namespace Hotel.Persistence.Repositories
                     connection.Open();
                     command.CommandText = SQLquery;
                     command.Parameters.AddWithValue("@id", id);
-                    if(filter is not null)
+                    if (filter is not null)
                     {
                         command.Parameters.AddWithValue("@filter", "%" + filter + "%");
                     }
@@ -204,19 +204,20 @@ namespace Hotel.Persistence.Repositories
                             PriceInfo priceinfo = new();
                             Activity activity = new();
 
-                            activity.Id = reader.GetInt32(0);
-                            activity.Fixture = reader.GetDateTime(1);
-                            activity.Capacity = reader.GetInt32(2);
+                            activity.IsActive = reader.GetBoolean(0);
+                            activity.Id = reader.GetInt32(1);
+                            activity.Fixture = reader.GetDateTime(2);
+                            activity.Capacity = reader.GetInt32(3);
 
-                            description.Duration = reader.GetInt32(3);
-                            description.Location = reader.GetString(4);
-                            description.DetailedDescription = reader.GetString(5);
-                            description.Name = reader.GetString(6);
+                            description.Duration = reader.GetInt32(4);
+                            description.Location = reader.GetString(5);
+                            description.DetailedDescription = reader.GetString(6);
+                            description.Name = reader.GetString(7);
 
-                            priceinfo.AdultPrice = reader.GetInt32(7);
-                            priceinfo.ChildPrice = reader.GetInt32(8);
-                            priceinfo.DiscountPercentage = reader.GetInt32(9);
-                            priceinfo.AdultAge = reader.GetInt32(10);
+                            priceinfo.AdultPrice = reader.GetInt32(8);
+                            priceinfo.ChildPrice = reader.GetInt32(9);
+                            priceinfo.DiscountPercentage = reader.GetInt32(10);
+                            priceinfo.AdultAge = reader.GetInt32(11);
 
                             activity.Description = description;
                             activity.PriceInfo = priceinfo;
@@ -230,6 +231,38 @@ namespace Hotel.Persistence.Repositories
                     catch (Exception)
                     {
                         throw new OrganizationRepositoryException("Something went wrong when retrieving all the activities for thos organization.");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void RemoveActivity(int id)
+        {
+            string SQLquery = "update Activities set IsActive = @status where ActivityID = @id";
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = SQLquery;
+
+                    try
+                    {
+                        command.Parameters.AddWithValue("@status", (int)Status.Inactive);
+                        command.Parameters.AddWithValue("@id", id);
+
+                        command.ExecuteNonQuery();
+
+                    }
+                    catch (Exception)
+                    {
+                        throw new OrganizationRepositoryException("Something went wrong when removing this activity.");
                     }
                 }
             }

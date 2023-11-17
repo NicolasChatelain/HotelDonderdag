@@ -18,6 +18,7 @@ namespace Hotel.Presentation.Mapper
                         x.Id,
                         x.Capacity,
                         x.Fixture,
+                        x.IsActive,
                         x.Description.Name,
                         x.Description.DetailedDescription,
                         x.Description.Location,

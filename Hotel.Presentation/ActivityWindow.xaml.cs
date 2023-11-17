@@ -5,6 +5,7 @@ using Hotel.Util;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,12 +36,8 @@ namespace Hotel.Presentation
             OM = new(RepositoryFactory.OrganizationRepository);
             orgID = id;
 
-
-
             activities = new(MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = null));
-
             activitiesgrid.ItemsSource = activities;
-
         }
 
         private void AddActivity_Click(object sender, RoutedEventArgs e)
@@ -55,6 +52,20 @@ namespace Hotel.Presentation
 
         private void RemoveActivity_Click(object sender, RoutedEventArgs e)
         {
+            ActivityUI activity = (ActivityUI)activitiesgrid.SelectedItem;
+
+            if (activity is not null)
+            {
+                var response = MessageBox.Show("Are you sure?", "Removing....", MessageBoxButton.YesNo);
+
+                if (response == MessageBoxResult.Yes)
+                {
+                    OM.RemoveActivity(activity.Id);
+                    activity.IsActive = false;
+                    activities.Remove(activity);
+                }
+
+            }
 
         }
 
@@ -89,8 +100,16 @@ namespace Hotel.Presentation
 
             if (query != string.Empty)
             {
-                activitiesgrid.ItemsSource = MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = query);
+                filter = query;
             }
+            else
+            {
+                filter = null;
+            }
+            activitiesgrid.ItemsSource = MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter);
+
         }
+
+
     }
 }

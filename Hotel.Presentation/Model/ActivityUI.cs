@@ -9,11 +9,12 @@ namespace Hotel.Presentation.Model
 {
     public class ActivityUI : INotifyPropertyChanged
     {
-        public ActivityUI(int id, int maximumCapacity, DateTime fixture, string name, string detailedDescription, string location, int duration, int adultPrice, int childPrice, int discountPercentage, int adultage)
+        public ActivityUI(int id, int maximumCapacity, DateTime fixture, bool isactive, string name, string detailedDescription, string location, int duration, int adultPrice, int childPrice, int discountPercentage, int adultage)
         {
             Id = id;
             MaximumCapacity = maximumCapacity;
             Fixture = fixture;
+            IsActive = isactive;
             Name = name;
             DetailedDescription = detailedDescription;
             Location = location;
@@ -21,45 +22,159 @@ namespace Hotel.Presentation.Model
             AdultPrice = adultPrice;
             ChildPrice = childPrice;
             DiscountPercentage = discountPercentage;
-            Adultage = adultage;
+            AdultAge = adultage;
         }
 
-        public ActivityUI(int id, DateTime fixture, string name, string location, int duration, int adultage)
-        {
-            Id = id;
-            Fixture = fixture;
-            Name = name;
-            Location = location;
-            Duration = duration;
-            Adultage = adultage;
-        }
+        //public ActivityUI(int id, DateTime fixture, string name, string location, int duration, int adultage)
+        //{
+        //    Id = id;
+        //    Fixture = fixture;
+        //    Name = name;
+        //    Location = location;
+        //    Duration = duration;
+        //    Adultage = adultage;
+        //}
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public int Id { get; set; }
-        public int MaximumCapacity { get; set; }
-        public DateTime Fixture {  get; set; }
-        public string Name { get; set; }
-        public string DetailedDescription { get; set; }
-        public string Location { get; set; }
-        public int Duration {  get; set; }
-        public int AdultPrice { get; set; }
-        public int ChildPrice { get; set; }
-        public int DiscountPercentage {  get; set; }
-        public int Adultage { get; set; }
+        private int _id;
+        private int _maximumCapacity;
+        private DateTime _fixture;
+        private bool _isActive;
+        private string _name;
+        private string _detailedDescription;
+        private string _location;
+        private int _duration;
+        private int _adultPrice;
+        private int _childPrice;
+        private int _discountPercentage;
+        private int _adultAge;
+
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+
+        public int MaximumCapacity
+        {
+            get { return _maximumCapacity; }
+            set
+            {
+                _maximumCapacity = value;
+                OnPropertyChanged(nameof(MaximumCapacity));
+            }
+        }
+
+        public DateTime Fixture
+        {
+            get { return _fixture; }
+            set
+            {
+                _fixture = value;
+                OnPropertyChanged(nameof(Fixture));
+            }
+        }
+
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set
+            {
+                _isActive = value;
+                OnPropertyChanged(nameof(IsActive));
+            }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string DetailedDescription
+        {
+            get { return _detailedDescription; }
+            set
+            {
+                _detailedDescription = value;
+                OnPropertyChanged(nameof(DetailedDescription));
+            }
+        }
+
+        public string Location
+        {
+            get { return _location; }
+            set
+            {
+                _location = value;
+                OnPropertyChanged(nameof(Location));
+            }
+        }
+
+        public int Duration
+        {
+            get { return _duration; }
+            set
+            {
+                _duration = value;
+                OnPropertyChanged(nameof(Duration));
+            }
+        }
+
+        public int AdultPrice
+        {
+            get { return _adultPrice; }
+            set
+            {
+                _adultPrice = value;
+                OnPropertyChanged(nameof(AdultPrice));
+            }
+        }
+
+        public int ChildPrice
+        {
+            get { return _childPrice; }
+            set
+            {
+                _childPrice = value;
+                OnPropertyChanged(nameof(ChildPrice));
+            }
+        }
+
+        public int DiscountPercentage
+        {
+            get { return _discountPercentage; }
+            set
+            {
+                _discountPercentage = value;
+                OnPropertyChanged(nameof(DiscountPercentage));
+            }
+        }
+
+        public int AdultAge
+        {
+            get { return _adultAge; }
+            set
+            {
+                _adultAge = value;
+                OnPropertyChanged(nameof(AdultAge));
+            }
+        }
+
+
 
 
         public override string ToString()
         {
-            //return $"Name: {Name}" +
-            //       $"\n\n" +
-            //       $"Details: {DetailedDescription}" +
-            //       $"\n\n" +
-            //       $"Location: {Location}" +
-            //       $"\n\n" +
-            //       $"Price: €{AdultPrice}\n" +
-            //       $"Kids: €{ChildPrice}";
-
             return $"Id: {Id}" +
            $"\nName: {Name}" +
            $"\n\nDetails: {DetailedDescription}" +
@@ -69,8 +184,13 @@ namespace Hotel.Presentation.Model
            $"\nAdult Price: €{AdultPrice}" +
            $"\nChild Price: €{ChildPrice}" +
            $"\nDiscount Percentage: {DiscountPercentage}%" +
-           $"\n\nAdult Age: {Adultage} years" +
-           $"\n\n\t\tFixture Date: {Fixture.ToString("yyyy-MM-dd HH:mm:ss")}";
+           $"\n\nAdult Age: {AdultAge} years" +
+           $"\n\n\t\tFixture Date: {Fixture:yyyy-MM-dd HH:mm:ss}";
+        }
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
     }

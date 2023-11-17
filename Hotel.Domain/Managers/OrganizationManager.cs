@@ -94,5 +94,10 @@ namespace Hotel.Domain.Managers
                 throw;
             }
         }
+
+        public void RemoveActivity(int id)
+        {
+            _organizationRepository.RemoveActivity(id);
+        }
     }
 }

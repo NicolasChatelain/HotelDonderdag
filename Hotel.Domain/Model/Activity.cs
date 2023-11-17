@@ -13,6 +13,7 @@ namespace Hotel.Domain.Model
         public DateTime Fixture {  get; set; }
         public Description Description { get; set; }
         public PriceInfo PriceInfo { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }
