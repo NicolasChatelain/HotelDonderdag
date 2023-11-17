@@ -99,5 +99,10 @@ namespace Hotel.Domain.Managers
         {
             _organizationRepository.RemoveActivity(id);
         }
+
+        public void ValidateActivity(string name, string capacity, string fixture, string location, string duration, string adultprice, string kidsprice, string discount, string adultage, string description)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

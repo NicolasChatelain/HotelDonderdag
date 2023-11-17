@@ -24,6 +24,10 @@ namespace Hotel.Presentation.Model
             DiscountPercentage = discountPercentage;
             AdultAge = adultage;
         }
+        public ActivityUI()
+        {
+            
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

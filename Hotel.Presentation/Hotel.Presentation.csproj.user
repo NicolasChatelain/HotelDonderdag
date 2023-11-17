@@ -28,6 +28,12 @@
     <Compile Update="Windows\Organizations &amp; Activities\OrganizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\Organizations &amp; Activities\pages\CreatingPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Organizations &amp; Activities\pages\DetailsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Windows\Organizations &amp; Activities\ActivityWindow.xaml">
@@ -52,6 +58,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Organizations &amp; Activities\OrganizationWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Organizations &amp; Activities\pages\CreatingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Organizations &amp; Activities\pages\DetailsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

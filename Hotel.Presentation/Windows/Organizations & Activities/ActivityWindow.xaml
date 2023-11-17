@@ -24,7 +24,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DataGrid Width="auto" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="Activitiesgrid_SelectionChanged" >
+        <DataGrid Width="500" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="Activitiesgrid_SelectionChanged" >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
@@ -53,8 +53,14 @@
             </DataGrid.ContextMenu>
         </DataGrid>
 
-        <Label Grid.Column="1" Grid.Row="2" Content="Activity details" Margin="35 0 0 0" FontSize="15" />
-        <TextBlock Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="40" Background="LightBlue" Name="detailsblock" TextWrapping="Wrap" />
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Button Cursor="Hand" Width="100" Height="30" Margin="10" Name="New" Content="New event" Click="New_Click"/>
+            <Button Cursor="Hand" Width="100" Height="30" Margin="10" Name="Details" Content="Show details" Click="Details_Click"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+            <Frame x:Name="aside" NavigationUIVisibility="Hidden" />
+        </Grid>
 
 
 
@@ -81,7 +87,7 @@
                    Margin="10 7 10 0"
                    Name="searchLabel" 
                    IsHitTestVisible="False"
-                   Grid.Column="1"/>       
+                   Grid.Column="1"/>
 
             <Button Width="75" 
                     Height="30"

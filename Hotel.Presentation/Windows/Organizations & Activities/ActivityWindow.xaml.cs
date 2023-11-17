@@ -1,6 +1,7 @@
 ﻿using Hotel.Domain.Managers;
 using Hotel.Presentation.Mapper;
 using Hotel.Presentation.Model;
+using Hotel.Presentation.Windows.Organizations___Activities.pages;
 using Hotel.Util;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,10 @@ namespace Hotel.Presentation
     {
         public ObservableCollection<ActivityUI> activities;
         private readonly OrganizationManager OM;
-        private int orgID;
+        private readonly int orgID;
         private string? filter;
+        private DetailsPage details;
+        private CreatingPage newEvent;
 
         public ActivityWindow(int id)
         {
@@ -36,6 +39,7 @@ namespace Hotel.Presentation
             OM = new(RepositoryFactory.OrganizationRepository);
             orgID = id;
 
+            aside.Navigate(details = new());
             activities = new(MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = null));
             activitiesgrid.ItemsSource = activities;
         }
@@ -75,7 +79,7 @@ namespace Hotel.Presentation
             ActivityUI activity = (ActivityUI)activitiesgrid.SelectedItem;
             if (activity is not null)
             {
-                detailsblock.Text = activity.ToString();
+                details.detailsblock.Text = activity.ToString();
             }
         }
 
@@ -110,6 +114,14 @@ namespace Hotel.Presentation
 
         }
 
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            aside.Navigate(newEvent = new(OM));
+        }
 
+        private void Details_Click(object sender, RoutedEventArgs e)
+        {
+            aside.Navigate(details);
+        }
     }
 }
