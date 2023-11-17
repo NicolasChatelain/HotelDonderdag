@@ -25,16 +25,6 @@ namespace Hotel.Presentation.Model
             AdultAge = adultage;
         }
 
-        //public ActivityUI(int id, DateTime fixture, string name, string location, int duration, int adultage)
-        //{
-        //    Id = id;
-        //    Fixture = fixture;
-        //    Name = name;
-        //    Location = location;
-        //    Duration = duration;
-        //    Adultage = adultage;
-        //}
-
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private int _id;
@@ -59,7 +49,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Id));
             }
         }
-
         public int MaximumCapacity
         {
             get { return _maximumCapacity; }
@@ -69,7 +58,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(MaximumCapacity));
             }
         }
-
         public DateTime Fixture
         {
             get { return _fixture; }
@@ -79,7 +67,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Fixture));
             }
         }
-
         public bool IsActive
         {
             get { return _isActive; }
@@ -89,7 +76,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(IsActive));
             }
         }
-
         public string Name
         {
             get { return _name; }
@@ -99,7 +85,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Name));
             }
         }
-
         public string DetailedDescription
         {
             get { return _detailedDescription; }
@@ -109,7 +94,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(DetailedDescription));
             }
         }
-
         public string Location
         {
             get { return _location; }
@@ -119,7 +103,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Location));
             }
         }
-
         public int Duration
         {
             get { return _duration; }
@@ -129,7 +112,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Duration));
             }
         }
-
         public int AdultPrice
         {
             get { return _adultPrice; }
@@ -139,7 +121,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(AdultPrice));
             }
         }
-
         public int ChildPrice
         {
             get { return _childPrice; }
@@ -149,7 +130,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(ChildPrice));
             }
         }
-
         public int DiscountPercentage
         {
             get { return _discountPercentage; }
@@ -159,7 +139,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(DiscountPercentage));
             }
         }
-
         public int AdultAge
         {
             get { return _adultAge; }
@@ -169,9 +148,6 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(AdultAge));
             }
         }
-
-
-
 
         public override string ToString()
         {

@@ -7,51 +7,51 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="ActivityWindow.xaml.cs">
+    <Compile Update="Windows\Organizations &amp; Activities\ActivityWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Customer &amp; Members\CustomerWindow.xaml.cs">
+    <Compile Update="Windows\Customer &amp; Members\CustomerWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Customer &amp; Members\MemberWindow.xaml.cs">
+    <Compile Update="Windows\Customer &amp; Members\MemberWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="NewActivityWindow.xaml.cs">
+    <Compile Update="Windows\Organizations &amp; Activities\NewActivityWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Organizations &amp; Activities\NewOrgWindow.xaml.cs">
+    <Compile Update="Windows\Organizations &amp; Activities\NewOrgWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Organizations &amp; Activities\OrganizationWindow.xaml.cs">
+    <Compile Update="Windows\Organizations &amp; Activities\OrganizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="ActivityWindow.xaml">
+    <Page Update="Windows\Organizations &amp; Activities\ActivityWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Customer &amp; Members\CustomerWindow.xaml">
+    <Page Update="Windows\Customer &amp; Members\CustomerWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Customer &amp; Members\MainWindow.xaml">
+    <Page Update="Windows\Customer &amp; Members\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Customer &amp; Members\MemberWindow.xaml">
+    <Page Update="Windows\Customer &amp; Members\MemberWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Menu.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="NewActivityWindow.xaml">
+    <Page Update="Windows\Organizations &amp; Activities\NewActivityWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Organizations &amp; Activities\NewOrgWindow.xaml">
+    <Page Update="Windows\Organizations &amp; Activities\NewOrgWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Organizations &amp; Activities\OrganizationWindow.xaml">
+    <Page Update="Windows\Organizations &amp; Activities\OrganizationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
