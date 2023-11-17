@@ -14,14 +14,7 @@ namespace Hotel.Domain.Model
             get { return _duration; }
             set
             {
-                if (value >= 15) 
-                {
-                    _duration = value;
-                }
-                else
-                {
-                    throw new DescriptionException("Duration must be non-negative and 15 minutes or longer.");
-                }
+               _duration = value;
             }
         }
         public string Location
@@ -67,6 +60,27 @@ namespace Hotel.Domain.Model
                 {
                     throw new DescriptionException("Name cannot be null or empty.");
                 }
+            }
+        }
+
+        public void SetDuration(string value)
+        {
+            try
+            {
+                int duration = int.Parse(value);
+                if (duration >= 15)
+                {
+                    Duration = duration;
+                }
+                else
+                {
+                    throw new DescriptionException("Duration must be minimum 15 minutes.");
+                }
+
+            }
+            catch (FormatException)
+            {
+                throw new DescriptionException("Duration must be a valid number.");
             }
         }
 

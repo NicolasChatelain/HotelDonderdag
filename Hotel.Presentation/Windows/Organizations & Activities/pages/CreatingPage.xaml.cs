@@ -41,13 +41,20 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
             string Location = location.Text;
             string Duration = duration.Text;
             string Adultprice = adultprice.Text;
-            string Kidsprice = adultprice.Text;
+            string Kidsprice = kidsprice.Text;
             string Discount = discount.Text;
             string Adultage = adultage.Text;
             string Description = description.Text;
 
-            OM.ValidateActivity(Name, Capacity, Fixture, Location, Duration, Adultprice, Kidsprice, Discount, Adultage, Description);
-
+            try
+            {
+                OM.ValidateActivity(Name, Capacity, Fixture, Location, Duration, Adultprice, Kidsprice, Discount, Adultage, Description);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //todo add acitivyty after validating
 
         }
 

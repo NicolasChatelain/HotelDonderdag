@@ -19,14 +19,7 @@ namespace Hotel.Domain.Model
             get { return _adultPrice; }
             set
             {
-                if (value >= 0)
-                {
-                    _adultPrice = value;
-                }
-                else
-                {
-                    throw new PriceInfoException("AdultPrice must be non-negative.");
-                }
+                _adultPrice = value;
             }
         }
         public int ChildPrice
@@ -34,14 +27,7 @@ namespace Hotel.Domain.Model
             get { return _childPrice; }
             set
             {
-                if (value >= 0)
-                {
-                    _childPrice = value;
-                }
-                else
-                {
-                    throw new PriceInfoException("ChildPrice must be non-negative.");
-                }
+                _childPrice = value;
             }
         }
         public int DiscountPercentage
@@ -49,14 +35,7 @@ namespace Hotel.Domain.Model
             get { return _discountPercentage; }
             set
             {
-                if (value >= 0 && value <= 100)
-                {
-                    _discountPercentage = value;
-                }
-                else
-                {
-                    throw new PriceInfoException("DiscountPercentage must be between 0 and 100.");
-                }
+                _discountPercentage = value;
             }
         }
         public int AdultAge
@@ -64,14 +43,92 @@ namespace Hotel.Domain.Model
             get { return _adultAge; }
             set
             {
-                if (value >= 0)
+                _adultAge = value;
+            }
+        }
+
+
+        public void SetAdultPrice(string value)
+        {
+            try
+            {
+                int price = int.Parse(value);
+                if (price >= 0)
                 {
-                    _adultAge = value;
+                    AdultPrice = price;
                 }
                 else
                 {
-                    throw new PriceInfoException("AdultAge must be non-negative.");
+                    throw new PriceInfoException("Adult price must be non-negative.");
                 }
+
+            }
+            catch (FormatException)
+            {
+                throw new PriceInfoException("Adult price must be a number.");
+            }
+        }
+
+        public void SetKidsPrice(string value)
+        {
+            try
+            {
+                int price = int.Parse(value);
+                if (price >= 0)
+                {
+                    ChildPrice = price;
+                }
+                else
+                {
+                    throw new PriceInfoException("Kids price must be non-negative.");
+                }
+
+            }
+            catch (FormatException)
+            {
+                throw new PriceInfoException("Kids price must be a valid number.");
+            }
+        }
+
+        public void SetDiscount(string value)
+        {
+            try
+            {
+                int discount = int.Parse(value);
+                if (discount >= 0 && discount <= 100)
+                {
+                    DiscountPercentage = discount;
+                }
+                else
+                {
+                    throw new PriceInfoException("Discount must be between 0 and 100.");
+                }
+
+            }
+            catch (FormatException)
+            {
+                throw new PriceInfoException("Discount must be a number.");
+            }
+        }
+
+        public void SetAdultAge(string value)
+        {
+            try
+            {
+                int age = int.Parse(value);
+                if (age >= 10)
+                {
+                    AdultAge = age;
+                }
+                else
+                {
+                    throw new PriceInfoException("Age must be minimum 10.");
+                }
+
+            }
+            catch (FormatException)
+            {
+                throw new PriceInfoException("Age must be a number.");
             }
         }
 

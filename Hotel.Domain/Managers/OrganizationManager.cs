@@ -102,7 +102,37 @@ namespace Hotel.Domain.Managers
 
         public void ValidateActivity(string name, string capacity, string fixture, string location, string duration, string adultprice, string kidsprice, string discount, string adultage, string description)
         {
-            throw new NotImplementedException();
+            try
+            {
+                PriceInfo p = new();
+                p.SetAdultPrice(adultprice);
+                p.SetKidsPrice(kidsprice);
+                p.SetDiscount(discount);
+                p.SetAdultAge(adultage);
+
+                Description d = new()
+                {
+                    Location = location,
+                    DetailedDescription = description,
+                    Name = name,
+                };
+                d.SetDuration(duration);
+
+                Activity a = new()
+                {
+                    Description = d,
+                    PriceInfo = p,
+                };
+                a.SetCapacity(capacity);
+                a.SetFixture(fixture);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+
+
     }
 }
