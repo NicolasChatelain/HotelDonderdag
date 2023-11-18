@@ -100,7 +100,7 @@ namespace Hotel.Domain.Managers
             _organizationRepository.RemoveActivity(id);
         }
 
-        public void ValidateActivity(string name, string capacity, string fixture, string location, string duration, string adultprice, string kidsprice, string discount, string adultage, string description)
+        public Activity ValidateActivity(string name, string fixture, string capacity, string location, string duration, string adultprice, string kidsprice, string discount, string adultage, string description)
         {
             try
             {
@@ -123,8 +123,10 @@ namespace Hotel.Domain.Managers
                     Description = d,
                     PriceInfo = p,
                 };
-                a.SetCapacity(capacity);
                 a.SetFixture(fixture);
+                a.SetCapacity(capacity);
+
+                return a;
 
             }
             catch (Exception)
@@ -133,6 +135,10 @@ namespace Hotel.Domain.Managers
             }
         }
 
+        public void AddActivityToOrganization(Activity a, int orgID)
+        {
+            _organizationRepository.AddActivty(a, orgID);
+        }
 
     }
 }

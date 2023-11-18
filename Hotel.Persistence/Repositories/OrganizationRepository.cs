@@ -271,5 +271,78 @@ namespace Hotel.Persistence.Repositories
                 throw;
             }
         }
+
+        public void AddActivty(Activity activity, int orgID)
+        {
+
+            string priceinfo_insert = "insert into PriceInfo (Adultprice, Childprice, Discount, Adultage) output inserted.PriceInfoID values (@adultprice, @childprice, @discount, @adultage);";
+            string description_insert = "insert into Description (Duration, Location, Description, Name) output inserted.DescriptionID values (@duration, @location, @description, @name);";
+            string activity_insert = "insert into Activities (PriceInfoID, DescriptionID, OrganizationID, Capacity, Fixture, IsActive) values (@priceinfoID, @descriptionID, @orgID, @capacity, @fixture, @isactive);";
+
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+
+                    connection.Open();
+                    SqlTransaction transaction = connection.BeginTransaction();
+                    command.Transaction = transaction;
+
+                    try
+                    {
+                        command.CommandText = priceinfo_insert;
+
+                        command.Parameters.AddWithValue("@adultprice", activity.PriceInfo.AdultPrice);
+                        command.Parameters.AddWithValue("@childprice", activity.PriceInfo.ChildPrice);
+                        command.Parameters.AddWithValue("@discount", activity.PriceInfo.DiscountPercentage);
+                        command.Parameters.AddWithValue("@adultage", activity.PriceInfo.AdultAge);
+
+                        int priceinfoID = (int)command.ExecuteScalar();
+
+                        command.CommandText = description_insert;
+
+                        command.Parameters.AddWithValue("@duration", activity.Description.Duration);
+                        command.Parameters.AddWithValue("@location", activity.Description.Location);
+                        command.Parameters.AddWithValue("@description", activity.Description.DetailedDescription);
+                        command.Parameters.AddWithValue("@name", activity.Description.Name);
+
+                        int descriptionID = (int)command.ExecuteScalar();
+
+                        command.CommandText = activity_insert;
+
+                        command.Parameters.AddWithValue("@priceinfoID", priceinfoID);
+                        command.Parameters.AddWithValue("@descriptionID", descriptionID);
+                        command.Parameters.AddWithValue("@orgID", orgID);
+                        command.Parameters.AddWithValue("@capacity", activity.Capacity);
+                        command.Parameters.AddWithValue("@fixture", activity.Fixture);
+                        command.Parameters.AddWithValue("@isactive", (int)Status.Active);
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Commit();
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new OrganizationRepositoryException(ex.Message);
+                    }
+                }
+            }
+            catch (OrganizationRepositoryException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Someting went wrong in the database.");
+            }
+
+
+
+        }
     }
 }

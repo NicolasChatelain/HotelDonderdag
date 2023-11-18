@@ -16,5 +16,6 @@ namespace Hotel.Domain.Interfaces
         public List<Organization> GetAllOrganizations();
         List<Activity> GetAllActivitiesByOrganization(int id, bool onlyActives, string? filter);
         void RemoveActivity(int id);
+        void AddActivty(Activity a,int orgID);
     }
 }

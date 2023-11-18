@@ -24,19 +24,27 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DataGrid Width="500" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="Activitiesgrid_SelectionChanged" >
+        <DataGrid MaxWidth="500" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Fixture" Binding="{Binding Fixture}"/>
                 <DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
-                <DataGridTextColumn Header="Adultage" Binding="{Binding AdultAge}"/>
-                <DataGridTemplateColumn Header="Is active">
+                <DataGridTemplateColumn Header="Status">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding IsActive}" Background="{Binding IsActive, Converter={StaticResource BooleanToBrush}}">
+                            <TextBlock x:Name="StatusText" Background="{Binding IsActive, Converter={StaticResource BooleanToBrush}}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="Upcoming"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsActive}" Value="False">
+                                                <Setter Property="Text" Value="Elapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
                             </TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -46,21 +54,23 @@
 
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="add activity" Name="AddActivity"  Click="AddActivity_Click"/>
-                    <MenuItem Header="update activity" Name="UpdateActivity" Click="UpdateActivity_Click"/>
+                    <MenuItem Header="create new activity" Name="AddActivity" />
+                    <MenuItem Header="update activity" Name="UpdateActivity"/>
                     <MenuItem Header="remove activity" Name="RemoveActivity" Click="RemoveActivity_Click" />
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
 
-        <StackPanel Grid.Column="1" Orientation="Horizontal">
-            <Button Cursor="Hand" Width="100" Height="30" Margin="10" Name="New" Content="New event" Click="New_Click"/>
-            <Button Cursor="Hand" Width="100" Height="30" Margin="10" Name="Details" Content="Show details" Click="Details_Click"/>
-        </StackPanel>
+        
 
         <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
-            <Frame x:Name="aside" NavigationUIVisibility="Hidden" />
+            <Frame x:Name="frame" NavigationUIVisibility="Hidden" />
         </Grid>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Width="150" Height="30" Margin="10" Cursor="Hand" Content="create new activity" Name="New_Activity" Click="New_Activity_Click"/>
+            <Button Width="150" Height="30" Margin="10" Cursor="Hand" Content="Plan existing activity" Name="Plan_Activity" Click="Plan_Activity_Click"/>
+        </StackPanel>
 
 
 

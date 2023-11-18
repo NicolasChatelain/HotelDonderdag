@@ -30,28 +30,16 @@ namespace Hotel.Presentation
         private readonly OrganizationManager OM;
         private readonly int orgID;
         private string? filter;
-        private DetailsPage details;
-        private CreatingPage newEvent;
+        private readonly DetailsPage details;
 
         public ActivityWindow(int id)
         {
             InitializeComponent();
             OM = new(RepositoryFactory.OrganizationRepository);
             orgID = id;
-
-            aside.Navigate(details = new());
             activities = new(MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = null));
             activitiesgrid.ItemsSource = activities;
-        }
-
-        private void AddActivity_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void UpdateActivity_Click(object sender, RoutedEventArgs e)
-        {
-
+            frame.Navigate(details = new());
         }
 
         private void RemoveActivity_Click(object sender, RoutedEventArgs e)
@@ -69,17 +57,6 @@ namespace Hotel.Presentation
                     activities.Remove(activity);
                 }
 
-            }
-
-        }
-
-        private void Activitiesgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            ActivityUI activity = (ActivityUI)activitiesgrid.SelectedItem;
-            if (activity is not null)
-            {
-                details.detailsblock.Text = activity.ToString();
             }
         }
 
@@ -114,14 +91,15 @@ namespace Hotel.Presentation
 
         }
 
-        private void New_Click(object sender, RoutedEventArgs e)
+        private void New_Activity_Click(object sender, RoutedEventArgs e)
         {
-            aside.Navigate(newEvent = new(OM));
+            CreatingPage cp = new(OM, orgID, activities);
+            frame.Navigate(cp);
         }
 
-        private void Details_Click(object sender, RoutedEventArgs e)
+        private void Plan_Activity_Click(object sender, RoutedEventArgs e)
         {
-            aside.Navigate(details);
+   
         }
     }
 }

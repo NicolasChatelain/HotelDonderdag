@@ -63,7 +63,7 @@ namespace Hotel.Domain.Model
         }
         public bool IsActive { get; set; }
 
-        public void SetCapacity(string value)
+        internal void SetCapacity(string value)
         {
             try
             {
@@ -83,7 +83,6 @@ namespace Hotel.Domain.Model
                 throw new ActivityException("Capacity must be a valid number.");
             }
         }
-
         internal void SetFixture(string fixture)
         {
             string pattern = @"^\d{2}[./]\d{2}[./]\d{4} [\d: \-]{8,}$";
