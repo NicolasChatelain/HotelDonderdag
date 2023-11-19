@@ -9,6 +9,7 @@ namespace Hotel.Domain.Model
         private string _detailedDescription;
         private string _name;
 
+        public int ID { get; set; }
         public int Duration
         {
             get { return _duration; }

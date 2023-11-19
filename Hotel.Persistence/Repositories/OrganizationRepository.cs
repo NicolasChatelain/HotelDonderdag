@@ -344,5 +344,155 @@ namespace Hotel.Persistence.Repositories
 
 
         }
+
+        public List<Description> GetAllDescriptions(int orgID)
+        {
+            string SQLquery = "select d.DescriptionID, d.Name, d.Duration, d.Location, d.Description from Description d inner join Activities a on d.DescriptionID = a.DescriptionID where a.OrganizationID = @id;";
+
+            List<Description> descriptions = new();
+
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = SQLquery;
+
+                    try
+                    {
+                        command.Parameters.AddWithValue("@id", orgID);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            Description d = new()
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Duration = reader.GetInt32(2),
+                                Location = reader.GetString(3),
+                                DetailedDescription = reader.GetString(4)
+                            };
+
+                            descriptions.Add(d);
+                        }
+                        reader.Close();
+
+                        return descriptions;
+                    }
+                    catch (Exception)
+                    {
+                        throw new OrganizationRepositoryException("Something went wrong when getting the existing activities");
+                    }
+                }
+
+            }
+            catch (OrganizationRepositoryException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw new OrganizationRepositoryException("Something went wrong with the database.");
+            }
+        }
+
+        public List<PriceInfo> GetAllPrices(int orgID)
+        {
+            string SQLquery = "select distinct p.PriceInfoID, p.Adultprice, p.Childprice, p.Discount, p.Adultage from PriceInfo p inner join Activities a on p.PriceInfoID = a.PriceInfoID where a.OrganizationID = @id;";
+
+            List<PriceInfo> prices = new();
+
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = SQLquery;
+
+                    try
+                    {
+                        command.Parameters.AddWithValue("@id", orgID);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            PriceInfo p = new()
+                            {
+                                ID = reader.GetInt32(0),
+                                AdultPrice = reader.GetInt32(1),
+                                ChildPrice = reader.GetInt32(2),
+                                DiscountPercentage = reader.GetInt32(3),
+                                AdultAge = reader.GetInt32(4)
+                            };
+
+                            prices.Add(p);
+                        }
+
+                        reader.Close();
+
+                        return prices;
+                    }
+                    catch (Exception)
+                    {
+                        throw new OrganizationRepositoryException("Something went wrong when getting the existing prices");
+                    }
+                }
+
+            }
+            catch (OrganizationRepositoryException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw new OrganizationRepositoryException("Something went wrong with the database.");
+            }
+        }
+
+        public int PlanExistingActivity(int priceinfoID, string fixture, string capacity, int descriptionID, int orgID)
+        {
+            string SQLquery = "insert into Activities (PriceInfoID, DescriptionID, OrganizationID, Capacity, Fixture, IsActive) output inserted.ActivityId values (@price, @description, @org, @capacity, @fixture, @isactive);";
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = SQLquery;
+
+                    try
+                    {
+                        command.Parameters.AddWithValue("@price", priceinfoID);
+                        command.Parameters.AddWithValue("@description", descriptionID);
+                        command.Parameters.AddWithValue("@org", orgID);
+                        command.Parameters.AddWithValue("@capacity", capacity);
+                        command.Parameters.AddWithValue("@fixture", fixture);
+                        command.Parameters.AddWithValue("@isactive", (int)Status.Active);
+
+                        int ID = (int)command.ExecuteScalar();
+                        return ID;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new OrganizationRepositoryException(ex.Message);
+                    }
+                }
+            }
+            catch (OrganizationRepositoryException)
+            {
+                throw;
+            }
+            catch
+            {
+                throw new OrganizationRepositoryException("Something went wrong in the database.");
+            }
+        }
+
     }
 }

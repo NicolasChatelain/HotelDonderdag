@@ -97,7 +97,15 @@ namespace Hotel.Domain.Managers
 
         public void RemoveActivity(int id)
         {
-            _organizationRepository.RemoveActivity(id);
+            try
+            {
+                _organizationRepository.RemoveActivity(id);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public Activity ValidateActivity(string name, string fixture, string capacity, string location, string duration, string adultprice, string kidsprice, string discount, string adultage, string description)
@@ -137,8 +145,58 @@ namespace Hotel.Domain.Managers
 
         public void AddActivityToOrganization(Activity a, int orgID)
         {
-            _organizationRepository.AddActivty(a, orgID);
+            try
+            {
+                _organizationRepository.AddActivty(a, orgID);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
+        public List<Description> GetAllDescriptions(int orgID)
+        {
+            try
+            {
+                return _organizationRepository.GetAllDescriptions(orgID);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<PriceInfo> GetAllPrices(int orgID)
+        {
+            try
+            {
+                return _organizationRepository.GetAllPrices(orgID);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidateExistingActivty(string fixture, string capacity)
+        {
+            try
+            {
+                Activity a = new();
+                a.SetCapacity(capacity);
+                a.SetFixture(fixture);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int PlanExistingActivity(int ID, string fixture, string capacity, int id, int orgID)
+        {
+            return _organizationRepository.PlanExistingActivity(ID, fixture, capacity, id, orgID);
+        }
     }
 }

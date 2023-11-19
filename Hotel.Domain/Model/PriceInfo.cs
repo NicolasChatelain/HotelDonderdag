@@ -14,6 +14,7 @@ namespace Hotel.Domain.Model
         private int _discountPercentage;
         private int _adultAge;
 
+        public int ID {  get; set; }
         public int AdultPrice
         {
             get { return _adultPrice; }

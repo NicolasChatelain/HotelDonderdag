@@ -99,7 +99,8 @@ namespace Hotel.Presentation
 
         private void Plan_Activity_Click(object sender, RoutedEventArgs e)
         {
-   
+            PlanningPage pl = new(OM, MapPriceInfo.FromDomainToUI(OM.GetAllPrices(orgID)), MapDescription.FromDomainToUI(OM.GetAllDescriptions(orgID)), orgID, activities);
+            frame.Navigate(pl);
         }
     }
 }
