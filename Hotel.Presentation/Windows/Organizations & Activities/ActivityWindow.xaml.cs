@@ -37,7 +37,7 @@ namespace Hotel.Presentation
             InitializeComponent();
             OM = new(RepositoryFactory.OrganizationRepository);
             orgID = id;
-            activities = new(MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = null));
+            activities = new(MapActivity.FromDomainToUI(OM, orgID, !(bool)activebox.IsChecked, filter = null));
             activitiesgrid.ItemsSource = activities;
             frame.Navigate(details = new());
         }
@@ -53,8 +53,12 @@ namespace Hotel.Presentation
                 if (response == MessageBoxResult.Yes)
                 {
                     OM.RemoveActivity(activity.Id);
-                    activity.IsActive = false;
-                    activities.Remove(activity);
+                    activity.IsUpcoming = false;
+
+                    if (!(bool)activebox.IsChecked)
+                    {
+                        activities.Remove(activity);
+                    }
                 }
 
             }
@@ -70,7 +74,9 @@ namespace Hotel.Presentation
             else
             {
                 searchLabel.Visibility = Visibility.Visible;
-                activitiesgrid.ItemsSource = MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter = null);
+
+                activities = new(MapActivity.FromDomainToUI(OM, orgID, !(bool)activebox.IsChecked, filter = null));
+                activitiesgrid.ItemsSource = activities;
             }
         }
 
@@ -87,7 +93,8 @@ namespace Hotel.Presentation
             {
                 filter = null;
             }
-            activitiesgrid.ItemsSource = MapActivity.FromDomainToUI(OM, orgID, (bool)activebox.IsChecked, filter);
+            activities = new(MapActivity.FromDomainToUI(OM, orgID, !(bool)activebox.IsChecked, filter));
+            activitiesgrid.ItemsSource = activities;
 
         }
 

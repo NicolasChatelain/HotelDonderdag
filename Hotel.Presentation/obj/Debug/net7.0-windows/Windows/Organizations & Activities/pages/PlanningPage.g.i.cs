@@ -93,8 +93,8 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;component/windows/organizations%20&%20activities/pages/planni" +
-                    "ngpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;V1.0.0.0;component/windows/organizations%20&%20activities/pag" +
+                    "es/planningpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Windows\Organizations & Activities\pages\PlanningPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

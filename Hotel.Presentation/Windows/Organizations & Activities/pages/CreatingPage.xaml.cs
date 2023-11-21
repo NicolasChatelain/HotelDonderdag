@@ -56,12 +56,16 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
 
             try
             {
-                Activity activity = _manager.ValidateActivity(Name, Fixture, Capacity, Location, Duration, Adultprice, Kidsprice, Discount, Adultage, Description);
+                Activity activity = _manager.ValidateActivity(Name, Fixture, Capacity, Location, Duration, Adultprice, Kidsprice, Discount, Adultage, Description, true);
 
                 if (activity is not null)
                 {
                     _manager.AddActivityToOrganization(activity, orgID);
-                    activities.Add(MapActivity.FromDomainToUI(_manager, orgID, true, null).Last());
+
+                    ActivityUI activityUI = MapActivity.FromUItoUI(activity);
+                    activities.Add(activityUI);
+                    NavigationService.Navigate(details);
+                    details.detailsblock.Text = activityUI.ToString();
                 }
             }
             catch (Exception ex)

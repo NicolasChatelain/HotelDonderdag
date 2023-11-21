@@ -29,14 +29,7 @@ namespace Hotel.Domain.Model
             get { return _fixture; }
             set
             {
-                if (value.Year >= 1900)
-                {
-                    _fixture = value;
-                }
-                else
-                {
-                    throw new ActivityException("Minimum year must is 1900.");
-                }
+                _fixture = value;
             }
         }
         public Description Description
@@ -61,9 +54,9 @@ namespace Hotel.Domain.Model
                 }
             }
         }
-        public bool IsActive { get; set; }
+        public bool IsUpcoming { get; set; }
 
-        internal void SetCapacity(string value)
+        public void SetCapacity(string value)
         {
             try
             {
@@ -83,18 +76,41 @@ namespace Hotel.Domain.Model
                 throw new ActivityException("Capacity must be a valid number.");
             }
         }
-        internal void SetFixture(string fixture)
+        public void SetFixture(string fixture)
         {
-            string pattern = @"^\d{2}[./]\d{2}[./]\d{4} [\d: \-]{8,}$";
+            string pattern = "\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}:\\d{2}";
 
-            if (Regex.IsMatch(fixture, pattern))
-            {
-                Fixture = DateTime.Parse(fixture);
-            }
-            else
+
+            if (!Regex.IsMatch(fixture, pattern))
             {
                 throw new ActivityException("Enter a valid Date and Time");
             }
+            else
+            {
+                DateTime datetime = DateTime.Parse(fixture);
+
+                DateTime now = DateTime.Now;
+                DateTime tomorrow = now.AddDays(1);
+
+                if (Id > 0)
+                {
+                    Fixture = datetime;
+                }
+                else
+                {
+                    if (datetime > tomorrow)
+                    {
+                        Fixture = datetime;
+                    }
+                    else
+                    {
+                        throw new ActivityException("An activity must be planned minimum 1 day in advance.");
+                    }
+                }
+            }
         }
+
+
+
     }
 }

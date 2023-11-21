@@ -27,19 +27,20 @@
         <DataGrid MaxWidth="500" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" >
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Fixture, StringFormat={}{0:dd-MM-yyyy HH:mm}}" />
+
                 <DataGridTemplateColumn Header="Status">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock x:Name="StatusText" Background="{Binding IsActive, Converter={StaticResource BooleanToBrush}}">
+                            <TextBlock x:Name="StatusText" Background="{Binding IsUpcoming, Converter={StaticResource BooleanToBrush}}">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Text" Value="Upcoming"/>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsActive}" Value="False">
+                                            <DataTrigger Binding="{Binding IsUpcoming}" Value="False">
                                                 <Setter Property="Text" Value="Elapsed"/>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -107,7 +108,7 @@
                     Click="Search_Click"
                     Cursor="Hand"/>
 
-            <CheckBox Grid.Column="2" Content="show only active" VerticalAlignment="Center" IsChecked="True" Name="activebox" Cursor="Hand"/>
+            <CheckBox Grid.Column="2" Content="show elapsed" VerticalAlignment="Center" Name="activebox" Cursor="Hand"/>
 
         </Grid>
 

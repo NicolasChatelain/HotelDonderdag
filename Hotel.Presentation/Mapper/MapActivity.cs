@@ -1,4 +1,5 @@
 ﻿using Hotel.Domain.Managers;
+using Hotel.Domain.Model;
 using Hotel.Presentation.Model;
 using System;
 using System.Collections;
@@ -18,7 +19,7 @@ namespace Hotel.Presentation.Mapper
                         x.Id,
                         x.Capacity,
                         x.Fixture,
-                        x.IsActive,
+                        x.IsUpcoming,
                         x.Description.Name,
                         x.Description.DetailedDescription,
                         x.Description.Location,
@@ -30,5 +31,22 @@ namespace Hotel.Presentation.Mapper
                         )).ToList();
         }
 
+        internal static ActivityUI FromUItoUI(Activity activity)
+        {
+            return new ActivityUI(
+                 activity.Id,
+                 activity.Capacity,
+                 activity.Fixture,
+                 activity.IsUpcoming,
+                 activity.Description.Name,
+                 activity.Description.DetailedDescription,
+                 activity.Description.Location,
+                 activity.Description.Duration,
+                 activity.PriceInfo.AdultPrice,
+                 activity.PriceInfo.ChildPrice,
+                 activity.PriceInfo.DiscountPercentage,
+                 activity.PriceInfo.AdultAge
+            );
+        }
     }
 }

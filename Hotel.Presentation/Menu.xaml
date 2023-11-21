@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.Presentation"
         mc:Ignorable="d"
-        Title="Menu" Height="720" Width="1280">
+        Title="Menu" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <Grid Background="#2c2c2c">
 
         <StackPanel Width="300" Height="auto" VerticalAlignment="Center"  >
             <Button Panel.ZIndex="20" Content="Customers" Margin="0 50 0 0" Width="175" Padding="10" Cursor="Hand" FontSize="15" Name="Customers" Click="Customers_Click" />
             <Button Content="Activities" Margin="0 15 0 15" Width="175" Padding="10" Cursor="Hand" FontSize="15" Name="Activities" Click="Activities_Click" />
-            <Button Content="Register for activities" Margin="0 0 0 50" Width="175" Padding="10" Cursor="Hand" FontSize="15" />
+            <Button Content="Register for activities" Margin="0 0 0 50" Width="175" Padding="10" Cursor="Hand" FontSize="15" Click="Button_Click" />
         </StackPanel>
     </Grid>
 </Window>

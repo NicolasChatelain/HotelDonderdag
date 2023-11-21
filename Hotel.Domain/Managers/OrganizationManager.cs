@@ -1,4 +1,5 @@
-﻿using Hotel.Domain.Interfaces;
+﻿using Hotel.Domain.Exceptions;
+using Hotel.Domain.Interfaces;
 using Hotel.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,9 @@ namespace Hotel.Domain.Managers
                 ContactInfo contact = new(email, phone, address);
                 org = new(name, contact);
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
 
             return org;
@@ -41,9 +42,9 @@ namespace Hotel.Domain.Managers
             {
                 return _organizationRepository.AddOrganization((Organization)org);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -53,9 +54,9 @@ namespace Hotel.Domain.Managers
             {
                 _organizationRepository.UpdateOrganization(id, (Organization)org);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -65,9 +66,9 @@ namespace Hotel.Domain.Managers
             {
                 _organizationRepository.RemoveOrganization(ID);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -77,9 +78,9 @@ namespace Hotel.Domain.Managers
             {
                 return _organizationRepository.GetAllOrganizations();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -89,9 +90,9 @@ namespace Hotel.Domain.Managers
             {
                 return _organizationRepository.GetAllActivitiesByOrganization(id, onlyActives, filter);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -102,13 +103,13 @@ namespace Hotel.Domain.Managers
                 _organizationRepository.RemoveActivity(id);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
-        public Activity ValidateActivity(string name, string fixture, string capacity, string location, string duration, string adultprice, string kidsprice, string discount, string adultage, string description)
+        public Activity ValidateActivity(string name, string fixture, string capacity, string location, string duration, string adultprice, string kidsprice, string discount, string adultage, string description, bool upcoming)
         {
             try
             {
@@ -133,13 +134,14 @@ namespace Hotel.Domain.Managers
                 };
                 a.SetFixture(fixture);
                 a.SetCapacity(capacity);
+                a.IsUpcoming = upcoming;
 
                 return a;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -150,9 +152,9 @@ namespace Hotel.Domain.Managers
                 _organizationRepository.AddActivty(a, orgID);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -162,9 +164,9 @@ namespace Hotel.Domain.Managers
             {
                 return _organizationRepository.GetAllDescriptions(orgID);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -174,9 +176,9 @@ namespace Hotel.Domain.Managers
             {
                 return _organizationRepository.GetAllPrices(orgID);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
@@ -188,15 +190,22 @@ namespace Hotel.Domain.Managers
                 a.SetCapacity(capacity);
                 a.SetFixture(fixture);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new OrganizationManagerException(ex.Message);
             }
         }
 
-        public int PlanExistingActivity(int ID, string fixture, string capacity, int id, int orgID)
+        public int PlanExistingActivity(int ID, DateTime fixture, string capacity, int id, int orgID)
         {
-            return _organizationRepository.PlanExistingActivity(ID, fixture, capacity, id, orgID);
+            try
+            {
+                return _organizationRepository.PlanExistingActivity(ID, fixture, capacity, id, orgID);
+            }
+            catch (Exception ex)
+            {
+                throw new OrganizationManagerException(ex.Message);
+            }
         }
     }
 }

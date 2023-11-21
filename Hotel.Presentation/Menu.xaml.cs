@@ -1,4 +1,5 @@
 ﻿using Hotel.Presentation.Organizations___Activities;
+using Hotel.Presentation.Windows.Registrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Hotel.Presentation
     {
         private MainWindow? _mainWindow;
         private OrganizationWindow? _organizationWindow;
+        private CustomerLoginWindow? _clw;
 
         public Menu()
         {
@@ -42,7 +44,14 @@ namespace Hotel.Presentation
             this.Hide();
             _organizationWindow.ShowDialog();
             this.Show();
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _clw = new();
+            this.Hide();
+            _clw.ShowDialog();
+            this.Show();
         }
     }
 }

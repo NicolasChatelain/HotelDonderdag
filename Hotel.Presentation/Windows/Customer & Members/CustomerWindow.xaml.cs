@@ -135,9 +135,9 @@ namespace Hotel.Presentation
                         _customerManager.RemoveMember(CustomerUI.Id, new Member(mui.Name, DateOnly.Parse(mui.Birthday)));
                         _membersPerCustomer.Remove((MemberUI)MemberDataGrid.SelectedItem);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        
+                        MessageBox.Show(ex.Message);
                     }
 
                 }

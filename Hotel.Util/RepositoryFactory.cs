@@ -6,11 +6,13 @@ namespace Hotel.Util
 {
     public static class RepositoryFactory
     {
+        private readonly static string _connectionString = ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString;
+
         public static ICustomerRepository CustomerRepository
         {
             get
             {
-                return new CustomerRepository(ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString);
+                return new CustomerRepository(_connectionString);
             }
         }
 
@@ -18,7 +20,15 @@ namespace Hotel.Util
         {
             get
             {
-                return new OrganizationRepository(ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString);
+                return new OrganizationRepository(_connectionString);
+            }
+        }
+
+        public static IRegistrationsRepository RegistrationRepository
+        {
+            get
+            {
+                return new RegistrationsRepository(_connectionString);
             }
         }
     }

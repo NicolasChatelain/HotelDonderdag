@@ -125,8 +125,8 @@ namespace Hotel.Presentation.Organizations___Activities {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;component/windows/organizations%20&%20activities/neworgwindow" +
-                    ".xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;V1.0.0.0;component/windows/organizations%20&%20activities/new" +
+                    "orgwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Windows\Organizations & Activities\NewOrgWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

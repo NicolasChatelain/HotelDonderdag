@@ -9,24 +9,40 @@ namespace Hotel.Presentation.Model
 {
     public class ActivityUI : INotifyPropertyChanged
     {
-        public ActivityUI(int id, int maximumCapacity, DateTime fixture, bool isactive, string name, string detailedDescription, string location, int duration, int adultPrice, int childPrice, int discountPercentage, int adultage)
+        public ActivityUI(int id, int maximumCapacity, DateTime fixture, bool upcoming, string name, string detailedDescription, string location, int duration, int adultPrice, int childPrice, int discountPercentage, int adultage)
         {
             Id = id;
             MaximumCapacity = maximumCapacity;
             Fixture = fixture;
-            IsActive = isactive;
+            IsUpcoming = upcoming;
             Name = name;
             DetailedDescription = detailedDescription;
             Location = location;
-            Duration = duration;
             AdultPrice = adultPrice;
             ChildPrice = childPrice;
             DiscountPercentage = discountPercentage;
             AdultAge = adultage;
+
+
+            if (duration >= 60)
+            {
+                Duration = $"{duration / 60}u";
+
+                if (duration % 60 > 0)
+                {
+                    Duration += $"{duration % 60}";
+                }
+
+            }
+            else
+            {
+                Duration = $"{duration % 60} min";
+            }
+
         }
         public ActivityUI()
         {
-            
+
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -38,7 +54,7 @@ namespace Hotel.Presentation.Model
         private string _name;
         private string _detailedDescription;
         private string _location;
-        private int _duration;
+        private string _duration;
         private int _adultPrice;
         private int _childPrice;
         private int _discountPercentage;
@@ -71,13 +87,13 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Fixture));
             }
         }
-        public bool IsActive
+        public bool IsUpcoming
         {
             get { return _isActive; }
             set
             {
                 _isActive = value;
-                OnPropertyChanged(nameof(IsActive));
+                OnPropertyChanged(nameof(IsUpcoming));
             }
         }
         public string Name
@@ -107,7 +123,7 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Location));
             }
         }
-        public int Duration
+        public string Duration
         {
             get { return _duration; }
             set
@@ -155,17 +171,16 @@ namespace Hotel.Presentation.Model
 
         public override string ToString()
         {
-            return $"Id: {Id}" +
-           $"\nName: {Name}" +
+            return $"\nName: {Name}" +
            $"\n\nDetails: {DetailedDescription}" +
            $"\n\nLocation: {Location}" +
-           $"\nDuration: {Duration} minutes" +
+           $"\nDuration: {Duration}" +
            $"\n\nMaximum Capacity: {MaximumCapacity} people" +
            $"\nAdult Price: €{AdultPrice}" +
            $"\nChild Price: €{ChildPrice}" +
            $"\nDiscount Percentage: {DiscountPercentage}%" +
            $"\n\nAdult Age: {AdultAge} years" +
-           $"\n\n\t\tFixture Date: {Fixture:yyyy-MM-dd HH:mm:ss}";
+           $"\n\n\t\tFixture Date: {Fixture:dd-MM-yyyy HH:mm}";
         }
 
         protected virtual void OnPropertyChanged(string name)

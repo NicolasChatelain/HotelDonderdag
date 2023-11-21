@@ -173,7 +173,7 @@ namespace Hotel.Persistence.Repositories
 
             if (onlyActives)
             {
-                SQLquery += $" AND A.IsActive = {(int)Status.Active}";
+                SQLquery += $" AND A.Fixture > GETDATE() AND A.IsActive = 1";
             }
 
             if (filter is not null)
@@ -204,7 +204,11 @@ namespace Hotel.Persistence.Repositories
                             PriceInfo priceinfo = new();
                             Activity activity = new();
 
-                            activity.IsActive = reader.GetBoolean(0);
+                            if (reader.GetBoolean(0))
+                            {
+                                activity.IsUpcoming = reader.GetBoolean(0);
+                            }
+
                             activity.Id = reader.GetInt32(1);
                             activity.Fixture = reader.GetDateTime(2);
                             activity.Capacity = reader.GetInt32(3);
@@ -230,7 +234,7 @@ namespace Hotel.Persistence.Repositories
                     }
                     catch (Exception)
                     {
-                        throw new OrganizationRepositoryException("Something went wrong when retrieving all the activities for thos organization.");
+                        throw new OrganizationRepositoryException("Something went wrong when retrieving all the activities for this organization.");
                     }
                 }
             }
@@ -242,7 +246,7 @@ namespace Hotel.Persistence.Repositories
 
         public void RemoveActivity(int id)
         {
-            string SQLquery = "update Activities set IsActive = @status where ActivityID = @id";
+            string SQLquery = "update Activities set IsActive = @cancelled where ActivityID = @id";
 
             try
             {
@@ -254,7 +258,7 @@ namespace Hotel.Persistence.Repositories
 
                     try
                     {
-                        command.Parameters.AddWithValue("@status", (int)Status.Inactive);
+                        command.Parameters.AddWithValue("@cancelled", (int)Status.Inactive);
                         command.Parameters.AddWithValue("@id", id);
 
                         command.ExecuteNonQuery();
@@ -274,7 +278,6 @@ namespace Hotel.Persistence.Repositories
 
         public void AddActivty(Activity activity, int orgID)
         {
-
             string priceinfo_insert = "insert into PriceInfo (Adultprice, Childprice, Discount, Adultage) output inserted.PriceInfoID values (@adultprice, @childprice, @discount, @adultage);";
             string description_insert = "insert into Description (Duration, Location, Description, Name) output inserted.DescriptionID values (@duration, @location, @description, @name);";
             string activity_insert = "insert into Activities (PriceInfoID, DescriptionID, OrganizationID, Capacity, Fixture, IsActive) values (@priceinfoID, @descriptionID, @orgID, @capacity, @fixture, @isactive);";
@@ -454,7 +457,7 @@ namespace Hotel.Persistence.Repositories
             }
         }
 
-        public int PlanExistingActivity(int priceinfoID, string fixture, string capacity, int descriptionID, int orgID)
+        public int PlanExistingActivity(int priceinfoID, DateTime fixture, string capacity, int descriptionID, int orgID)
         {
             string SQLquery = "insert into Activities (PriceInfoID, DescriptionID, OrganizationID, Capacity, Fixture, IsActive) output inserted.ActivityId values (@price, @description, @org, @capacity, @fixture, @isactive);";
 

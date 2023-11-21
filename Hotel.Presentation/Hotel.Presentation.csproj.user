@@ -19,9 +19,6 @@
     <Compile Update="Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\Organizations &amp; Activities\NewActivityWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\Organizations &amp; Activities\NewOrgWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +32,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Organizations &amp; Activities\pages\PlanningPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Registrations\CustomerLoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Registrations\pages\ActivityRegistrationScreen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Registrations\pages\LoginScreen.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -54,9 +60,6 @@
     <Page Update="Menu.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\Organizations &amp; Activities\NewActivityWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Windows\Organizations &amp; Activities\NewOrgWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -70,6 +73,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Organizations &amp; Activities\pages\PlanningPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Registrations\CustomerLoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Registrations\pages\ActivityRegistrationScreen.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Registrations\pages\LoginScreen.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -57,6 +57,11 @@ namespace Hotel.Presentation.Model
             return HashCode.Combine(Name, Birthday);
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         protected void OnPropertyChanged(string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

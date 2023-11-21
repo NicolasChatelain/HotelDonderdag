@@ -25,7 +25,8 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
     {
         private readonly OrganizationManager _manager;
         private readonly int orgID;
-        private ObservableCollection<ActivityUI> activities;
+        private readonly ObservableCollection<ActivityUI> activities;
+        private DetailsPage details;
         public PlanningPage(OrganizationManager OM, List<PriceInfoUI> prices, List<DescriptionUI> activity_names, int id, ObservableCollection<ActivityUI> activities)
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
             _manager = OM;
             orgID = id;
             this.activities = activities;
+            details = new();
         }
 
         private void PlanBTN_Click(object sender, RoutedEventArgs e)
@@ -44,13 +46,17 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
             DescriptionUI description = (DescriptionUI)activityname.SelectedItem;
             PriceInfoUI price = (PriceInfoUI)pricingbox.SelectedItem;
 
+
+
             try
             {
                 _manager.ValidateExistingActivty(Fixture, Capacity);
-                int id = _manager.PlanExistingActivity(price.ID, Fixture, Capacity, description.ID, orgID);
+                DateTime parsedDate = DateTime.Parse(Fixture);
+
+                int id = _manager.PlanExistingActivity(price.ID, parsedDate, Capacity, description.ID, orgID);
                 activities.Add(new ActivityUI(id,
                                               int.Parse(Capacity),
-                                              DateTime.Parse(Fixture),
+                                              parsedDate,
                                               true,
                                               description.Name,
                                               description.Description,
@@ -60,6 +66,9 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
                                               price.Kidsprice,
                                               price.Discount,
                                               price.Adultage));
+
+                NavigationService.Navigate(details);
+                details.detailsblock.Text = activities.Last().ToString();
             }
             catch (Exception ex)
             {

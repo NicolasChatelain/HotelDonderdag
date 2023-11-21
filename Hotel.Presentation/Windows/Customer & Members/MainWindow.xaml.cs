@@ -100,8 +100,6 @@ namespace Hotel.Presentation
 
         private void MenuItem_Click_Add(object sender, RoutedEventArgs e)
         {
-            
-
             CustomerWindow w = new(null, customerManager);
             w.AddButton.Content = "Add customer";
             if (w.ShowDialog() == true)

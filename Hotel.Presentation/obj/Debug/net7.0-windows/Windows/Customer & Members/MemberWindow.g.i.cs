@@ -109,7 +109,8 @@ namespace Hotel.Presentation.Customer___Members {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;component/windows/customer%20&%20members/memberwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;V1.0.0.0;component/windows/customer%20&%20members/memberwindo" +
+                    "w.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Windows\Customer & Members\MemberWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

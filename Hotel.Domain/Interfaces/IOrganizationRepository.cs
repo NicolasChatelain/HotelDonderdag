@@ -19,6 +19,6 @@ namespace Hotel.Domain.Interfaces
         void AddActivty(Activity a,int orgID);
         List<Description> GetAllDescriptions(int orgID);
         List<PriceInfo> GetAllPrices(int orgID);
-        int PlanExistingActivity(int iD, string fixture, string capacity, int id, int orgID);
+        int PlanExistingActivity(int iD, DateTime fixture, string capacity, int id, int orgID);
     }
 }

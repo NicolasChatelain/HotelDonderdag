@@ -105,11 +105,11 @@ namespace Hotel.Domain.Managers
             }
         }
 
-
         private static string ExceptionMessage(string specializedMessage)
         {
             return $"Something went wrong when {specializedMessage}";
         }
+
         private static Customer MemberAppending(Customer customer, List<Member> members)
         {
             return customer.AppendAllMembers(members);
