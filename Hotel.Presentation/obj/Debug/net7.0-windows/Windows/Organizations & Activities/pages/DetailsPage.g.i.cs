@@ -61,8 +61,8 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;V1.0.0.0;component/windows/organizations%20&%20activities/pag" +
-                    "es/detailspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;component/windows/organizations%20&%20activities/pages/detail" +
+                    "spage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Windows\Organizations & Activities\pages\DetailsPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

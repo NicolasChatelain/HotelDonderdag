@@ -1,3 +1,21 @@
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.csproj.AssemblyReference.cache
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Menu.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\CustomerWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MainWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MemberWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\ActivityWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\NewOrgWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\OrganizationWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\CreatingPage.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\DetailsPage.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\PlanningPage.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\CustomerLoginWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\ActivityRegistrationScreen.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\LoginScreen.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\App.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation_MarkupCompile.cache
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation_MarkupCompile.lref
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-windows\Hotel.Presentation.exe
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-windows\Hotel.Presentation.dll.config
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-windows\Hotel.Presentation.deps.json
@@ -16,12 +34,19 @@ C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\bin\Debu
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-windows\Hotel.Util.pdb
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-windows\Hotel.Domain.pdb
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\bin\Debug\net7.0-windows\Hotel.Persistence.pdb
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.csproj.AssemblyReference.cache
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Menu.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\App.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation_MarkupCompile.cache
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation_MarkupCompile.lref
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Menu.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\CustomerWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MainWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MemberWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\ActivityWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\NewOrgWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\OrganizationWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\CreatingPage.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\DetailsPage.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\PlanningPage.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\CustomerLoginWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\ActivityRegistrationScreen.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\LoginScreen.baml
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.g.resources
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.GeneratedMSBuildEditorConfig.editorconfig
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.AssemblyInfoInputs.cache
@@ -33,28 +58,3 @@ C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debu
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.pdb
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.genruntimeconfig.cache
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\ref\Hotel.Presentation.dll
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\CustomerWindow.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MainWindow.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MemberWindow.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\ActivityWindow.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\NewOrgWindow.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\OrganizationWindow.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\CustomerWindow.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MainWindow.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Customer & Members\MemberWindow.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\ActivityWindow.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\NewOrgWindow.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\OrganizationWindow.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\CreatingPage.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\DetailsPage.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\CreatingPage.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\DetailsPage.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\PlanningPage.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\PlanningPage.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\CustomerLoginWindow.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\CustomerLoginWindow.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\LoginScreen.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\LoginScreen.baml
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\ActivityRegistrationScreen.g.cs
-C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Registrations\pages\ActivityRegistrationScreen.baml

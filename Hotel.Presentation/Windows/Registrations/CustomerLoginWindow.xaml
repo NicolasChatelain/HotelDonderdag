@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.Presentation.Windows.Registrations"
         mc:Ignorable="d"
-        Title="CustomerLoginWindow" Height="550" Width="900" WindowStartupLocation="CenterScreen">
+        Title="CustomerLoginWindow" Height="600" Width="950" WindowStartupLocation="CenterScreen">
     <Grid Background="#212121">
 
         <ContentControl x:Name="MainContentControl"/>

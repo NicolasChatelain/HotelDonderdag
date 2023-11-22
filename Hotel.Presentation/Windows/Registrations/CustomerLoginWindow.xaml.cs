@@ -24,8 +24,8 @@ namespace Hotel.Presentation.Windows.Registrations
     public partial class CustomerLoginWindow : Window
     {
         private readonly RegistrationsManager _manager;
-        private readonly List<string> _validCustomerLogins = new();
-        private Dictionary<int, string> _phonenumbers;
+        private List<(string, string)> _validCustomerLogins = new();
+        private Dictionary<int, (string,string)> _phonenumbers;
         private readonly LoginScreen _loginScreen;
         private ActivityRegistrationScreen _activityRegistrationScreen;
 
@@ -52,12 +52,12 @@ namespace Hotel.Presentation.Windows.Registrations
 
         }
 
-        private void LoginScreenSucces(string phone)
+        private void LoginScreenSucces(string name, string phone)
         {
             _activityRegistrationScreen = new();
             MainContentControl.Content = _activityRegistrationScreen;
 
-            int CustomerId = _phonenumbers.FirstOrDefault(x => x.Value == phone).Key;
+            int CustomerId = _phonenumbers.FirstOrDefault(x => x.Value.Item2 == phone).Key; // find the customerid based on login
 
             try
             {
@@ -65,7 +65,11 @@ namespace Hotel.Presentation.Windows.Registrations
                                                  .Select(x => new MemberUI(x.Name, x.Birthday.ToString()))
                                                  .ToList();
 
+                
+
                 _activityRegistrationScreen.MemberListBox.ItemsSource = members;
+                _activityRegistrationScreen.ActivityBox.ItemsSource = members;
+                _activityRegistrationScreen.CustomerLabel.Content += name;
 
             }
             catch (Exception ex)

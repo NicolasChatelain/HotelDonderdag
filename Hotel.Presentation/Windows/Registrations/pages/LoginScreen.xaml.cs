@@ -21,22 +21,23 @@ namespace Hotel.Presentation.Windows.Registrations.pages
     public partial class LoginScreen : UserControl
     {
 
-        private readonly List<string> _validLogins;
-        internal event Action<string> LoginSucces;
+        private readonly List<(string, string)> _validLogins;
+        internal event Action<string, string> LoginSucces;
 
-        public LoginScreen(List<string> ValidLogins)
+        public LoginScreen(List<(string, string)> ValidLogins)
         {
             InitializeComponent();
             _validLogins = ValidLogins;
         }
 
-        private void LoginBTN_Click(object sender, RoutedEventArgs e)
+        private void LoginBTN_Click(object sender, RoutedEventArgs e) // Combination of name and input need to be correct to login.
         {
-            string phoneInput = loginTextBox.Text;
+            string nameInput = NameInputBox.Text.ToLower().Trim();
+            string phoneInput = PhoneInputBox.Text;
 
-            if (_validLogins.Contains(phoneInput))
+            if (_validLogins.Any(login => login.Item1.ToLower() == nameInput && login.Item2 == phoneInput))
             {
-                OnLoginSucces(phoneInput);
+                OnLoginSucces(nameInput, phoneInput);
             }
             else
             {
@@ -44,9 +45,9 @@ namespace Hotel.Presentation.Windows.Registrations.pages
             }
         }
 
-        protected virtual void OnLoginSucces(string phone)
+        protected virtual void OnLoginSucces(string name, string phone)
         {
-            LoginSucces?.Invoke(phone);
+            LoginSucces?.Invoke(name, phone);
         }
     }
 }

@@ -55,6 +55,7 @@ namespace Hotel.Domain.Model
             }
         }
         public bool IsUpcoming { get; set; }
+        public List<Registration> registrations { get; set; }
 
         public void SetCapacity(string value)
         {

@@ -14,6 +14,11 @@ namespace Hotel.Persistence.Repositories
             _connectionString = connectionstring;
         }
 
+        public List<Registration> GetAllRegistrations()
+        {
+            string SQLquery = "";
+        }
+
         public List<Member> GetMembersForCustomer(int customerId)
         {
             string SQLquery = "select name, birthday from Member where customerId = @id;";
@@ -46,10 +51,10 @@ namespace Hotel.Persistence.Repositories
             }
         }
 
-        public Dictionary<int, string> GetValidLoginPhones()
+        public Dictionary<int, (string,string)> GetValidLoginPhones()
         {
-            string SQLquery = "select Id, phone from Customer";
-            Dictionary<int, string> phonesDict = new();
+            string SQLquery = "select Id, name, phone from Customer";
+            Dictionary<int, (string,string)> phonesDict = new();
 
             try
             {
@@ -62,7 +67,7 @@ namespace Hotel.Persistence.Repositories
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        phonesDict.Add(reader.GetInt32(0), reader.GetString(1));
+                        phonesDict.Add(reader.GetInt32(0), (reader.GetString(1), reader.GetString(2)));
                     }
 
                     reader.Close();

@@ -5,6 +5,7 @@ namespace Hotel.Domain.Interfaces
     public interface IRegistrationsRepository
     {
         List<Member> GetMembersForCustomer(int customerId);
-        Dictionary<int, string> GetValidLoginPhones();
+        Dictionary<int, (string, string)> GetValidLoginPhones();
+        List<Registration> GetAllRegistrations();
     }
 }

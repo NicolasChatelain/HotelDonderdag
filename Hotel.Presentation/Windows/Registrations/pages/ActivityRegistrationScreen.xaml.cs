@@ -35,5 +35,14 @@ namespace Hotel.Presentation.Windows.Registrations.pages
                 SubscribedMembersBox.Items.Remove(member);
             }
         }
+
+        private void ActivityBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(ActivityBox.SelectedItem is not null)
+            {
+                SubscribeBTN.IsEnabled = true;
+                UnsubscribeBTN.IsEnabled = true;
+            }
+        }
     }
 }

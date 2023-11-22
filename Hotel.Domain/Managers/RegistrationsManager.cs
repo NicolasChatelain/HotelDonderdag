@@ -26,7 +26,7 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public Dictionary<int, string> GetValidLoginPhones()
+        public Dictionary<int, (string, string)> GetValidLoginPhones()
         {
             try
             {

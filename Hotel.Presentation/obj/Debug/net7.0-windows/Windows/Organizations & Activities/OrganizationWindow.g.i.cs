@@ -93,8 +93,8 @@ namespace Hotel.Presentation.Organizations___Activities {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;V1.0.0.0;component/windows/organizations%20&%20activities/org" +
-                    "anizationwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hotel.Presentation;component/windows/organizations%20&%20activities/organization" +
+                    "window.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Windows\Organizations & Activities\OrganizationWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
