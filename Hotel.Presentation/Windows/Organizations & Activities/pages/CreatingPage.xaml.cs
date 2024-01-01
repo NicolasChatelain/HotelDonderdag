@@ -62,7 +62,7 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
                 {
                     _manager.AddActivityToOrganization(activity, orgID);
 
-                    ActivityUI activityUI = MapActivity.FromUItoUI(activity);
+                    ActivityUI activityUI = MapActivity.FromDomainToUI(activity);
                     activities.Add(activityUI);
                     NavigationService.Navigate(details);
                     details.detailsblock.Text = activityUI.ToString();

@@ -6,6 +6,8 @@ namespace Hotel.Domain.Interfaces
     {
         List<Member> GetMembersForCustomer(int customerId);
         Dictionary<int, (string, string)> GetValidLoginPhones();
-        List<Registration> GetAllRegistrations();
+        List<Activity> GetAllActivities();
+        (int RegistrationID, List<Member>) GetSubscribedMembersForActivity(int activityId, int customerId);
+        bool MakeRegistration(List<Member> members, Activity activity);
     }
 }

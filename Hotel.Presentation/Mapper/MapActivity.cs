@@ -1,12 +1,10 @@
 ﻿using Hotel.Domain.Managers;
 using Hotel.Domain.Model;
 using Hotel.Presentation.Model;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Activity = Hotel.Domain.Model.Activity;
 
 namespace Hotel.Presentation.Mapper
 {
@@ -31,7 +29,7 @@ namespace Hotel.Presentation.Mapper
                         )).ToList();
         }
 
-        internal static ActivityUI FromUItoUI(Activity activity)
+        internal static ActivityUI FromDomainToUI(Activity activity)
         {
             return new ActivityUI(
                  activity.Id,
@@ -47,6 +45,30 @@ namespace Hotel.Presentation.Mapper
                  activity.PriceInfo.DiscountPercentage,
                  activity.PriceInfo.AdultAge
             );
+        }
+
+        internal static Activity ToDomain(ActivityUI selectedActivity)
+        {
+            return new Activity()
+            {
+                Id = selectedActivity.Id,
+                Capacity = selectedActivity.MaximumCapacity,
+                Fixture = selectedActivity.Fixture,
+                Description = new()
+                {
+                     DetailedDescription = selectedActivity.DetailedDescription,
+                     Location = selectedActivity.Location,
+                     Duration = selectedActivity.Duration,
+                     Name = selectedActivity.Name,
+                },
+                PriceInfo = new()
+                {
+                    AdultAge = selectedActivity.AdultAge,
+                    AdultPrice = selectedActivity.AdultPrice,
+                    ChildPrice = selectedActivity.ChildPrice,
+                    DiscountPercentage = selectedActivity.DiscountPercentage,
+                },
+            };
         }
     }
 }

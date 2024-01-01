@@ -1,13 +1,7 @@
 ﻿using Hotel.Domain.Interfaces;
 using Hotel.Domain.Model;
 using Hotel.Persistence.Exceptions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hotel.Persistence.Repositories
 {

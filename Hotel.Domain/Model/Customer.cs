@@ -41,10 +41,6 @@ namespace Hotel.Domain.Model
             set { _contact = value; }
         }
 
-        private readonly List<Registration> _registrations = new();
-
-
-
         public Customer(int id, string name, ContactInfo ci)
         {
             Id = id;
@@ -57,8 +53,6 @@ namespace Hotel.Domain.Model
             Name = name;
             Contact = ci;
         }
-
-
 
 
         public IReadOnlyList<Member> GetMembers()

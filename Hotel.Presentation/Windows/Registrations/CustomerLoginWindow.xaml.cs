@@ -24,8 +24,7 @@ namespace Hotel.Presentation.Windows.Registrations
     public partial class CustomerLoginWindow : Window
     {
         private readonly RegistrationsManager _manager;
-        private List<(string, string)> _validCustomerLogins = new();
-        private Dictionary<int, (string,string)> _phonenumbers;
+        private readonly Dictionary<int, (string,string)> _phonenumbersAndNames;
         private readonly LoginScreen _loginScreen;
         private ActivityRegistrationScreen _activityRegistrationScreen;
 
@@ -35,48 +34,24 @@ namespace Hotel.Presentation.Windows.Registrations
             try
             {
                 _manager = new(RepositoryFactory.RegistrationRepository);
-                _phonenumbers = _manager.GetValidLoginPhones();
-                _validCustomerLogins.AddRange(_phonenumbers.Values);
+                _phonenumbersAndNames = _manager.GetValidLoginPhones(); // (id, (name, phonenumber))
+
+                _loginScreen = new(_phonenumbersAndNames);
+
+                MainContentControl.Content = _loginScreen;
+                _loginScreen.LoginSucces += LoginScreenSucces;
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            _loginScreen = new(_validCustomerLogins);
-
-            MainContentControl.Content = _loginScreen;
-            _loginScreen.LoginSucces += LoginScreenSucces;
-
-
         }
 
-        private void LoginScreenSucces(string name, string phone)
+        private void LoginScreenSucces(int id)
         {
-            _activityRegistrationScreen = new();
+            _activityRegistrationScreen = new(_manager, id);
             MainContentControl.Content = _activityRegistrationScreen;
-
-            int CustomerId = _phonenumbers.FirstOrDefault(x => x.Value.Item2 == phone).Key; // find the customerid based on login
-
-            try
-            {
-                List<MemberUI> members = _manager.GetMembersForCustomer(CustomerId)
-                                                 .Select(x => new MemberUI(x.Name, x.Birthday.ToString()))
-                                                 .ToList();
-
-                
-
-                _activityRegistrationScreen.MemberListBox.ItemsSource = members;
-                _activityRegistrationScreen.ActivityBox.ItemsSource = members;
-                _activityRegistrationScreen.CustomerLabel.Content += name;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
         }
     }
 }

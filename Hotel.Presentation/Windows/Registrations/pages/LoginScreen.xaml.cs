@@ -21,10 +21,10 @@ namespace Hotel.Presentation.Windows.Registrations.pages
     public partial class LoginScreen : UserControl
     {
 
-        private readonly List<(string, string)> _validLogins;
-        internal event Action<string, string> LoginSucces;
+        private readonly Dictionary<int, (string, string)> _validLogins;
+        internal event Action<int> LoginSucces;
 
-        public LoginScreen(List<(string, string)> ValidLogins)
+        public LoginScreen(Dictionary<int, (string, string)> ValidLogins)
         {
             InitializeComponent();
             _validLogins = ValidLogins;
@@ -35,19 +35,22 @@ namespace Hotel.Presentation.Windows.Registrations.pages
             string nameInput = NameInputBox.Text.ToLower().Trim();
             string phoneInput = PhoneInputBox.Text;
 
-            if (_validLogins.Any(login => login.Item1.ToLower() == nameInput && login.Item2 == phoneInput))
+            var LoginMatch = _validLogins.FirstOrDefault(login => login.Value.Item1.ToLower() == nameInput && login.Value.Item2 == phoneInput);
+
+            if (LoginMatch.Value != (null, null))
             {
-                OnLoginSucces(nameInput, phoneInput);
+                int id = LoginMatch.Key;
+                OnLoginSucces(id);
             }
             else
             {
-                MessageBox.Show("This phone number does not belong to a customer.", "Login", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Invalid name or phonenumber.", "Login", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
-        protected virtual void OnLoginSucces(string name, string phone)
+        protected virtual void OnLoginSucces(int id)
         {
-            LoginSucces?.Invoke(name, phone);
+            LoginSucces?.Invoke(id);
         }
     }
 }

@@ -7,6 +7,8 @@ namespace Hotel.Domain.Model
 
         private string _name;
         private DateOnly _birthday;
+
+        public int ID { get; set; }
         public string Name
         {
             get
@@ -38,15 +40,17 @@ namespace Hotel.Domain.Model
             }
         }
 
-
         public Member(string name, DateOnly birthday)
         {
-
             Name = name;
             Birthday = birthday;
-
         }
 
+        public Member(int id, string name, DateOnly birthday) : this(name, birthday)
+        {
+            ID = id;
+
+        }
 
 
         public override bool Equals(object? obj)

@@ -37,7 +37,7 @@ namespace Hotel.Presentation
             InitializeComponent();
             OM = new(RepositoryFactory.OrganizationRepository);
             orgID = id;
-            activities = new(MapActivity.FromDomainToUI(OM, orgID, !(bool)activebox.IsChecked, filter = null));
+            activities = new(MapActivity.FromDomainToUI(OM, orgID, !(bool)activebox.IsChecked!, filter = null));
             activitiesgrid.ItemsSource = activities;
             frame.Navigate(details = new());
         }
@@ -55,7 +55,7 @@ namespace Hotel.Presentation
                     OM.RemoveActivity(activity.Id);
                     activity.IsUpcoming = false;
 
-                    if (!(bool)activebox.IsChecked)
+                    if (!(bool)activebox.IsChecked!)
                     {
                         activities.Remove(activity);
                     }

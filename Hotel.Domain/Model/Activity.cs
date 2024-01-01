@@ -1,10 +1,6 @@
 ﻿using Hotel.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace Hotel.Domain.Model
 {
@@ -55,7 +51,6 @@ namespace Hotel.Domain.Model
             }
         }
         public bool IsUpcoming { get; set; }
-        public List<Registration> registrations { get; set; }
 
         public void SetCapacity(string value)
         {
@@ -79,7 +74,7 @@ namespace Hotel.Domain.Model
         }
         public void SetFixture(string fixture)
         {
-            string pattern = "\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}:\\d{2}";
+            string pattern = "\\d{2}/\\d{2}/\\d{4} \\d{2}:\\d{2}";
 
 
             if (!Regex.IsMatch(fixture, pattern))

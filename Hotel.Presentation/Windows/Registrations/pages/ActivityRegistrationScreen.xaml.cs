@@ -1,8 +1,16 @@
 ﻿using Hotel.Presentation.Model;
+using System.Collections.Generic;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-
-
+using Hotel.Domain.Managers;
+using System.Linq;
+using Hotel.Presentation.Mapper;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Collections;
+using Hotel.Domain.Model;
+using System.ComponentModel;
 
 namespace Hotel.Presentation.Windows.Registrations.pages
 {
@@ -11,18 +19,103 @@ namespace Hotel.Presentation.Windows.Registrations.pages
     /// </summary>
     public partial class ActivityRegistrationScreen : UserControl
     {
-        public ActivityRegistrationScreen()
+        private readonly RegistrationsManager _registrationsManager;
+        private ObservableCollection<MemberUI> SubscribedMembers;
+        private ActivityUI selectedActivity;
+        private readonly int customerId;
+        private int totalPrice = 0;
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+
+        public ActivityRegistrationScreen(RegistrationsManager manager, int customerid)
         {
             InitializeComponent();
+
+            _registrationsManager = manager;
+            customerId = customerid;
+
+            try
+            {
+                List<MemberUI> members = manager.GetMembersForCustomer(customerid)
+                                                 .Select(x => new MemberUI(x.ID, x.Name, x.Birthday.ToString()))
+                                                 .ToList();
+                SubscribedMembers = new();
+
+                PriceLabel.Content = $"Total price: €{totalPrice}";
+
+                MemberListBox.ItemsSource = members;
+                SubscribedMembersBox.ItemsSource = SubscribedMembers;
+
+                List<ActivityUI> activities = manager.GetAllActivities().Select(MapActivity.FromDomainToUI).ToList();
+
+                ActivityBox.ItemsSource = activities;
+                SubscribedMembers.CollectionChanged += SubscriptionChanged; // deze methode wordt gecalled als er iets aan de collectie wordt veranderd (add/remove)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CalculateTotalPrice()
+        {
+            totalPrice = 0;
+            foreach (MemberUI member in SubscribedMembers)
+            {
+                DateTime memberBirthday = DateTime.Parse(member.Birthday);
+                int age = DateTime.Now.Year - memberBirthday.Year;
+
+                if (age < selectedActivity.AdultAge)
+                {
+                    totalPrice += selectedActivity.ChildPrice;
+                }
+                else
+                {
+                    totalPrice += selectedActivity.AdultPrice;
+                }
+            }
+            PriceLabel.Content = $"Total price: €{totalPrice}";
+        }
+
+        private void SubtractRemovedPrice(IEnumerable removedMembers)
+        {
+            foreach (MemberUI removedMember in removedMembers!)
+            {
+                DateTime removedMemberBirthday = DateTime.Parse(removedMember.Birthday);
+                int age = DateTime.Now.Year - removedMemberBirthday.Year;
+
+                if (age < selectedActivity.AdultAge)
+                {
+                    totalPrice -= selectedActivity.ChildPrice;
+                }
+                else
+                {
+                    totalPrice -= selectedActivity.AdultPrice;
+                }
+            }
+            PriceLabel.Content = $"Total price: €{totalPrice}";
+        }
+
+        private void SubscriptionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                CalculateTotalPrice();
+            }
+
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                SubtractRemovedPrice(e.OldItems!);
+            }
         }
 
         private void SubscribeBTN_Click(object sender, RoutedEventArgs e)
         {
             MemberUI member = (MemberUI)MemberListBox.SelectedItem;
 
-            if (member is not null && !SubscribedMembersBox.Items.Contains(member))
+            if (member is not null && !SubscribedMembers.Contains(member))
             {
-                SubscribedMembersBox.Items.Add(member);
+                SubscribedMembers.Add(member);
             }
         }
 
@@ -32,17 +125,41 @@ namespace Hotel.Presentation.Windows.Registrations.pages
 
             if (member is not null)
             {
-                SubscribedMembersBox.Items.Remove(member);
+                SubscribedMembers.Remove(member);
             }
         }
 
         private void ActivityBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ActivityBox.SelectedItem is not null)
+            if (ActivityBox.SelectedItem is not null)
             {
                 SubscribeBTN.IsEnabled = true;
                 UnsubscribeBTN.IsEnabled = true;
+
+                selectedActivity = (ActivityUI)ActivityBox.SelectedItem;
+                ActivityDetailsBlock.Text = selectedActivity.ShowDetails();
+
+                GetSubscribedMembers();
             }
+        }
+
+        private void GetSubscribedMembers()
+        {
+            List<MemberUI> subscribedMembers = _registrationsManager.GetSubscribedMembersForAcitivity(selectedActivity.Id, customerId)
+                                                                        .Item2.Select(x => new MemberUI(x.Name, x.Birthday.ToString()))
+                                                                        .ToList();
+            SubscribedMembers.Clear();
+            CalculateTotalPrice();
+
+            foreach (MemberUI member in subscribedMembers)
+            {
+                SubscribedMembers.Add(member);
+            }
+        }
+
+        private void ConfirmRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            _registrationsManager.MakeRegistration(SubscribedMembers.Select(x => new Member(x.ID, x.Name, DateOnly.Parse(x.Birthday))).ToList(), MapActivity.ToDomain(selectedActivity));
         }
     }
 }

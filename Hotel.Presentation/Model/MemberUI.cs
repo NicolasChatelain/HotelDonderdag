@@ -14,6 +14,7 @@ namespace Hotel.Presentation.Model
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        public int ID;
         public string Name
         {
             get { return _name; }
@@ -37,6 +38,13 @@ namespace Hotel.Presentation.Model
 
         public MemberUI(string name, string birthday)
         {
+            Name = name;
+            Birthday = birthday;
+        }
+
+        public MemberUI(int id, string name, string birthday)
+        {
+            ID = id;
             Name = name;
             Birthday = birthday;
         }

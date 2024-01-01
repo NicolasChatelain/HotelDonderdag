@@ -22,23 +22,7 @@ namespace Hotel.Presentation.Model
             ChildPrice = childPrice;
             DiscountPercentage = discountPercentage;
             AdultAge = adultage;
-
-
-            if (duration >= 60)
-            {
-                Duration = $"{duration / 60}u";
-
-                if (duration % 60 > 0)
-                {
-                    Duration += $"{duration % 60}";
-                }
-
-            }
-            else
-            {
-                Duration = $"{duration % 60} min";
-            }
-
+            Duration = duration;
         }
         public ActivityUI()
         {
@@ -54,7 +38,7 @@ namespace Hotel.Presentation.Model
         private string _name;
         private string _detailedDescription;
         private string _location;
-        private string _duration;
+        private int _duration;
         private int _adultPrice;
         private int _childPrice;
         private int _discountPercentage;
@@ -123,7 +107,7 @@ namespace Hotel.Presentation.Model
                 OnPropertyChanged(nameof(Location));
             }
         }
-        public string Duration
+        public int Duration
         {
             get { return _duration; }
             set
@@ -169,7 +153,7 @@ namespace Hotel.Presentation.Model
             }
         }
 
-        public override string ToString()
+        public string ShowDetails()
         {
             return $"\nName: {Name}" +
            $"\n\nDetails: {DetailedDescription}" +
@@ -181,6 +165,11 @@ namespace Hotel.Presentation.Model
            $"\nDiscount Percentage: {DiscountPercentage}%" +
            $"\n\nAdult Age: {AdultAge} years" +
            $"\n\n\t\tFixture Date: {Fixture:dd-MM-yyyy HH:mm}";
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         protected virtual void OnPropertyChanged(string name)
