@@ -27,7 +27,9 @@ namespace Hotel.Domain.Model
         public string Email
         {
             get
-            { return _email; }
+            {
+                return _email;
+            }
             set
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Count(@char => @char == ValidEmailCheck) != ValidCharCount)
@@ -58,7 +60,7 @@ namespace Hotel.Domain.Model
             get { return _address; }
             set
             {
-                if(value is null)
+                if (value is null)
                 {
                     throw new ContactInfoException("Not a valid adrress.");
                 }
@@ -66,7 +68,7 @@ namespace Hotel.Domain.Model
             }
         }
 
-       
+
 
     }
 }

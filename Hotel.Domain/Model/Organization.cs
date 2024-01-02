@@ -26,7 +26,7 @@ namespace Hotel.Domain.Model
             }
         }
         public ContactInfo Contact { get; set; }
-        List<Activity> Activities { get; }
+        private List<Activity> Activities { get; }
 
         public Organization(string name, ContactInfo contact)
         {
