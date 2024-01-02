@@ -68,7 +68,7 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public void AddNewMembers(int id, List<Member> oldmembers, List<Member> members)
+        public void AddNewMembers(int id, List<Member> oldmembers, List<Member> members) //TODO might not work anymore
         {
             try
             {

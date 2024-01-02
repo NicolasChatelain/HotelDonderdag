@@ -42,11 +42,14 @@
         <TextBlock Grid.Row="1" Background="SkyBlue" Grid.ColumnSpan="3" x:Name="ActivityDetailsBlock"/>
 
 
-        <Label FontSize="36" Foreground="#f3f4f7" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3" Name="PriceLabel"/>
-        
+        <StackPanel Grid.Row="1" Grid.Column="3" >
+            <Label FontSize="24" Foreground="#f3f4f7" HorizontalAlignment="Center" Name="DiscountLabel"/>
+            <Label FontSize="36" Foreground="#f3f4f7" HorizontalAlignment="Center" Name="PriceLabel"/>
+        </StackPanel>
+
         <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom">
             <Button Content="Confirm" Margin="5 5" Cursor="Hand" Padding="5" Click="ConfirmRegistration_Click"/>
-            <Button Content="Cancel" Margin="5 0 5 5" Cursor="Hand" Padding="5"/>
+            <Button Content="Exit" Margin="5 0 5 5" Cursor="Hand" Padding="5" Click="LogoutButtonClick" />
         </StackPanel>
 
 

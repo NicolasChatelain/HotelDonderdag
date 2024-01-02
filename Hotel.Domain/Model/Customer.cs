@@ -54,6 +54,11 @@ namespace Hotel.Domain.Model
             Contact = ci;
         }
 
+        public Customer(int id)
+        {
+            Id = id;
+        }
+
 
         public IReadOnlyList<Member> GetMembers()
         {
@@ -93,7 +98,7 @@ namespace Hotel.Domain.Model
 
         public override bool Equals(object? obj)
         {
-            if(obj == null || GetType() != obj.GetType())
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }

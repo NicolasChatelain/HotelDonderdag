@@ -39,7 +39,7 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public (int RegistrationID, List<Member>) GetSubscribedMembersForAcitivity(int activityId, int customerId)
+        public List<Member> GetSubscribedMembersForAcitivity(int activityId, int customerId)
         {
             try
             {
@@ -63,11 +63,27 @@ namespace Hotel.Domain.Managers
             }
         }
 
-        public void MakeRegistration(List<Member> members, Activity activity)
+        public bool MakeRegistration(List<Member> members, Activity activity, int currentCustomerId)
         {
             try
             {
-                bool RegistrationSucces = _repository.MakeRegistration(members, activity);
+                Registration? registration = _repository.GetRegistration(activity); //haal de registratie op als ze bestaat.
+
+                if (registration is null)
+                {
+                    registration = new Registration
+                    {
+                        Activity = activity
+                    };
+
+                    registration.Subscribe(members); // throws exception als capacity te vol geraakt
+                    return _repository.MakeRegistration(registration);
+                }
+                else
+                {
+                    registration.UpdateSubscribers(members, currentCustomerId); // throws exception als capacity te vol geraakt
+                    return _repository.UpdateRegistration(registration);
+                }
             }
             catch (Exception ex)
             {

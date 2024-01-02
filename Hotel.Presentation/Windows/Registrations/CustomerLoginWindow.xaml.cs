@@ -25,7 +25,7 @@ namespace Hotel.Presentation.Windows.Registrations
     {
         private readonly RegistrationsManager _manager;
         private readonly Dictionary<int, (string,string)> _phonenumbersAndNames;
-        private readonly LoginScreen _loginScreen;
+        private LoginScreen _loginScreen;
         private ActivityRegistrationScreen _activityRegistrationScreen;
 
         public CustomerLoginWindow()
@@ -51,7 +51,16 @@ namespace Hotel.Presentation.Windows.Registrations
         private void LoginScreenSucces(int id)
         {
             _activityRegistrationScreen = new(_manager, id);
+            _activityRegistrationScreen.OnLogoutPress += LogoutPressed;
             MainContentControl.Content = _activityRegistrationScreen;
         }
+
+        private void LogoutPressed()
+        {
+            _loginScreen = new(_phonenumbersAndNames);
+            MainContentControl.Content = _loginScreen;
+            _loginScreen.LoginSucces += LoginScreenSucces;
+        }
+
     }
 }

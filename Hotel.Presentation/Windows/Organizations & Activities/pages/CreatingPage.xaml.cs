@@ -65,7 +65,7 @@ namespace Hotel.Presentation.Windows.Organizations___Activities.pages
                     ActivityUI activityUI = MapActivity.FromDomainToUI(activity);
                     activities.Add(activityUI);
                     NavigationService.Navigate(details);
-                    details.detailsblock.Text = activityUI.ToString();
+                    details.detailsblock.Text = activityUI.ShowDetails();
                 }
             }
             catch (Exception ex)

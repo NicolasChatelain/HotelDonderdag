@@ -20,10 +20,11 @@ namespace Hotel.Presentation.Windows.Registrations.pages
     public partial class ActivityRegistrationScreen : UserControl
     {
         private readonly RegistrationsManager _registrationsManager;
-        private ObservableCollection<MemberUI> SubscribedMembers;
+        private readonly ObservableCollection<MemberUI> SubscribedMembers;
         private ActivityUI selectedActivity;
         private readonly int customerId;
-        private int totalPrice = 0;
+        private decimal totalPrice = 0;
+        internal event Action OnLogoutPress;
         public event PropertyChangedEventHandler? PropertyChanged;
 
 
@@ -48,6 +49,7 @@ namespace Hotel.Presentation.Windows.Registrations.pages
 
                 List<ActivityUI> activities = manager.GetAllActivities().Select(MapActivity.FromDomainToUI).ToList();
 
+
                 ActivityBox.ItemsSource = activities;
                 SubscribedMembers.CollectionChanged += SubscriptionChanged; // deze methode wordt gecalled als er iets aan de collectie wordt veranderd (add/remove)
             }
@@ -55,6 +57,11 @@ namespace Hotel.Presentation.Windows.Registrations.pages
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void LogoutButtonClick(object sender, RoutedEventArgs e)
+        {
+            OnLogoutPress?.Invoke();
         }
 
         private void CalculateTotalPrice()
@@ -74,7 +81,7 @@ namespace Hotel.Presentation.Windows.Registrations.pages
                     totalPrice += selectedActivity.AdultPrice;
                 }
             }
-            PriceLabel.Content = $"Total price: €{totalPrice}";
+            ShowPriceAndApplyDiscount();
         }
 
         private void SubtractRemovedPrice(IEnumerable removedMembers)
@@ -93,7 +100,16 @@ namespace Hotel.Presentation.Windows.Registrations.pages
                     totalPrice -= selectedActivity.AdultPrice;
                 }
             }
-            PriceLabel.Content = $"Total price: €{totalPrice}";
+
+            ShowPriceAndApplyDiscount();
+        }
+
+        private void ShowPriceAndApplyDiscount()
+        {
+            decimal Discount = (totalPrice * selectedActivity.DiscountPercentage) / 100;
+            decimal priceAfterDiscount = totalPrice - Discount;
+
+            PriceLabel.Content = $"Total price: €{priceAfterDiscount}";
         }
 
         private void SubscriptionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -139,6 +155,8 @@ namespace Hotel.Presentation.Windows.Registrations.pages
                 selectedActivity = (ActivityUI)ActivityBox.SelectedItem;
                 ActivityDetailsBlock.Text = selectedActivity.ShowDetails();
 
+                DiscountLabel.Content = $"Discount: {selectedActivity.DiscountPercentage}%";
+
                 GetSubscribedMembers();
             }
         }
@@ -146,7 +164,7 @@ namespace Hotel.Presentation.Windows.Registrations.pages
         private void GetSubscribedMembers()
         {
             List<MemberUI> subscribedMembers = _registrationsManager.GetSubscribedMembersForAcitivity(selectedActivity.Id, customerId)
-                                                                        .Item2.Select(x => new MemberUI(x.Name, x.Birthday.ToString()))
+                                                                        .Select(x => new MemberUI(x.ID, x.Name, x.Birthday.ToString()))
                                                                         .ToList();
             SubscribedMembers.Clear();
             CalculateTotalPrice();
@@ -159,7 +177,29 @@ namespace Hotel.Presentation.Windows.Registrations.pages
 
         private void ConfirmRegistration_Click(object sender, RoutedEventArgs e)
         {
-            _registrationsManager.MakeRegistration(SubscribedMembers.Select(x => new Member(x.ID, x.Name, DateOnly.Parse(x.Birthday))).ToList(), MapActivity.ToDomain(selectedActivity));
+            try
+            {
+                if (SubscribedMembersBox.Items.Count > 0)
+                {
+                    bool succes = _registrationsManager.MakeRegistration(SubscribedMembers.Select(x => new Member(x.ID, x.Name, DateOnly.Parse(x.Birthday), new Customer(customerId))).ToList(), MapActivity.ToDomain(selectedActivity), customerId);
+                    if (succes)
+                    {
+                        MessageBox.Show("Subscribed.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MemberUI M = SubscribedMembers.Last();
+                SubscribedMembers.Remove(M);
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerLoginWindow clw = new();
+            clw.Show();
         }
     }
 }

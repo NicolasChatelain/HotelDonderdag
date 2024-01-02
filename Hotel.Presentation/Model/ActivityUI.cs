@@ -24,6 +24,7 @@ namespace Hotel.Presentation.Model
             AdultAge = adultage;
             Duration = duration;
         }
+
         public ActivityUI()
         {
 
@@ -158,7 +159,7 @@ namespace Hotel.Presentation.Model
             return $"\nName: {Name}" +
            $"\n\nDetails: {DetailedDescription}" +
            $"\n\nLocation: {Location}" +
-           $"\nDuration: {Duration}" +
+           $"\nDuration: {Duration} minutes" +
            $"\n\nMaximum Capacity: {MaximumCapacity} people" +
            $"\nAdult Price: €{AdultPrice}" +
            $"\nChild Price: €{ChildPrice}" +

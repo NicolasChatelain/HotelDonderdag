@@ -39,6 +39,7 @@ namespace Hotel.Domain.Model
                 _birthday = value;
             }
         }
+        public Customer Customer { get; set; }
 
         public Member(string name, DateOnly birthday)
         {
@@ -49,7 +50,11 @@ namespace Hotel.Domain.Model
         public Member(int id, string name, DateOnly birthday) : this(name, birthday)
         {
             ID = id;
+        }
 
+        public Member(int id, string name, DateOnly birthday, Customer customer) : this(id, name, birthday)
+        {
+            Customer = customer;
         }
 
 
@@ -62,8 +67,8 @@ namespace Hotel.Domain.Model
 
 
             Member otherMember = (Member)obj;
-            return Name == otherMember.Name && Birthday == otherMember.Birthday;
-            
+            return ID == otherMember.ID && Name == otherMember.Name && Birthday == otherMember.Birthday;
+
         }
 
         public override int GetHashCode()
