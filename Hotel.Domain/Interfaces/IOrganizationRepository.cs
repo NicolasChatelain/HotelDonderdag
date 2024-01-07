@@ -20,5 +20,7 @@ namespace Hotel.Domain.Interfaces
         List<Description> GetAllDescriptions(int orgID);
         List<PriceInfo> GetAllPrices(int orgID);
         int PlanExistingActivity(int iD, DateTime fixture, string capacity, int id, int orgID);
+        bool ApplyDiscount(double discount, int id);
+        bool UpdateFixture(DateTime updatedFixture, int id);
     }
 }

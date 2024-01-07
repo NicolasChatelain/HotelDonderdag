@@ -58,3 +58,7 @@ C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debu
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.pdb
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Hotel.Presentation.genruntimeconfig.cache
 C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\ref\Hotel.Presentation.dll
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\DiscountWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\DiscountWindow.baml
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\ActivityUpdateWindow.g.cs
+C:\HOGENT\jaar2\Specialist\OPDRACHTEN\HotelDonderdag\Hotel.Presentation\obj\Debug\net7.0-windows\Windows\Organizations & Activities\pages\ActivityUpdateWindow.baml

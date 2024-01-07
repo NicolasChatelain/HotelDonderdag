@@ -2,15 +2,10 @@
 using Hotel.Domain.Model;
 using Hotel.Persistence.Enums;
 using Hotel.Persistence.Exceptions;
-using System;
-using System.Collections.Generic;
+
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Hotel.Persistence.Repositories
 {
@@ -497,5 +492,72 @@ namespace Hotel.Persistence.Repositories
             }
         }
 
+        public bool ApplyDiscount(double discount, int id)
+        {
+            string SQLquery = "update PriceInfo set PriceInfo.Discount = @Discount from Activities inner join PriceInfo P on Activities.PriceInfoID = P.PriceInfoID where Activities.ActivityId = @activityID;";
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = SQLquery;
+                    command.Parameters.AddWithValue("@Discount", discount);
+                    command.Parameters.AddWithValue("@activityID", id);
+
+                    try
+                    {
+                       return 0 < command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new OrganizationRepositoryException(ex.Message);
+                    }
+                }
+            }
+            catch (OrganizationRepositoryException)
+            {
+                throw;
+            }
+            catch
+            {
+                throw new OrganizationRepositoryException("Something went wrong in the database.");
+            }
+        }
+
+        public bool UpdateFixture(DateTime updatedFixture, int id)
+        {
+            string SQLquery = "update Activities set Fixture = @Fixture where ActivityId = @activityID;";
+
+            try
+            {
+                using (SqlConnection connection = new(connectionstring))
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = SQLquery;
+                    command.Parameters.AddWithValue("@Fixture", updatedFixture);
+                    command.Parameters.AddWithValue("@activityID", id);
+
+                    try
+                    {
+                        return 0 < command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new OrganizationRepositoryException(ex.Message);
+                    }
+                }
+            }
+            catch (OrganizationRepositoryException)
+            {
+                throw;
+            }
+            catch
+            {
+                throw new OrganizationRepositoryException("Something went wrong in the database.");
+            }
+        }
     }
 }

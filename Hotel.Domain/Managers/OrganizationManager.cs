@@ -207,5 +207,29 @@ namespace Hotel.Domain.Managers
                 throw new OrganizationManagerException(ex.Message);
             }
         }
+
+        public bool ApplyDiscount(double discount, int id)
+        {
+            try
+            {
+                return _organizationRepository.ApplyDiscount(discount, id);
+            }
+            catch (Exception ex)
+            {
+                throw new OrganizationManagerException(ex.Message);
+            }
+        }
+
+        public bool UpdatedFixture(DateTime updatedFixture, int id)
+        {
+            try
+            {
+                return _organizationRepository.UpdateFixture(updatedFixture, id);
+            }
+            catch (Exception ex)
+            {
+                throw new OrganizationManagerException(ex.Message);
+            }
+        }
     }
 }

@@ -25,6 +25,9 @@
     <Compile Update="Windows\Organizations &amp; Activities\OrganizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\Organizations &amp; Activities\pages\ActivityUpdateWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Organizations &amp; Activities\pages\CreatingPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Organizations &amp; Activities\pages\PlanningPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Organizations &amp; Activities\pages\DiscountWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Registrations\CustomerLoginWindow.xaml.cs">
@@ -66,6 +72,9 @@
     <Page Update="Windows\Organizations &amp; Activities\OrganizationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Windows\Organizations &amp; Activities\pages\ActivityUpdateWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\Organizations &amp; Activities\pages\CreatingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -73,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Organizations &amp; Activities\pages\PlanningPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Organizations &amp; Activities\pages\DiscountWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Registrations\CustomerLoginWindow.xaml">

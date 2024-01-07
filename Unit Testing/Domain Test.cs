@@ -1,14 +1,12 @@
 using Hotel.Domain.Exceptions;
 using Hotel.Domain.Model;
-using Newtonsoft.Json.Linq;
-using System.Text;
 
 namespace Unit_Testing
 {
     public class DomainTest
     {
-        private Activity activity;
-        private List<Member> members;
+        private readonly Activity activity;
+        private readonly  List<Member> members;
 
         public DomainTest()
         {

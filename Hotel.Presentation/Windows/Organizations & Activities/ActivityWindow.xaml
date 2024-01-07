@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Hotel.Presentation.Organizations___Activities" 
         xmlns:local1="clr-namespace:Hotel.Presentation.BoolConverter"
         mc:Ignorable="d"
-        Title="ActivityWindow" Height="720" Width="1280">
+        Title="ActivityWindow" Height="720" Width="1600">
     <Window.Resources>
         <local1:BooleanToBrushConverter x:Key="BooleanToBrush"/>
     </Window.Resources>
@@ -24,14 +24,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DataGrid MaxWidth="500" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" >
+        <DataGrid MaxWidth="750" Grid.RowSpan="3" Grid.Row="1" Name="activitiesgrid" AutoGenerateColumns="False" IsReadOnly="True" >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Fixture, StringFormat={}{0:dd-MM-yyyy HH:mm}}" />
-
+                <DataGridTextColumn Header="Discount" Binding="{Binding DiscountPercentage}"/>
                 <DataGridTemplateColumn Header="Status">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -55,8 +55,8 @@
 
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="create new activity" Name="AddActivity" />
-                    <MenuItem Header="update activity" Name="UpdateActivity"/>
+                    <MenuItem Header="apply discount" Name="SetDiscount" Click="SetDiscount_Click"/>
+                    <MenuItem Header="update activity" Name="UpdateActivity" Click="UpdateActivity_Click"/>
                     <MenuItem Header="remove activity" Name="RemoveActivity" Click="RemoveActivity_Click" />
                 </ContextMenu>
             </DataGrid.ContextMenu>

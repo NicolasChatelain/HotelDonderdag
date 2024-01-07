@@ -1,8 +1,6 @@
 ﻿using Hotel.Domain.Managers;
-using Hotel.Domain.Model;
 using Hotel.Presentation.Model;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Activity = Hotel.Domain.Model.Activity;
 

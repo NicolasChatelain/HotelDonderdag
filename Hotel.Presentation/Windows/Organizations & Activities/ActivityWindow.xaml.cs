@@ -4,20 +4,9 @@ using Hotel.Presentation.Model;
 using Hotel.Presentation.Windows.Organizations___Activities.pages;
 using Hotel.Util;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.DirectoryServices.ActiveDirectory;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hotel.Presentation
 {
@@ -60,7 +49,6 @@ namespace Hotel.Presentation
                         activities.Remove(activity);
                     }
                 }
-
             }
         }
 
@@ -108,6 +96,72 @@ namespace Hotel.Presentation
         {
             PlanningPage pl = new(OM, MapPriceInfo.FromDomainToUI(OM.GetAllPrices(orgID)), MapDescription.FromDomainToUI(OM.GetAllDescriptions(orgID)), orgID, activities);
             frame.Navigate(pl);
+        }
+
+        private void SetDiscount_Click(object sender, RoutedEventArgs e)
+        {
+            if (activitiesgrid.SelectedItem is not null)
+            {
+                ActivityUI activity = (ActivityUI)activitiesgrid.SelectedItem;
+                int activityIndex = activities.IndexOf(activity);
+
+                int Discount = 0;
+                DiscountWindow dw = new();
+
+                dw.DiscountConfirmed += (discount) =>
+                {
+                    Discount = (int)discount;
+                };
+
+                dw.ShowDialog();
+
+                try
+                {
+                    bool succes = OM.ApplyDiscount(Discount, activity.Id);
+
+                    if (succes)
+                    {
+                        activities[activityIndex].DiscountPercentage = Discount;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+        }
+
+        private void UpdateActivity_Click(object sender, RoutedEventArgs e)
+        {
+            if (activitiesgrid.SelectedItem is not null)
+            {
+                ActivityUI activity = (ActivityUI)activitiesgrid.SelectedItem;
+                int activityIndex = activities.IndexOf(activity);
+
+                ActivityUpdateWindow window = new(activity.Fixture);
+                DateTime UpdatedFixture = new();
+
+                window.UpdatedFixtureConfirmed += (updatedFixture) =>
+                {
+                    UpdatedFixture = updatedFixture;
+                };
+                window.ShowDialog();
+
+                try
+                {
+                    bool succes = OM.UpdatedFixture(UpdatedFixture, activity.Id);
+
+                    if (succes)
+                    {
+                        activities[activityIndex].Fixture = UpdatedFixture;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }
